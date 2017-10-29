@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./style.scss";
-import { connect } from "react-redux";
-import { projectDataActions } from "../../actions/index";
 
 export class MainLayout extends React.Component {
 
@@ -13,11 +11,18 @@ export class MainLayout extends React.Component {
   constructor(props) {    
     super(props);
   }
- 
-  render() {   
-    let state = store.getState();
-    console.log(this.props,"this props")
-    console.log(state,"this state")
+
+  componentDidMount() {
+    console.log(store.getState().projectDataReducer.data[0].login,"login")
+    console.log(window.location,"window.location")
+    if (!store.getState().projectDataReducer.data[0].login && window.location.pathname == '/blog') {
+      console.log(this,"this");
+      window.location.pathname = '/login';
+    }
+  }
+
+  render() {    
+
     return (
       <main className="viewport">        
         {this.props.children}
@@ -26,8 +31,4 @@ export class MainLayout extends React.Component {
   }
 }
 
-export default connect(
-  state => ({ data: state.toDoList }),
-  { ...projectDataActions }
-)(MainLayout);
   

@@ -16,15 +16,7 @@ const routes = {
     {
       path: '/',
       getComponent(location, cb) {
-        System.import('pages/Home')
-          .then(loadRoute(cb))
-          .catch(errorLoading);
-      }
-    },
-    {
-      path: 'blog',
-      getComponent(location, cb) {
-        System.import('pages/Blog')
+        System.import('pages/home')
           .then(loadRoute(cb))
           .catch(errorLoading);
       }
@@ -32,11 +24,27 @@ const routes = {
     {
       path: 'about',
       getComponent(location, cb) {
-        System.import('pages/About')
+        System.import('pages/about')
           .then(loadRoute(cb))
           .catch(errorLoading);
       }
     },
+    {
+      path: 'login',
+      getComponent(location, cb) {
+        System.import('pages/login')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      }
+    },
+    {
+      path: 'blog',
+      getComponent(location, cb) {
+        System.import('pages/blog')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      }
+    }
   ]
 };
 

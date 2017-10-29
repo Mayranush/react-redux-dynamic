@@ -31,9 +31,11 @@
   },
   "dependencies": {
     "babel-runtime": "6.22.0",
+    "loadjs": "^3.5.1",
     "prop-types": "^15.6.0",
     "react": "15.4.2",
     "react-dom": "15.4.2",
+    "react-googlecharts": "^1.4.0",
     "react-redux": "^5.0.6",
     "react-router": "2.8.0",
     "redux": "^3.7.2",
