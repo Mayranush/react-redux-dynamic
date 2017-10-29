@@ -38,6 +38,14 @@ const routes = {
       }
     },
     {
+      path: 'register',
+      getComponent(location, cb) {
+        System.import('pages/register')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      }
+    },
+    {
       path: 'blog',
       getComponent(location, cb) {
         System.import('pages/blog')

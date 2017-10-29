@@ -1,20 +1,20 @@
-import { render } from 'react-dom';
-import React from 'react';
-import App from './App';
-import 'general.scss';
+import { render } from "react-dom";
+import React from "react";
+import App from "./App";
+import "general.scss";
 
 render(
   <App />,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // if (module.hot) {
-//   module.hot.accept('pages/routes', () => {
-//     const NewRoot = require('pages/routes').default;
+//   module.hot.accept("pages/routes", () => {
+//     const NewRoot = require("pages/routes").default;
 
 //     render(
 //       <NewRoot />,
-//       document.getElementById('root')
+//       document.getElementById("root")
 //     );
 //   });
 // }
