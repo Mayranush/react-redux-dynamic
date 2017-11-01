@@ -1,5 +1,5 @@
 const ActionTypes = {
- login: "LOGIN",
+ changeMessage: "CHANGE-MESSAGE"
 };
 
 export default ActionTypes;

@@ -6,3 +6,17 @@
 .register-link {
 	margin-right: 30px;
 }
+
+.input-error {
+  border: 1px solid red;
+}
+
+.error-for-input {
+  color: red;
+  margin-left: 10px;
+}
+
+.disabled-button {
+	background-color: gray;
+	user-select: none;
+}
