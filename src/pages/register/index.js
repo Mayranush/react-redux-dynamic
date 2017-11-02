@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { projectDataActions } from "../../actions/index";
 import { Link } from 'react-router/es6';
 import "./register.scss";
+import "../blog/blog.scss";
 
 export class Register extends React.Component {
   constructor(props) {    
@@ -13,8 +14,7 @@ export class Register extends React.Component {
   render() {      
     {console.log(this.props.data,"this props---------------Register");   } 
     return (
-      <div>
-        <Header />       
+      <div className="bg-dark">
         <div className="card card-register mx-auto mt-5">
           <div className="card-header">Register an Account</div>
           <div className="card-body">
@@ -22,27 +22,27 @@ export class Register extends React.Component {
               <div className="form-group">
                 <div className="form-row">
                   <div className="col-md-6">
-                    <label for="exampleInputName">First name</label>
+                    <label for="firstName">First name</label>
                     <input className="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name" />
                   </div>
                   <div className="col-md-6">
-                    <label for="exampleInputLastName">Last name</label>
+                    <label for="lastName">Last name</label>
                     <input className="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name"/>
                   </div>
                 </div>
               </div>
               <div className="form-group email">
-                <label for="exampleInputEmail1">Email address</label>
+                <label for="email">Email address</label>
                 <input className="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email" />
               </div>
               <div className="form-group">
                 <div className="form-row">
                   <div className="col-md-6">
-                    <label for="exampleInputPassword1">Password</label>
+                    <label for="password">Password</label>
                     <input className="form-control" id="exampleInputPassword1" type="password" placeholder="Password" />
                   </div>
                   <div className="col-md-6">
-                    <label for="exampleConfirmPassword">Confirm password</label>
+                    <label for="confirmPasswor">Confirm password</label>
                     <input className="form-control" id="exampleConfirmPassword" type="password" placeholder="Confirm password" />
                   </div>
                 </div>
