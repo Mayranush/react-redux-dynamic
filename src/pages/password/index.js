@@ -28,32 +28,16 @@ export class Login extends React.Component {
     this.props.changeMessage('login','email', email);
   }
 
-  passwordChange(e) {
-    let password = e.target.value;
-    if (password == '') {
-      this.props.changeMessage('login','passwordErrorText', 'password is empty');
-    } else {
-      this.props.changeMessage('login','passwordErrorText', '');
-    }
-    this.props.changeMessage('login','password', password);
-  }
-
-  checkRememberPassword(e) {
-    let rememberPassword = e.target.checked;
-    this.props.changeMessage('login','rememberPassword', rememberPassword);
-  }
-
   loginUser(e) {
     e.stopPropagation();
     e.preventDefault();
 
     let obj = {
-      email: this.props.data.login.email,
-      password: this.props.data.login.password,
-      isRememberPassword: this.props.data.login.rememberPassword
+      email: this.props.data.email,
+
     }
 
-    if (this.props.data.login.emailErrorText.length == 0 && this.props.data.login.passwordErrorText.length == 0 && this.props.data.login.email.length != 0) {
+    if (this.props.data.login.emailErrorText.length == 0 && this.props.data.login.email.length != 0) {
       //window.location.pathname = "/blog";
       console.log("go blog")
     }
@@ -66,14 +50,7 @@ export class Login extends React.Component {
       <div className="bg-dark">
         <div className="card card-login mx-auto mt-5">
           <div className="card-header">
-            <span className="register">Login</span>
-            <a href="#" className="btn btn-twitter btn-lg withSocial">
-              <i className="fa fa-twitter fa-fw"/>
-            </a>
-            <span className="withSocial">or</span>
-            <a href="#" className="btn btn-fb btn-lg withSocial">
-              <i className="fa fa-facebook fa-fw"/>
-            </a>
+            <span className="register">Password recovery</span>
           </div>
 
           <div className="card-body">
@@ -84,39 +61,21 @@ export class Login extends React.Component {
                   className={this.props.data.login.emailErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
                   id="inputEmail" type="email"
                   placeholder="Enter email"
-                  onBlur={(e) => this.handleEmailChange(e)}/>
+                  onBlur={(e) => this.handleEmailChange(e)}
+                defaultValue={this.props.data.login.email}/>
                 <p
                   className="error-for-input">{this.props.data.login.emailErrorText.length != 0 ? '*' + this.props.data.login.emailErrorText : ''}</p>
               </div>
-              <div className="form-group">
-                <label htmlFor="inputPassword">Password</label>
-                <input
-                  className={this.props.data.login.passwordErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
-                  id="inputPassword"
-                  type="password"
-                  placeholder="Password"
-                  onBlur={(e) => this.handlePasswordChange(e)}/>
-                <p
-                  className="error-for-input">{this.props.data.login.passwordErrorText.length != 0 ? '*' + this.props.data.login.passwordErrorText : ''}</p>
-              </div>
-              <div className="form-group">
-                <div className="form-check">
-                  <label className="form-check-label">
-                    <input className="form-check-input"
-                           type="checkbox"
-                           onChange={(e) => this.handleCheckRememberPassword(e)}/> Remember Password
-                  </label>
-                </div>
-              </div>
+
+
               <button className={this.props.data.login.emailErrorText.length != 0 ||
-              this.props.data.login.passwordErrorText.length != 0 ||
               this.props.data.login.email.length == 0 ? "disabled-button btn btn-primary btn-block" : "btn btn-primary btn-block"}
-                      onClick={this.handleLoginUser}>Login
+                      onClick={this.handleLoginUser}>Recover password
               </button>
             </form>
             <div className="text-center">
               <Link className="d-block small mt-3 register-link" to="/register">Register an Account</Link>
-              <a className="d-block small" href="/password/recovery">Forgot Password?</a>
+              <a className="d-block small" href="/login">Back to login page</a>
             </div>
           </div>
         </div>

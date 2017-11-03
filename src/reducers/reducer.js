@@ -3,13 +3,26 @@ import {handleActions} from "redux-actions";
 
 const mockData = {
   login: true,
-  email: '',
-  password: '',    
-  emailErrorText: '',   
-  passwordErrorText: '',
-  rememberPassword: false  
-};
+  login: {
+    email: '',
+    password: '',
+    emailErrorText: '',
+    passwordErrorText: '',
+    rememberPassword: false
+  },
+  register: {
+    email:'',
+    emailErrorText: '',
+    twitterAccount:'',
+    twitterAccountErrorText:'',
+    firstName:'',
+    lastName:'',
+    password: '',
+    passwordErrorText: '',
 
+  }
+
+};
 const defaultState = {
   data: mockData
 };

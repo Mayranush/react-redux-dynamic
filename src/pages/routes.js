@@ -52,6 +52,14 @@ const routes = {
           .then(loadRoute(cb))
           .catch(errorLoading);
       }
+    },
+    {
+      path: 'password/recovery',
+      getComponent(location, cb) {
+        System.import('pages/password')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      }
     }
   ]
 };

@@ -15,10 +15,10 @@ import {tools} from '../resources';
 
 const changeMessageResponse = createAction(ActionTypes.changeMessage);
 
-export function changeMessage(field, message) {
+export function changeMessage(page,field, message) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    newState[field] = message;
+    newState[page][field] = message;
     console.log(newState,"newState---------------")
     return dispatch(changeMessageResponse(newState));
   };

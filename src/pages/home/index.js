@@ -26,10 +26,10 @@ export class Home extends React.Component {
                   <a className="nav-link" href="#about">About</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="login">Sign In</a>
+                  <a className="nav-link" href="login">Login</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="register">Sign Up</a>
+                  <a className="nav-link" href="register">Register</a>
                 </li>
               </ul>
             </div>
