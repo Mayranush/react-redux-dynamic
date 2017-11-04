@@ -21,26 +21,26 @@ export class GoogleChart extends React.Component {
 }
 
 componentDidUpdate() {
-    if (!this.props.loadCharts) {
-        this.drawChart();
-    } else if (GoogleChartLoader.isLoading) {
-        GoogleChartLoader.initPromise.then(() => {
-            this.drawChart();
-        });
-    } else if (GoogleChartLoader.isLoaded) {
-        this.drawChart();
-    }
+  if (!this.props.loadCharts) {
+   this.drawChart();
+  } else if (GoogleChartLoader.isLoading) {
+    GoogleChartLoader.initPromise.then(() => {
+      this.drawChart();
+    });
+  } else if (GoogleChartLoader.isLoaded) {
+    this.drawChart();
+  }
 }
 
 componentWillUnmount() {
   try {
-      if (window) {
-          if (window.google && window.google.visualization) {
-              window.google.visualization.events.removeAllListeners(this.wrapper);
-          }
+    if (window) {
+      if (window.google && window.google.visualization) {
+        window.google.visualization.events.removeAllListeners(this.wrapper);
       }
+    }
   } catch (err) {
-      return;
+    return;
   }
 }
 

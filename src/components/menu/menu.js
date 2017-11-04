@@ -1,12 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import {projectDataActions} from "../../actions/index";
-import "./blog.scss";
-export class Blog extends React.Component {
+import { Link } from 'react-router/es6';
+import "./menu.scss";
+
+
+export class Menu extends React.Component {
   constructor(props) {
     super(props);
   }
-
 
   render() {
     {
@@ -15,7 +17,7 @@ export class Blog extends React.Component {
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav" >
-          <a className="navbar-brand" href="index.html">LOGO HERE</a>
+          <a className="navbar-brand" href="index.html">Start Bootstrap</a>
           <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                   data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                   aria-label="Toggle navigation">
@@ -24,36 +26,24 @@ export class Blog extends React.Component {
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                <a className="nav-link" href="index.html">
-                  <i className="fa fa-fw fa-dashboard"/>
-                  <span className="nav-link-text">Dashboard</span>
-                </a>
+                <i className="fa fa-fw fa-dashboard"/>
+                <Link className="nav-link-text" to="/dashboard">Dashboard</Link>
               </li>
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                <a className="nav-link" href="charts.html">
-                  <i className="fa fa-fw fa-area-chart"/>
-                  <span className="nav-link-text">Charts</span>
-                </a>
+                <i className="fa fa-fw fa-area-chart"/>
+                <Link className="nav-link-text" to="/charts">Charts</Link>
               </li>
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-                <a className="nav-link" href="tables.html">
-                  <i className="fa fa-fw fa-table"/>
-                  <span className="nav-link-text">Tables</span>
-                </a>
+                <i className="fa fa-fw fa-table"/>
+                <Link className="nav-link-text" to="/tables">Tables</Link>
               </li>
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Settings">
-                <a className="nav-link" data-toggle="collapse" href="#collapseComponents"
-                   data-parent="#exampleAccordion">
-                  <i className="fa fa-fw fa-wrench"/>
-                  <span className="nav-link-text">Settings</span>
-                </a>
+                <i className="fa fa-fw fa-wrench"/>
+                <Link className="nav-link-text" to="/settings">Settings</Link>
               </li>
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Adminarea">
-                <a className="nav-link" data-toggle="collapse" href="#collapseComponents"
-                   data-parent="#exampleAccordion">
-                  <i className="fa fa-fw fa-wrench"/>
-                  <span className="nav-link-text">Admin Area</span>
-                </a>
+                <i className="fa fa-fw fa-wrench"/>
+                <Link className="nav-link-text" to="/admin">Admin Area</Link>
               </li>
             </ul>
             <ul className="navbar-nav sidenav-toggler">
@@ -104,78 +94,18 @@ export class Blog extends React.Component {
                 </div>
               </li>
               <li className="nav-item">
-                <form className="form-inline my-2 my-lg-0 mr-lg-2">
-                  <div className="input-group">
-                    <input className="form-control" type="text" placeholder="Search for..."/>
-                    <span className="input-group-btn">
-                    <button className="btn btn-primary" type="button">
-                      <i className="fa fa-search"/>
-                    </button>
-              </span>
-                  </div>
-                </form>
-              </li>
-              <li className="nav-item">
                 <a className="nav-link" data-toggle="modal" data-target="#exampleModal">
                   <i className="fa fa-fw fa-sign-out"/>Logout</a>
               </li>
             </ul>
           </div>
         </nav>
-        <div className="content-wrapper">
-
-
-            <div className="container-fluid">
-              <ol className="breadcrumb">
-                <li className="breadcrumb-item">
-                  <a href="#">Dashboard</a>
-                </li>
-                <li className="breadcrumb-item active">Navbar</li>
-              </ol>
-              <h1>Navbar</h1>
-              <hr />
-                <p>The SB Admin navbar can be either fixed or static, and it supports the navbar-light and navbar-dark Bootstrap 4 classes.</p>
-                <a className="btn btn-primary" href="#" id="toggleNavPosition">Toggle Fixed/Static Navbar</a>
-                <a className="btn btn-primary" href="#" id="toggleNavColor">Toggle Navbar Color</a>
-
-            </div>
-          <footer className="sticky-footer">
-            <div className="container">
-              <div className="text-center">
-                <small>Copyright © Your Website 2017</small>
-              </div>
-            </div>
-          </footer>
-
-          <a className="scroll-to-top rounded" href="#page-top">
-            <i className="fa fa-angle-up"/>
-          </a>
-
-          <div className="modal fade" id="exampleModal"  role="dialog" aria-labelledby="exampleModalLabel"
-               aria-hidden="true">
-            <div className="modal-dialog" role="document">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                  <button className="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                  </button>
-                </div>
-                <div className="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div className="modal-footer">
-                  <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                  <a className="btn btn-primary" href="">Logout</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-  )
+    )
   }
   }
 
   export default connect(
   state => ({ data:  state.projectDataReducer.data }),
   { ...projectDataActions }
-  )(Blog);
+  )(Menu);

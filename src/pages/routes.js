@@ -46,9 +46,41 @@ const routes = {
       }
     },
     {
-      path: 'blog',
+      path: 'dashboard',
       getComponent(location, cb) {
-        System.import('pages/blog')
+        System.import('pages/dashboard')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      }
+    },
+    {
+      path: 'charts',
+      getComponent(location, cb) {
+        System.import('pages/charts')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      }
+    },
+    {
+      path: 'tables',
+      getComponent(location, cb) {
+        System.import('pages/tables')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      }
+    },
+    {
+      path: 'settings',
+      getComponent(location, cb) {
+        System.import('pages/settings')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      }
+    },
+    {
+      path: 'admin',
+      getComponent(location, cb) {
+        System.import('pages/admin')
           .then(loadRoute(cb))
           .catch(errorLoading);
       }
