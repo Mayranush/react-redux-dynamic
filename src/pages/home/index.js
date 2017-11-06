@@ -60,11 +60,7 @@ export class Home extends React.Component {
                 <p className="lead">This is a twitter bot account that helps coin developers promote their cryptocurrencies by tipping people that mention the coin. It is like a payment system to encourage interaction about their coin on twitter.</p>
               </div>
               <div className="col-lg-5 mr-auto">
-                <video width="320" height="240" controls>
-                  <source src="../asets/intro.mp3" type="video/mp3"/>
-                  <source src="movie.ogg" type="video/ogg"/>
-                      Your browser does not support the video tag.
-                </video>
+                <iframe src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.ogv?embedplayer=yes" width="500" height="250" frameborder="0" ></iframe>
               </div>
             </div>
 

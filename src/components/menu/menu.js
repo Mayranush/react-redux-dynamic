@@ -11,9 +11,6 @@ export class Menu extends React.Component {
   }
 
   render() {
-    {
-      console.log(this.props.data, "this props---------------Blog");
-    }
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav" >
@@ -26,24 +23,39 @@ export class Menu extends React.Component {
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                <i className="fa fa-fw fa-dashboard"/>
-                <Link className="nav-link-text" to="/dashboard">Dashboard</Link>
-              </li>
+                  <div className="nav-link">                    
+                    <Link className="nav-link-text" to="/dashboard">
+                      <i className="fa fa-fw fa-dashboard"/>Dashboard
+                    </Link>
+                  </div>
+               </li>
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                <i className="fa fa-fw fa-area-chart"/>
-                <Link className="nav-link-text" to="/charts">Charts</Link>
+                <div className="nav-link">
+                  <Link className="nav-link-text" to="/charts">
+                    <i className="fa fa-fw fa-area-chart"/>Charts
+                  </Link>
+                </div>
               </li>
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-                <i className="fa fa-fw fa-table"/>
-                <Link className="nav-link-text" to="/tables">Tables</Link>
+                <div className="nav-link">
+                  <Link className="nav-link-text" to="/tables">
+                    <i className="fa fa-fw fa-table"/>Tables
+                  </Link>
+                </div>
               </li>
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Settings">
-                <i className="fa fa-fw fa-wrench"/>
-                <Link className="nav-link-text" to="/settings">Settings</Link>
+                <div className="nav-link">
+                  <Link className="nav-link-text" to="/settings">
+                    <i className="fa fa-fw fa-wrench"/>Settings
+                  </Link>
+                </div>
               </li>
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Adminarea">
-                <i className="fa fa-fw fa-wrench"/>
-                <Link className="nav-link-text" to="/admin">Admin Area</Link>
+                 <div className="nav-link">  
+                  <Link className="nav-link-text" to="/admin">
+                    <i className="fa fa-fw fa-wrench"/>Admin Area
+                  </Link>
+                </div>
               </li>
             </ul>
             <ul className="navbar-nav sidenav-toggler">

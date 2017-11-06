@@ -18,31 +18,31 @@ export class GoogleChart extends React.Component {
     } else {
         this.drawChart();
     }
-}
+  }
 
-componentDidUpdate() {
-  if (!this.props.loadCharts) {
-   this.drawChart();
-  } else if (GoogleChartLoader.isLoading) {
-    GoogleChartLoader.initPromise.then(() => {
+  componentDidUpdate() {
+    if (!this.props.loadCharts) {
+     this.drawChart();
+    } else if (GoogleChartLoader.isLoading) {
+      GoogleChartLoader.initPromise.then(() => {
+        this.drawChart();
+      });
+    } else if (GoogleChartLoader.isLoaded) {
       this.drawChart();
-    });
-  } else if (GoogleChartLoader.isLoaded) {
-    this.drawChart();
-  }
-}
-
-componentWillUnmount() {
-  try {
-    if (window) {
-      if (window.google && window.google.visualization) {
-        window.google.visualization.events.removeAllListeners(this.wrapper);
-      }
     }
-  } catch (err) {
-    return;
   }
-}
+
+  componentWillUnmount() {
+    try {
+      if (window) {
+        if (window.google && window.google.visualization) {
+          window.google.visualization.events.removeAllListeners(this.wrapper);
+        }
+      }
+    } catch (err) {
+      return;
+    }
+  }
 
   
   drawChart() {  
@@ -73,16 +73,16 @@ componentWillUnmount() {
       ['2008/09',  136,      691,         629,             1026,          366,      569.6]
    ]);
 
- var options1 = {
-   title : 'Monthly Coffee Production by Country',
-   vAxis: {title: 'Cups'},
-   hAxis: {title: 'Month'},
-   seriesType: 'bars',
-   series: {5: {type: 'line'}}
- };
+  var options1 = {
+    title : 'Monthly Coffee Production by Country',
+    vAxis: {title: 'Cups'},
+    hAxis: {title: 'Month'},
+    seriesType: 'bars',
+    series: {5: {type: 'line'}}
+  };
 
- var chart1 = new google.visualization.ComboChart(document.getElementById('test1'));
- chart1.draw(data1, options1);
+  var chart1 = new google.visualization.ComboChart(document.getElementById('test1'));
+  chart1.draw(data1, options1);
   }  
 
   render() {
