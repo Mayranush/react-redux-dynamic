@@ -18,8 +18,7 @@ const mockData = {
     firstName:'',
     lastName:'',
     password: '',
-    passwordErrorText: '',
-
+    passwordErrorText: ''
   }
 
 };
