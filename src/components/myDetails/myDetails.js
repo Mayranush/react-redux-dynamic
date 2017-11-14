@@ -13,7 +13,7 @@ export class MyDetails extends React.Component {
   render() {
     return (
       <div>
-        Hello Anush
+        Hello MyDetails
       </div>)
   }
 }

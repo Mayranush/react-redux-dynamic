@@ -11,7 +11,7 @@ export class PaymentSettings extends React.Component {
   render() {
     return (
       <div>
-        Hello Shushan
+        Hello PaymentSettings
       </div>)
   }
 }

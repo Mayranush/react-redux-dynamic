@@ -11,32 +11,24 @@ import {PaymentSettings} from "../../components/paymentSettings/paymentSettings"
 export class Settings extends React.Component {
   constructor(props) {
     super(props);
-    this.currentTab = 'myDetails';
-    //this.changeTab = this.changeTab.bind(this);
   }
-changeTab(tab) {
-    console.log("ggggggg");
- this.currentTab = tab;
-}
   render() {
+    console.log(this.props,"this.props.settingsCurrentTab")
     return (
       <div>
         <Menu />
         <div className="main-content">
-          <div className="card-header">
-            <h4 className="register">Settings</h4>
-          </div>
+          
+              <p  onClick={() => this.props.changeTabInSettings('myDetails')}>My details</p>
 
-              <p className="nav-link active" onClick={this.changeTab('myDetails')}>My details</p>
+              <p onClick={() => this.props.changeTabInSettings('twitterSettings')}>Twitter Settings</p>
 
-              <p className="nav-link" onClick={this.changeTab('twitterSettings')}>Twitter Settings</p>
-
-              <p className="nav-link" onClick={this.changeTab('paymentSettings')}>Payment details</p>
+              <p onClick={() => this.props.changeTabInSettings('paymentSettings')}>Payment details</p>
 
 
-          {this.currentTab === 'myDetails' && <MyDetails />}
-          {this.currentTab === 'twitterSettings' && <TwitterSettings />}
-          {this.currentTab === 'paymentSettings' && <PaymentSettings />}
+          {this.props.data.settingsCurrentTab == 'myDetails' && <MyDetails />}
+          {this.props.data.settingsCurrentTab == 'twitterSettings' && <TwitterSettings />}
+          {this.props.data.settingsCurrentTab == 'paymentSettings' && <PaymentSettings />}
 
         </div>
         <Footer />

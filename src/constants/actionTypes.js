@@ -1,5 +1,6 @@
 const ActionTypes = {
- changeMessage: "CHANGE-MESSAGE"
+ changeMessage: "CHANGE_MESSAGE",
+ changeTabInSettings: "CHANGE_TAB_IN_SETTINGS"
 };
 
 export default ActionTypes;

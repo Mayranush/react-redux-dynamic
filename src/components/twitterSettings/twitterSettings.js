@@ -14,7 +14,7 @@ export class TwitterSettings extends React.Component {
   render() {
     return (
       <div>
-        Hello Shushan
+        Hello TwitterSettings
       </div>)
   }
 }

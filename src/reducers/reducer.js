@@ -3,6 +3,7 @@ import {handleActions} from "redux-actions";
 
 const mockData = {
   login: true,
+  settingsCurrentTab: 'myDetails',
   login: {
     email: '',
     password: '',
@@ -27,5 +28,6 @@ const defaultState = {
 };
 
 export default handleActions({
-  [ActionTypes.changeMessage]: (state, { payload }) => ({ ...state, data: payload })
+  [ActionTypes.changeMessage]: (state, { payload }) => ({ ...state, data: payload }),
+  [ActionTypes.changeTabInSettings]: (state, { payload }) => ({ ...state, data: payload })
 }, defaultState);
