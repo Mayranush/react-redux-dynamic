@@ -66,14 +66,8 @@ export class Login extends React.Component {
       <div className="bg-dark">
         <div className="card card-login mx-auto mt-5">
           <div className="card-header">
-            <span className="register">Login</span>
-            <a href="#" className="btn btn-twitter btn-lg withSocial">
-              <i className="fa fa-twitter fa-fw"/>
-            </a>
-            <span className="withSocial">or</span>
-            <a href="#" className="btn btn-fb btn-lg withSocial">
-              <i className="fa fa-facebook fa-fw"/>
-            </a>
+            <h4 className="register">Login</h4>
+
           </div>
 
           <div className="card-body">
@@ -114,6 +108,14 @@ export class Login extends React.Component {
                       onClick={this.handleLoginUser}>Login
               </button>
             </form>
+            <hr/>
+            <a href="#" className="fa fa-twitter">
+              <span className=""> Twitter</span>
+
+          </a>
+            <a href="#" className="fa fa-facebook">
+              <span className=""> Facebook</span>
+          </a>
             <div className="text-center">
               <Link className="d-block small mt-3 register-link" to="/register">Register an Account</Link>
               <a className="d-block small" href="/password/recovery">Forgot Password?</a>

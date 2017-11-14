@@ -1,3 +1,31 @@
+.fa {
+  padding: 10px;
+  font-size: 24px;
+  width: 174px;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+.fa-facebook:hover {
+  color: white;
+}
+.fa-twitter:hover {
+  color: white;
+}
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+
 .card {
   width: 40%;
   margin: 0 auto;
@@ -25,21 +53,5 @@
 
 
 
-.btn-twitter {
-  background-color: #32CCFE;
-  border-radius: 50%;
-  color: #fff;
-}
 
-.btn-fb {
-  background-color: #3C599F;
-  border-radius: 50%;
-  color: #fff;
-}
 
-.register{
-  margin-right: 145px;
-}
-.withSocial{
-  margin-right: 12px;
-}
