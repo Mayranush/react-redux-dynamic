@@ -19,11 +19,11 @@ export class Settings extends React.Component {
         <Menu />
         <div className="main-content">
           
-              <p  onClick={() => this.props.changeTabInSettings('myDetails')}>My details</p>
+              <p  onClick={() => this.props.changeTabInSettings('myDetails')} className={this.props.data.settingsCurrentTab == 'myDetails' ? "active" : ""}>My details</p>
 
-              <p onClick={() => this.props.changeTabInSettings('twitterSettings')}>Twitter Settings</p>
+              <p onClick={() => this.props.changeTabInSettings('twitterSettings')} className={this.props.data.settingsCurrentTab == 'twitterSettings' ? "active" : ""}>Twitter Settings</p>
 
-              <p onClick={() => this.props.changeTabInSettings('paymentSettings')}>Payment details</p>
+              <p onClick={() => this.props.changeTabInSettings('paymentSettings')} className={this.props.data.settingsCurrentTab == 'paymentSettings' ? "active" : ""}>Payment details</p>
 
 
           {this.props.data.settingsCurrentTab == 'myDetails' && <MyDetails />}
