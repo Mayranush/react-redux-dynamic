@@ -11,6 +11,11 @@ import {PaymentSettings} from "../../components/paymentSettings/paymentSettings"
 export class Settings extends React.Component {
   constructor(props) {
     super(props);
+<<<<<<< Updated upstream
+=======
+    this.currentTab = 'myDetails';
+    this.changeTab = this.changeTab.bind(this);
+>>>>>>> Stashed changes
   }
   render() {
     console.log(this.props,"this.props.settingsCurrentTab")

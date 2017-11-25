@@ -13,7 +13,13 @@ export class MyDetails extends React.Component {
   render() {
     return (
       <div>
+<<<<<<< Updated upstream
         Hello MyDetails
+=======
+        <div><span>Fullsfmkm</span><span>sjvnjvnjn</span></div>
+        <div><span>Fullsfmdsnsjdnkm</span><span>sjvnjvnjn</span></div>
+        <div><span>Fullm</span><span>sjvnjvnjn</span></div>
+>>>>>>> Stashed changes
       </div>)
   }
 }
