@@ -1,3 +1,42 @@
-.first-col{
+.first-col {
   padding-right: 179px;
+}
+
+.nav-link.active {
+  background-color: #15905f !important;
+}
+
+.nav-link.tab {
+  margin: 12px;
+  font-size: 18px;
+}
+
+.rect {
+  width: 70%;
+  height: 70px;
+  border: 5px dotted gray;
+  margin: 15px;
+  text-align: center;
+  padding: 20px;
+}
+
+.update-info {
+  background-color: gainsboro;
+  height: 40px;
+}
+
+.btn-warning {
+  margin-left: 70%;
+  height: inherit;
+  font-size: large;
+  color: white;
+}
+.settings-tab{
+  height: 350px;
+  margin: 15px;
+}
+.contact-us{
+ color: #15905f ;
+  text-decoration: underline;
+  font-size: 15px;
 }

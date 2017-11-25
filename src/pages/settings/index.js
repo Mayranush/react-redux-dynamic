@@ -11,30 +11,39 @@ import {PaymentSettings} from "../../components/paymentSettings/paymentSettings"
 export class Settings extends React.Component {
   constructor(props) {
     super(props);
-<<<<<<< Updated upstream
-=======
+
     this.currentTab = 'myDetails';
-    this.changeTab = this.changeTab.bind(this);
->>>>>>> Stashed changes
   }
+
   render() {
-    console.log(this.props,"this.props.settingsCurrentTab")
     return (
       <div>
         <Menu />
         <div className="main-content">
-          
-              <p  onClick={() => this.props.changeTabInSettings('myDetails')} className={this.props.data.settingsCurrentTab == 'myDetails' ? "active" : ""}>My details</p>
+          <ul className="nav nav-pills">
+            <li className="nav-item">
+              <span><p onClick={() => this.props.changeTabInSettings('myDetails')}
+                       className={this.props.data.settingsCurrentTab == 'myDetails' ? "nav-link active tab" : "nav-link tab"}>My details</p></span>
+            </li>
+            <li className="nav-item">
+              <span> <p onClick={() => this.props.changeTabInSettings('twitterSettings')}
+                        className={this.props.data.settingsCurrentTab == 'twitterSettings' ? "nav-link active tab" : "nav-link tab"}>Twitter Settings</p></span>
+            </li>
+            <li className="nav-item">
+              <span><p onClick={() => this.props.changeTabInSettings('paymentSettings')}
+                       className={this.props.data.settingsCurrentTab == 'paymentSettings' ? "nav-link active tab" : "nav-link tab"}>Payment details</p></span>
+            </li>
 
-              <p onClick={() => this.props.changeTabInSettings('twitterSettings')} className={this.props.data.settingsCurrentTab == 'twitterSettings' ? "active" : ""}>Twitter Settings</p>
-
-              <p onClick={() => this.props.changeTabInSettings('paymentSettings')} className={this.props.data.settingsCurrentTab == 'paymentSettings' ? "active" : ""}>Payment details</p>
-
+          </ul>
+<div className="settings-tab">
 
           {this.props.data.settingsCurrentTab == 'myDetails' && <MyDetails />}
           {this.props.data.settingsCurrentTab == 'twitterSettings' && <TwitterSettings />}
           {this.props.data.settingsCurrentTab == 'paymentSettings' && <PaymentSettings />}
 
+</div>
+          <div className="rect">Need any help? <a className="contact-us" href="">Contact us here</a></div>
+          <div className="update-info"><button className="btn-warning">Update Settings</button></div>
         </div>
         <Footer />
       </div>)

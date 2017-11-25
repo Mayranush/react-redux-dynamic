@@ -9,7 +9,6 @@ export function changeMessage(page,field, message) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
     newState[page][field] = message;
-    console.log(newState,"newState---------------")
     return dispatch(changeMessageResponse(newState));
   };
 }
@@ -20,7 +19,6 @@ export function changeTabInSettings(tab) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
     newState.settingsCurrentTab = tab;
-    console.log(newState,"newState---------------")
     return dispatch(changeTabInSettingsResponse(newState));
   };
 }
