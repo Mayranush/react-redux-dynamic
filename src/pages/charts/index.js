@@ -16,7 +16,7 @@ export class Charts extends React.Component {
       <div>
         <Menu />
         <div  className="main-content">
-          charts
+          <h6>Example chart</h6>
           <GoogleChart loadCharts="false"/>
         </div>
         <Footer />

@@ -11,10 +11,11 @@ export class Dashboard extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <Menu />
-        <div  className="main-content">Dashboard</div>
+        <div  className="main-content"><h1>Coming Soon</h1></div>
         <Footer />
       </div>
     )

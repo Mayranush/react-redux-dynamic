@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {projectDataActions} from "../../actions/index";
 import {Link} from "react-router/es6";
 import "./login.scss";
-
+import axios from "axios";
 
 export class Login extends React.Component {
   constructor(props) {
@@ -12,6 +12,7 @@ export class Login extends React.Component {
     console.log(this.props, "props")
 
     this.handleEmailChange = this.emailChange.bind(this);
+    this.handlePasswordChange = this.passwordChange.bind(this);
     this.handleLoginUser = this.loginUser.bind(this);
   }
 
@@ -19,28 +20,28 @@ export class Login extends React.Component {
     let email = e.target.value;
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (email == '') {
-      this.props.changeMessage('login','emailErrorText', 'email is empty');
+      this.props.changeMessage('login', 'emailErrorText', 'email is empty');
     } else if (re.test(email)) {
-      this.props.changeMessage('login','emailErrorText', '');
+      this.props.changeMessage('login', 'emailErrorText', '');
     } else {
-      this.props.changeMessage('login','emailErrorText', 'not correct email');
+      this.props.changeMessage('login', 'emailErrorText', 'not correct email');
     }
-    this.props.changeMessage('login','email', email);
+    this.props.changeMessage('login', 'email', email);
   }
 
   passwordChange(e) {
     let password = e.target.value;
     if (password == '') {
-      this.props.changeMessage('login','passwordErrorText', 'password is empty');
+      this.props.changeMessage('login', 'passwordErrorText', 'password is empty');
     } else {
-      this.props.changeMessage('login','passwordErrorText', '');
+      this.props.changeMessage('login', 'passwordErrorText', '');
     }
-    this.props.changeMessage('login','password', password);
+    this.props.changeMessage('login', 'password', password);
   }
 
   checkRememberPassword(e) {
     let rememberPassword = e.target.checked;
-    this.props.changeMessage('login','rememberPassword', rememberPassword);
+    this.props.changeMessage('login', 'rememberPassword', rememberPassword);
   }
 
   loginUser(e) {
@@ -50,10 +51,18 @@ export class Login extends React.Component {
     let obj = {
       email: this.props.data.login.email,
       password: this.props.data.login.password,
-      isRememberPassword: this.props.data.login.rememberPassword
+      // isRememberPassword: this.props.data.login.rememberPassword
     }
-
+    let self = this;
     if (this.props.data.login.emailErrorText.length == 0 && this.props.data.login.passwordErrorText.length == 0 && this.props.data.login.email.length != 0) {
+      axios.post('http://104.237.3.213:8888/api/sign-in', obj)
+        .then(function (response) {
+          console.log(response.data.token);
+          self.props.changeMessage('user', 'token', response.data.token);
+          window.location.pathname = "/dashboard";
+          console.log(self.props);
+        });
+
       //window.location.pathname = "/blog";
       console.log("go blog")
     }
@@ -105,17 +114,17 @@ export class Login extends React.Component {
               <button className={this.props.data.login.emailErrorText.length != 0 ||
               this.props.data.login.passwordErrorText.length != 0 ||
               this.props.data.login.email.length == 0 ? "disabled-button btn btn-primary btn-block" : "btn btn-primary btn-block"}
-                      onClick={this.handleLoginUser}>Login
+                      onClick={(e) => this.handleLoginUser(e)}>Login
               </button>
             </form>
             <hr/>
             <a href="#" className="fa fa-twitter">
               <span className=""> Twitter</span>
 
-          </a>
+            </a>
             <a href="#" className="fa fa-facebook">
               <span className=""> Facebook</span>
-          </a>
+            </a>
             <div className="text-center">
               <Link className="d-block small mt-3 register-link" to="/register">Register an Account</Link>
               <a className="d-block small" href="/password/recovery">Forgot Password?</a>

@@ -14,7 +14,7 @@ export class Tables extends React.Component {
     return (
     	<div>
     		<Menu />
-    		<div  className="main-content">Tables</div>
+    		<div  className="main-content">Here will be reports with table view</div>
         <Footer />
     	</div>)
   }
