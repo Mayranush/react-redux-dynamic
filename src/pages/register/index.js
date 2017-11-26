@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {projectDataActions} from "../../actions/index";
 import {Link} from "react-router/es6";
 import "./register.scss";
+import axios from "axios";
 
 export class Register extends React.Component {
   constructor(props) {
@@ -78,9 +79,9 @@ export class Register extends React.Component {
     let obj = {
       email: this.props.data.register.email,
       password: this.props.data.register.password,
-      firstName: this.props.data.register.firstName,
-      lastName: this.props.data.register.lastName,
-      twitterAccount: this.props.data.register.twitterAccount,
+      firstname: this.props.data.register.firstName,
+      lastname: this.props.data.register.lastName,
+      twUsername: this.props.data.register.twitterAccount,
 
     };
 
@@ -91,6 +92,12 @@ export class Register extends React.Component {
       && this.props.data.register.twitterAccount.length != 0
       && this.props.data.register.password.length != 0) {
       //window.location.pathname = "/blog";
+
+      axios.post('http://104.237.3.213:8888/api/sign-up', obj)
+        .then(function(response) {
+          console.log(response.data);
+        });
+
       console.log("go blog")
     }
 
@@ -178,7 +185,7 @@ export class Register extends React.Component {
                   </div>
                 </div>
               </div>
-              <button className="btn btn-primary btn-block register">Register</button>
+              <button className="btn btn-primary btn-block register" onClick={(e) => this.handleRegisterUser(e)}>Register</button>
             </form>
             <div className="text-center">
               <Link className="d-block small mt-3 login-link" to="/login"> Already have an account? Go to Login

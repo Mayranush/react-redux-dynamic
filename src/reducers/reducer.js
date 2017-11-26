@@ -29,5 +29,8 @@ const defaultState = {
 
 export default handleActions({
   [ActionTypes.changeMessage]: (state, { payload }) => ({ ...state, data: payload }),
-  [ActionTypes.changeTabInSettings]: (state, { payload }) => ({ ...state, data: payload })
+  [ActionTypes.changeTabInSettings]: (state, { payload }) => ({ ...state, data: payload }),
+  [ActionTypes.request]: (state, { payload }) => ({ ...state, data: payload }),
+  [ActionTypes.response]: (state, { payload }) => ({ ...state, data: payload }),
+  [ActionTypes.error]: (state, { payload }) => ({ ...state, data: payload })
 }, defaultState);

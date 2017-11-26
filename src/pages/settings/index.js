@@ -7,12 +7,20 @@ import "./settings.scss";
 import {MyDetails} from "../../components/myDetails/myDetails";
 import {TwitterSettings} from "../../components/twitterSettings/twitterSettings";
 import {PaymentSettings} from "../../components/paymentSettings/paymentSettings";
+import axios from "axios";
 
 export class Settings extends React.Component {
   constructor(props) {
     super(props);
 
     this.currentTab = 'myDetails';
+  }
+
+  componentDidMount() {
+    axios.get('http://104.237.3.213:8888/api/home')
+      .then(function(response) {
+        console.log(response.data);
+      });
   }
 
   render() {
