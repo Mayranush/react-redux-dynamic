@@ -1,6 +1,7 @@
 import React from 'react';
 import { Router, browserHistory } from 'react-router/es6';
 import {MainLayout} from 'containers/layout';
+import store from 'store';
 
 function errorLoading(err) {
   console.error('Dynamic page loading failed', err);
@@ -8,6 +9,12 @@ function errorLoading(err) {
 
 function loadRoute(cb) {
   return (module) => cb(null, module.default);
+}
+
+function requireAuth (nextState, replace, callback) {
+  const token = store.getState().projectDataReducer.data.user.token;
+  if (!token) replace('/')
+  return callback()
 }
 
 const routes = {
@@ -47,6 +54,7 @@ const routes = {
     },
     {
       path: 'dashboard',
+      onEnter: requireAuth,
       getComponent(location, cb) {
         System.import('pages/dashboard')
           .then(loadRoute(cb))
@@ -55,6 +63,7 @@ const routes = {
     },
     {
       path: 'charts',
+      onEnter: requireAuth,
       getComponent(location, cb) {
         System.import('pages/charts')
           .then(loadRoute(cb))
@@ -63,6 +72,7 @@ const routes = {
     },
     {
       path: 'tables',
+      onEnter: requireAuth,
       getComponent(location, cb) {
         System.import('pages/tables')
           .then(loadRoute(cb))
@@ -71,6 +81,7 @@ const routes = {
     },
     {
       path: 'settings',
+      onEnter: requireAuth,
       getComponent(location, cb) {
         System.import('pages/settings')
           .then(loadRoute(cb))
@@ -79,6 +90,7 @@ const routes = {
     },
     {
       path: 'admin',
+      onEnter: requireAuth,
       getComponent(location, cb) {
         System.import('pages/admin')
           .then(loadRoute(cb))

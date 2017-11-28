@@ -5,7 +5,8 @@ const mockData = {
   login: true,
   settingsCurrentTab: 'myDetails',
   user: {
-    token: null
+    token: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0MUBnbWFpbC5jb20iLCJpZCI6Mywicm9sZSI6IlVTRVIifQ.EpHwCTVn3865j0l82vvKLvTP0JjQ9iCEOR-_jqUdrodkWCFKnlqMlEPm-XqITuqKCjIwMWyzN_E79IQ1I7oSXg",
+    firstName: ''
   },
   login: {
     email: '',
@@ -24,7 +25,6 @@ const mockData = {
     password: '',
     passwordErrorText: ''
   }
-
 };
 const defaultState = {
   data: mockData

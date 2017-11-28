@@ -3,6 +3,7 @@ import ActionTypes from "../constants/actionTypes";
 import store from 'store';
 import {tools} from '../resources';
 import api from "../api/api";
+import { push } from 'react-router-redux';
 
 const changeMessageResponse = createAction(ActionTypes.changeMessage);
 
@@ -43,7 +44,8 @@ export function getDataResponse(data,param) {
     console.log(data,param, "response");
     if (param === "api/sign-in") {
       newState.user.token = data.token;
-     // window.location.pathname = "/dashboard";
+    } else if(param === "auth/settings") {
+      newState.user.firstName = data.firstname;
     }
     console.log(newState,"newState")
     return dispatch(responseResponse(newState));
@@ -56,6 +58,8 @@ export function getDataResponseError(error, param) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
     console.log(error,param, "error");
+    //browserHistory.push('/dashboard');
+    store.dispatch(push('/dashboard'))
     return dispatch(errorResponse(newState));
   };
 }
@@ -63,10 +67,10 @@ export function getDataResponseError(error, param) {
 
 
 
-export function getData(param, method, obj) {
+export function getData(param, method, obj, token) {
     return (dispatch) => {
     dispatch(getDataRequest(param));
-    return api.getData(param, method, obj)
+    return api.getData(param, method, obj, token)
         .then(data => dispatch(getDataResponse(data.data, param)))
         .catch(error => dispatch(getDataResponseError(error, param)));
     };

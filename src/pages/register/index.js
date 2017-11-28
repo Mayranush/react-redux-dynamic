@@ -8,7 +8,7 @@ import axios from "axios";
 export class Register extends React.Component {
   constructor(props) {
     super(props);
-
+console.log(this.props,"props in register")
     this.handleFirstNameChange = this.firstNameChange.bind(this);
     this.handleLastNameChange = this.lastNameChange.bind(this);
     this.handleREmailChange = this.emailChange.bind(this);

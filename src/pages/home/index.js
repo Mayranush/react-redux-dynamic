@@ -60,7 +60,7 @@ export class Home extends React.Component {
                 <p className="lead">This is a twitter bot account that helps coin developers promote their cryptocurrencies by tipping people that mention the coin. It is like a payment system to encourage interaction about their coin on twitter.</p>
               </div>
               <div className="col-lg-5 mr-auto">
-                <iframe src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.ogv?embedplayer=yes" width="500" height="250" frameborder="0" ></iframe>
+                <iframe src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.ogv?embedplayer=yes" width="500" height="250" frameBorder="0" ></iframe>
               </div>
             </div>
 

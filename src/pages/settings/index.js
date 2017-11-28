@@ -18,9 +18,11 @@ export class Settings extends React.Component {
 
   componentDidMount() {
     //1.
-//     axios.get("http://104.237.3.213:8888/auth/settings", {headers: {'Authorization': this.props.data.user.token}})
-//       .then(function (response) {
-//       });
+    // axios.get("http://104.237.3.213:8888/auth/settings", {headers: {'Authorization': this.props.data.user.token}})
+    //   .then(function (response) {
+    //   });
+
+    this.props.getData("auth/settings", "get", {} , true);
 // //2.
 //     axios.get("http://104.237.3.213:8888/auth/tw-api-details", {headers: {'Authorization': this.props.data.user.token}})
 //       .then(function (response) {
@@ -43,9 +45,9 @@ export class Settings extends React.Component {
     //   });
 
 // //6.
-    axios.get("http://104.237.3.213:8888/auth/tw-tip-criteria", {headers: {'Authorization': this.props.data.user.token}})
-      .then(function (response) {
-      });
+    // axios.get("http://104.237.3.213:8888/auth/tw-tip-criteria", {headers: {'Authorization': this.props.data.user.token}})
+    //   .then(function (response) {
+    //   });
 //7.
 
     let objCrit = {

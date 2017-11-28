@@ -51,13 +51,8 @@ export class Login extends React.Component {
       email: this.props.data.login.email,
       password: this.props.data.login.password,
     }
-    let self = this;
     if (this.props.data.login.emailErrorText.length == 0 && this.props.data.login.passwordErrorText.length == 0 && this.props.data.login.email.length != 0) {
-      // axios.post('http://104.237.3.213:8888/api/sign-in', obj)
-      //   .then(function (response) {
-      //     self.props.changeMessage('user', 'token', response.data.token);
-      //     window.location.pathname = "/dashboard";
-      //   });
+      console.log(this.props,"props=============")
       this.props.getData("api/sign-in", "post", obj);
     }
   }
