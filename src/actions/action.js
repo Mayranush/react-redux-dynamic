@@ -2,7 +2,7 @@ import {createAction} from "redux-actions";
 import ActionTypes from "../constants/actionTypes";
 import store from 'store';
 import {tools} from '../resources';
-//import {test} from "../api";
+import api from "../api/api";
 
 const changeMessageResponse = createAction(ActionTypes.changeMessage);
 
@@ -25,42 +25,49 @@ export function changeTabInSettings(tab) {
   };
 }
 
-const requestResponse = createAction(ActionTypes.request);
+const requestResponse = createAction(ActionTypes.getDataRequest);
 
-export function request() {
+export function getDataRequest(param) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    console.log("request");
+    console.log(param,"param in request");
     return dispatch(requestResponse(newState));
   };
 }
 
-const responseResponse = createAction(ActionTypes.response);
+const responseResponse = createAction(ActionTypes.getDataResponse);
 
-export function response() {
+export function getDataResponse(data,param) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    console.log("response");
+    console.log(data,param, "response");
+    if (param === "api/sign-in") {
+      newState.user.token = data.token;
+     // window.location.pathname = "/dashboard";
+    }
+    console.log(newState,"newState")
     return dispatch(responseResponse(newState));
   };
 }
 
-const errorResponse = createAction(ActionTypes.error);
+const errorResponse = createAction(ActionTypes.getDataResponseError);
 
-export function error() {
+export function getDataResponseError(error, param) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    console.log("error");
+    console.log(error,param, "error");
     return dispatch(errorResponse(newState));
   };
 }
 
 
-// export function getDataAction(){
-//     return (dispatch) => {   
-//       test.getData();
-//       let newState = tools.cloneState(store.getState().projectDataReducer.data);
-//       console.log("testtttttttttttt");
-//       return dispatch(responseResponse(newState));
-//     }
-// }
+
+
+export function getData(param, method, obj) {
+    return (dispatch) => {
+    dispatch(getDataRequest(param));
+    return api.getData(param, method, obj)
+        .then(data => dispatch(getDataResponse(data.data, param)))
+        .catch(error => dispatch(getDataResponseError(error, param)));
+    };
+}

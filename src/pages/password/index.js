@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {projectDataActions} from "../../actions/index";
 import {Link} from "react-router/es6";
 import "./login.scss";
-
+import axios from "axios";
 
 export class Login extends React.Component {
   constructor(props) {
@@ -38,11 +38,12 @@ export class Login extends React.Component {
     }
 
     if (this.props.data.login.emailErrorText.length == 0 && this.props.data.login.email.length != 0) {
-      //window.location.pathname = "/blog";
-      console.log("go blog")
+      axios.post('http://104.237.3.213:8888/api/forget', obj.email)
+        .then(function (response) {
+          self.props.changeMessage('user', 'token', response.data.token);
+          window.location.pathname = "/dashboard";
+        });
     }
-
-    console.log(obj, "obj");
   }
 
   render() {

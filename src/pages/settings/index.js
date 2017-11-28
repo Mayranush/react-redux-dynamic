@@ -17,10 +17,21 @@ export class Settings extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://104.237.3.213:8888/api/home')
-      .then(function(response) {
-        console.log(response.data);
-      });
+    const token = "Token ".concat(this.props.data.user.token);
+    console.log(token,"token`")
+    // const api = axios.create({
+    //   baseURL: "http://104.237.3.213:8888/auth/settings",
+    //   //headers: {"Authorisation": token}
+    // });
+    // //axios.defaults.headers.common['Authorisation'] = token;
+    setTimeout(function(){ 
+
+      axios.get("http://104.237.3.213:8888/auth/settings", { "headers": {"Authorisation": token}})
+        .then(function(response) {
+          console.log(response.data);
+        });
+
+    }, 3000);
   }
 
   render() {

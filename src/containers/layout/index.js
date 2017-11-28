@@ -13,10 +13,7 @@ export class MainLayout extends React.Component {
   }
 
   componentDidMount() {
-    console.log(store.getState().projectDataReducer.data.login,"login")
-    console.log(window.location,"window.location")
     if (!store.getState().projectDataReducer.data.login && window.location.pathname == '/blog') {
-      console.log(this,"this");
       window.location.pathname = '/login';
     }
   }

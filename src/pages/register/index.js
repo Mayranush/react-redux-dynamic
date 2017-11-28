@@ -5,12 +5,9 @@ import {Link} from "react-router/es6";
 import "./register.scss";
 import axios from "axios";
 
-
 export class Register extends React.Component {
   constructor(props) {
     super(props);
-
-    console.log(this.props, "props");
 
     this.handleFirstNameChange = this.firstNameChange.bind(this);
     this.handleLastNameChange = this.lastNameChange.bind(this);
@@ -92,27 +89,15 @@ export class Register extends React.Component {
       && this.props.data.register.email.length != 0
       && this.props.data.register.twitterAccount.length != 0
       && this.props.data.register.password.length != 0) {
-
-
-
+    
       axios.post('http://104.237.3.213:8888/api/sign-up', obj)
         .then(function(response) {
-          console.log(response.data);
-          window.alert("We have sent link to your mail.Please activate your account");
-          // window.location.pathname = "/dashboard";
+          window.location.pathname = "/dashboard";
         });
-
-      console.log("go blog")
-
     }
-
-    console.log(obj, "obj");
   }
 
   render() {
-    {
-      console.log(this.props.data, "this props---------------Register");
-    }
     return (
       <div className="bg-dark">
         <div className="card card-register mx-auto mt-5">
@@ -190,9 +175,7 @@ export class Register extends React.Component {
                   </div>
                 </div>
               </div>
-
               <button className="btn btn-primary btn-block register" onClick={(e) => this.handleRegisterUser(e)}>Register</button>
-
             </form>
             <div className="text-center">
               <Link className="d-block small mt-3 login-link" to="/login"> Already have an account? Go to Login

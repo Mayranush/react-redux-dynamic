@@ -16,8 +16,6 @@ const store = createStore(
   )
 );
 
-console.log(store,"store");
-
 // Link to store object saved to window to grant access to it for test purposes
 // Do not use it directly in code
 if (window && !window.store) {

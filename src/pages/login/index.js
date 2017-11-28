@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {projectDataActions} from "../../actions/index";
 import {Link} from "react-router/es6";
 import "./login.scss";
-import axios from "axios";
 
 export class Login extends React.Component {
   constructor(props) {
@@ -51,23 +50,16 @@ export class Login extends React.Component {
     let obj = {
       email: this.props.data.login.email,
       password: this.props.data.login.password,
-      // isRememberPassword: this.props.data.login.rememberPassword
     }
     let self = this;
     if (this.props.data.login.emailErrorText.length == 0 && this.props.data.login.passwordErrorText.length == 0 && this.props.data.login.email.length != 0) {
-      axios.post('http://104.237.3.213:8888/api/sign-in', obj)
-        .then(function (response) {
-          console.log(response.data.token);
-          self.props.changeMessage('user', 'token', response.data.token);
-          window.location.pathname = "/dashboard";
-          console.log(self.props);
-        });
-
-      //window.location.pathname = "/blog";
-      console.log("go blog")
+      // axios.post('http://104.237.3.213:8888/api/sign-in', obj)
+      //   .then(function (response) {
+      //     self.props.changeMessage('user', 'token', response.data.token);
+      //     window.location.pathname = "/dashboard";
+      //   });
+      this.props.getData("api/sign-in", "post", obj);
     }
-
-    console.log(obj, "obj");
   }
 
   render() {

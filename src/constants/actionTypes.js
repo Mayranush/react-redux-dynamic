@@ -1,9 +1,9 @@
 const ActionTypes = {
  changeMessage: "CHANGE_MESSAGE",
  changeTabInSettings: "CHANGE_TAB_IN_SETTINGS",
- request: "REQUEST",
- response: "RESPONSE",
- error: "ERROR"
+ getDataRequest: "GET_DATA_REQUEST",
+ getDataResponse: "GET_DATA_RESPONSE",
+ getDataResponseError: "GET_DATA_RESPONSE_ERROR"
 };
 
 export default ActionTypes;
