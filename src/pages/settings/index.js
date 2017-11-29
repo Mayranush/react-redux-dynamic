@@ -12,22 +12,29 @@ import axios from "axios";
 export class Settings extends React.Component {
   constructor(props) {
     super(props);
+    this.handleGetTwitterSettings = this.getTwitterSettings.bind(this);
 
     this.currentTab = 'myDetails';
   }
 
-  componentDidMount() {
-    //1.
-    // axios.get("http://104.237.3.213:8888/auth/settings", {headers: {'Authorization': this.props.data.user.token}})
-    //   .then(function (response) {
-    //   });
 
-    this.props.getData("auth/settings", "get", {} , true);
-// //2.
-//     axios.get("http://104.237.3.213:8888/auth/tw-api-details", {headers: {'Authorization': this.props.data.user.token}})
-//       .then(function (response) {
-//       });
-//3.
+  getTwitterSettings(e, param) {
+    e.stopPropagation();
+    e.preventDefault();
+    if(param === this.props.data.settingsCurrentTab){
+      return;
+    }
+    if(param === 'myDetails'){
+      this.props.getData("auth/settings", "get", {} , true);
+    }else if(param === 'twitterSettings'){
+      this.props.getData("auth/tw-api-details", "get", {} , true);
+    }
+
+      this.props.changeTabInSettings(param);
+
+  }
+  componentDidMount() {
+      this.props.getData("auth/settings", "get", {} , true);
 
     // let obj = {
     //   consumerKey:'a1',
@@ -76,30 +83,27 @@ export class Settings extends React.Component {
         <div className="main-content">
           <ul className="nav nav-pills">
             <li className="nav-item">
-              <span><p onClick={() => this.props.changeTabInSettings('myDetails')}
+              <span><p onClick={(e) => this.handleGetTwitterSettings(e, 'myDetails')}
                        className={this.props.data.settingsCurrentTab == 'myDetails' ? "nav-link active tab" : "nav-link tab"}>My details</p></span>
             </li>
             <li className="nav-item">
-              <span> <p onClick={() => this.props.changeTabInSettings('twitterSettings')}
+              <span> <p onClick={(e) => this.handleGetTwitterSettings(e, 'twitterSettings')}
                         className={this.props.data.settingsCurrentTab == 'twitterSettings' ? "nav-link active tab" : "nav-link tab"}>Twitter Settings</p></span>
             </li>
             <li className="nav-item">
-              <span><p onClick={() => this.props.changeTabInSettings('paymentSettings')}
+              <span><p onClick={(e) => this.handleGetTwitterSettings(e, 'paymentSettings')}
                        className={this.props.data.settingsCurrentTab == 'paymentSettings' ? "nav-link active tab" : "nav-link tab"}>Payment details</p></span>
             </li>
 
           </ul>
           <div className="settings-tab">
 
-            {this.props.data.settingsCurrentTab == 'myDetails' && <MyDetails firstName={this.props.data.user.firstName} />}
+            {this.props.data.settingsCurrentTab == 'myDetails' && <MyDetails user={this.props.data.user} />}
             {this.props.data.settingsCurrentTab == 'twitterSettings' && <TwitterSettings />}
             {this.props.data.settingsCurrentTab == 'paymentSettings' && <PaymentSettings />}
 
           </div>
-          <div className="rect">Need any help? <a className="contact-us" href="">Contact us here</a></div>
-          <div className="update-info">
-            <button className="btn-warning">Update Settings</button>
-          </div>
+
         </div>
         <Footer />
       </div>)

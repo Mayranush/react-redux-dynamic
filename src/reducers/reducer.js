@@ -6,7 +6,10 @@ const mockData = {
   settingsCurrentTab: 'myDetails',
   user: {
     token: null,
-    firstName: ''
+    firstName: '',
+    lastName:'',
+    email:'',
+    twUsername:''
   },
   login: {
     email: '',
@@ -24,6 +27,16 @@ const mockData = {
     lastName: '',
     password: '',
     passwordErrorText: ''
+  },
+  twitter: {
+    consumerKey: '',
+    consumerSecret: '',
+    accessToken: '',
+    accessTokenSecret: '',
+    minFollowers: '',
+    tipsPerDay: '',
+    tipsLike: false,
+    tipsTweet: false
   }
 };
 const defaultState = {

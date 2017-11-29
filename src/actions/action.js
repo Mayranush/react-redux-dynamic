@@ -20,6 +20,7 @@ const changeTabInSettingsResponse = createAction(ActionTypes.changeTabInSettings
 
 export function changeTabInSettings(tab) {
   return (dispatch) => {
+
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
     newState.settingsCurrentTab = tab;
     return dispatch(changeTabInSettingsResponse(newState));
@@ -48,6 +49,9 @@ export function getDataResponse(data,param) {
 
     } else if(param === "auth/settings") {
       newState.user.firstName = data.firstname;
+      newState.user.lastName = data.lastname;
+      newState.user.email = data.email;
+      newState.user.twUsername = data.twUsername;
     }
     console.log(newState,"newState")
     return dispatch(responseResponse(newState));

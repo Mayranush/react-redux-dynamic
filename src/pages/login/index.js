@@ -50,9 +50,8 @@ export class Login extends React.Component {
     let obj = {
       email: this.props.data.login.email,
       password: this.props.data.login.password,
-    }
+    };
     if (this.props.data.login.emailErrorText.length == 0 && this.props.data.login.passwordErrorText.length == 0 && this.props.data.login.email.length != 0) {
-      console.log(this.props,"props=============")
       this.props.getData("api/sign-in", "post", obj);
     }
   }
