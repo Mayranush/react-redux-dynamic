@@ -11,6 +11,7 @@ export class TwitterSettings extends React.Component {
   constructor(props) {
     super(props);
     this.handleUpdateSettings = this.updateSettings.bind(this);
+    console.log(this.props,">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
   }
 
   updateSettings(e) {
@@ -27,7 +28,7 @@ export class TwitterSettings extends React.Component {
       tipsLike: this.refs.tipsLike.value,
       tipsTweet: this.refs.tipsTweet.value
     };
-    console.log(this.props,">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    
     this.props.changeMessage('twitter', 'consumerKey', obj.consumerKey);
     this.props.changeMessage('twitter', 'consumerSecret', obj.consumerSecret);
     this.props.changeMessage('twitter', 'accessToken', obj.accessToken);

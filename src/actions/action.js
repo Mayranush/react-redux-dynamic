@@ -20,7 +20,6 @@ const changeTabInSettingsResponse = createAction(ActionTypes.changeTabInSettings
 
 export function changeTabInSettings(tab) {
   return (dispatch) => {
-
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
     newState.settingsCurrentTab = tab;
     return dispatch(changeTabInSettingsResponse(newState));
