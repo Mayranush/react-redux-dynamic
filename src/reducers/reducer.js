@@ -16,6 +16,7 @@ const mockData = {
     password: '',
     emailErrorText: '',
     passwordErrorText: '',
+    errorText: '',
     rememberPassword: false
   },
   register: {

@@ -74,8 +74,7 @@ export class Login extends React.Component {
                   id="inputEmail" type="email"
                   placeholder="Enter email"
                   onBlur={(e) => this.handleEmailChange(e)}/>
-                <p
-                  className="error-for-input">{this.props.data.login.emailErrorText.length != 0 ? '*' + this.props.data.login.emailErrorText : ''}</p>
+                <p className="error-for-input">{this.props.data.login.emailErrorText.length != 0 ? '*' + this.props.data.login.emailErrorText : ''}</p>
               </div>
               <div className="form-group">
                 <label htmlFor="inputPassword">Password</label>
@@ -85,8 +84,8 @@ export class Login extends React.Component {
                   type="password"
                   placeholder="Password"
                   onBlur={(e) => this.handlePasswordChange(e)}/>
-                <p
-                  className="error-for-input">{this.props.data.login.passwordErrorText.length != 0 ? '*' + this.props.data.login.passwordErrorText : ''}</p>
+                <p className="error-for-input">{this.props.data.login.passwordErrorText.length != 0 ? '*' + this.props.data.login.passwordErrorText : ''}</p>
+                <p className="error-for-input">{this.props.data.login.errorText.length != 0 ? '*' + this.props.data.login.errorText : ''}</p>
               </div>
               <div className="form-group">
                 <div className="form-check">

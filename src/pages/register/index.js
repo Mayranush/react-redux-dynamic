@@ -90,10 +90,7 @@ console.log(this.props,"props in register")
       && this.props.data.register.twitterAccount.length != 0
       && this.props.data.register.password.length != 0) {
     
-      axios.post('http://104.237.3.213:8888/api/sign-up', obj)
-        .then(function(response) {
-          window.location.pathname = "/dashboard";
-        });
+      this.props.getData("api/sign-up", "post", obj);
     }
   }
 
