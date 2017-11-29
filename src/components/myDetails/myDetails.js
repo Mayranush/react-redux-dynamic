@@ -6,12 +6,9 @@ import {connect} from "react-redux";
 import {projectDataActions} from "../../actions/index";
 import "./myDetails.scss";
 
-export class MyDetails extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const MyDetails = (...props) => {
 
-  render() {
+    console.log(props,"props in my details")
     return (
       <div className="my-details">
 
@@ -19,7 +16,7 @@ export class MyDetails extends React.Component {
           <div className="form-group">
             <label htmlFor="first_name" className="col-lg-3 control-label">First name</label>
             <div className="col-lg-3 form-group-values">
-              <input id="first_name" className="form-control" type="text" defaultValue="Nick"/>
+              <input id="first_name" className="form-control" type="text" placeholder={props[0].firstName}/>
             </div>
           </div>
 
@@ -51,10 +48,6 @@ export class MyDetails extends React.Component {
         </div>
 
       </div>)
-  }
 }
 
-export default connect(
-  state => ({data: state.projectDataReducer.data}),
-  {...projectDataActions}
-)(MyDetails);
+export {MyDetails}

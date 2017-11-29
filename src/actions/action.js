@@ -44,6 +44,8 @@ export function getDataResponse(data,param) {
     console.log(data,param, "response");
     if (param === "api/sign-in") {
       newState.user.token = data.token;
+      store.dispatch(push('/dashboard'))
+
     } else if(param === "auth/settings") {
       newState.user.firstName = data.firstname;
     }
@@ -58,8 +60,6 @@ export function getDataResponseError(error, param) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
     console.log(error,param, "error");
-    //browserHistory.push('/dashboard');
-    store.dispatch(push('/dashboard'))
     return dispatch(errorResponse(newState));
   };
 }

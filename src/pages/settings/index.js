@@ -69,6 +69,7 @@ export class Settings extends React.Component {
   }
 
   render() {
+    console.log(this.props,"props in settings")
     return (
       <div>
         <Menu />
@@ -90,7 +91,7 @@ export class Settings extends React.Component {
           </ul>
           <div className="settings-tab">
 
-            {this.props.data.settingsCurrentTab == 'myDetails' && <MyDetails />}
+            {this.props.data.settingsCurrentTab == 'myDetails' && <MyDetails firstName={this.props.data.user.firstName} />}
             {this.props.data.settingsCurrentTab == 'twitterSettings' && <TwitterSettings />}
             {this.props.data.settingsCurrentTab == 'paymentSettings' && <PaymentSettings />}
 
