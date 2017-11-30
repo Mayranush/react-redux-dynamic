@@ -24,7 +24,6 @@ const getData = (param, method, obj, token) => {
 
 
     if (method === "post"){
-        console.log("here in api")
         return api.post("/" + param, obj);
     } else if (method === "get") {
         return api.get("/" + param);

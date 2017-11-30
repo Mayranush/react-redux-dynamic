@@ -11,34 +11,47 @@ export class TwitterSettings extends React.Component {
   constructor(props) {
     super(props);
     this.handleUpdateSettings = this.updateSettings.bind(this);
-    console.log(this.props,">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
   }
 
   updateSettings(e) {
     e.stopPropagation();
     e.preventDefault();
-
-    let obj = {
+    console.log(this.props, "......................before")
+    let objDetails = {
       consumerKey: this.refs.consumerKey.value,
       consumerSecret: this.refs.consumerSecret.value,
       accessToken: this.refs.accessToken.value,
-      accessTokenSecret: this.refs.accessTokenSecret.value,
+      accessTokenSecret: this.refs.accessTokenSecret.value
+    };
+    let objCrit = {
       minFollowers: this.refs.minFollowers.value,
       tipsPerDay: this.refs.tipsPerDay.value,
       tipsLike: this.refs.tipsLike.value,
-      tipsTweet: this.refs.tipsTweet.value
+      tipsTweet: this.refs.tipsTweet.value,
+      tipsReTweet: this.refs.tipsReTweet.value,
+      tipsFollowers: this.refs.tipsFollowers.value
     };
-    
-    this.props.changeMessage('twitter', 'consumerKey', obj.consumerKey);
-    this.props.changeMessage('twitter', 'consumerSecret', obj.consumerSecret);
-    this.props.changeMessage('twitter', 'accessToken', obj.accessToken);
-    this.props.changeMessage('twitter', 'accessTokenSecret', obj.accessTokenSecret);
-    this.props.changeMessage('twitter', 'minFollowers', obj.minFollowers);
-    this.props.changeMessage('twitter', 'tipsPerDay', obj.tipsPerDay);
-    this.props.changeMessage('twitter', 'tipsLike', obj.tipsLike);
-    this.props.changeMessage('twitter', 'tipsTweet', obj.tipsTweet);
 
-    this.props.getData("auth/settings", "post", obj, true);
+
+    this.props.prop.changeMessage('twitter', 'consumerKey', objDetails.consumerKey);
+    this.props.prop.changeMessage('twitter', 'consumerSecret', objDetails.consumerSecret);
+    this.props.prop.changeMessage('twitter', 'accessToken', objDetails.accessToken);
+    this.props.prop.changeMessage('twitter', 'accessTokenSecret', objDetails.accessTokenSecret);
+    this.props.prop.changeMessage('twitter', 'minFollowers', objCrit.minFollowers);
+    this.props.prop.changeMessage('twitter', 'tipsPerDay', objCrit.tipsPerDay);
+    this.props.prop.changeMessage('twitter', 'tipsLike', objCrit.tipsLike);
+    this.props.prop.changeMessage('twitter', 'tipsTweet', objCrit.tipsTweet);
+    this.props.prop.changeMessage('twitter', 'tipsReTweet', objCrit.tipsReTweet);
+    this.props.prop.changeMessage('twitter', 'tipsFollowers', objCrit.tipsFollowers);
+    if (objDetails.consumerKey !== '' || objDetails.consumerSecret !== '' || objDetails.accessToken !== '' || objDetails.accessTokenSecret !== '') {
+      this.props.prop.getData("auth/tw-api-details", "post", objDetails, true);
+    }
+    if (objDetails.minFollowers !== '' || objDetails.tipsPerDay !== '' || objDetails.tipsLike !== '' || objDetails.tipsTweet !== '' || objDetails.tipsReTweet !== '' || objDetails.tipsFollowers !== '') {
+      this.props.prop.getData("auth/tw-tip-criteria", "post", objCrit, true);
+    }
+
+
+    console.log(this.props, "......................after")
   }
 
   render() {
@@ -49,25 +62,29 @@ export class TwitterSettings extends React.Component {
           <div className="form-group">
             <label htmlFor="consumerKey" className="col-lg-3 control-label tw-crit">Consumer Key</label>
             <div className="col-lg-3 form-group-values tw-crit">
-              <input id="consumerKey" ref="consumerKey" className="form-control" type="text"/>
+              <input id="consumerKey" ref="consumerKey" className="form-control" type="text"
+                     placeholder={this.props.prop.data.twitter.consumerKey}/>
             </div>
           </div>
           <div className="form-group">
             <label htmlFor="consumerSecret" className="col-lg-3 control-label tw-crit">Consumer Secret</label>
             <div className="col-lg-3 form-group-values tw-crit">
-              <input id="consumerSecret" ref="consumerSecret" className="form-control" type="text"/>
+              <input id="consumerSecret" ref="consumerSecret" className="form-control" type="text"
+                     placeholder={this.props.prop.data.twitter.consumerSecret}/>
             </div>
           </div>
           <div className="form-group">
             <label htmlFor="accessToken" className="col-lg-3 control-label tw-crit">Access Token</label>
             <div className="col-lg-3 form-group-values tw-crit">
-              <input id="accessToken" ref="accessToken" className="form-control" type="text"/>
+              <input id="accessToken" ref="accessToken" className="form-control" type="text"
+                     placeholder={this.props.prop.data.twitter.accessToken}/>
             </div>
           </div>
           <div className="form-group">
             <label htmlFor="accessTokenSecret" className="col-lg-3 control-label tw-crit">Access Token Secret</label>
             <div className="col-lg-3 form-group-values tw-crit">
-              <input id="accessTokenSecret" ref="accessTokenSecret" className="form-control" type="text"/>
+              <input id="accessTokenSecret" ref="accessTokenSecret" className="form-control" type="text"
+                     placeholder={this.props.prop.data.twitter.accessTokenSecret}/>
             </div>
           </div>
 
@@ -92,6 +109,12 @@ export class TwitterSettings extends React.Component {
           </div>
           <div className="checkbox">
             <label><input type="checkbox" ref="tipsTweet" value=""/>Tweet</label>
+          </div>
+          <div className="checkbox">
+            <label><input type="checkbox" ref="tipsReTweet" value=""/>ReTweet</label>
+          </div>
+          <div className="checkbox">
+            <label><input type="checkbox" ref="tipsFollowers" value=""/>is Follower</label>
           </div>
         </form>
         <div className="rect">Need any help? <a className="contact-us" href="">Contact us here</a></div>

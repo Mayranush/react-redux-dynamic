@@ -37,7 +37,9 @@ const mockData = {
     minFollowers: '',
     tipsPerDay: '',
     tipsLike: false,
-    tipsTweet: false
+    tipsTweet: false,
+    tipsReTweet: false,
+    tipsFollowers: false
   }
 };
 const defaultState = {

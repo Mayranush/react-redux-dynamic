@@ -31,7 +31,6 @@ const requestResponse = createAction(ActionTypes.getDataRequest);
 export function getDataRequest(param) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    console.log(param,"param in request");
     return dispatch(requestResponse(newState));
   };
 }
@@ -41,7 +40,6 @@ const responseResponse = createAction(ActionTypes.getDataResponse);
 export function getDataResponse(data,param) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    console.log(data,param, "response");
     if (param === "api/sign-in") {
       newState.user.token = data.token;
       window.sessionStorage.setItem("token", data.token);
@@ -53,8 +51,13 @@ export function getDataResponse(data,param) {
       newState.user.lastName = data.lastname;
       newState.user.email = data.email;
       newState.user.twUsername = data.twUsername;
+    }else if(param === "auth/tw-api-details"){
+      newState.twitter.consumerKey = data.consumerKey;
+      newState.twitter.consumerSecret = data.consumerSecret;
+      newState.twitter.accessToken = data.accessToken;
+      newState.twitter.accessTokenSecret = data.accessTokenSecret;
     }
-    console.log(newState,"newState")
+
     return dispatch(responseResponse(newState));
   };
 }
