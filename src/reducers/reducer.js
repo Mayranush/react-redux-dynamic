@@ -36,10 +36,10 @@ const mockData = {
     accessTokenSecret: '',
     minFollowers: '',
     tipsPerDay: '',
-    tipsLike: false,
-    tipsTweet: false,
-    tipsReTweet: false,
-    tipsFollowers: false
+    tipsLike: '',
+    tipsTweet: '',
+    tipsReTweet: '',
+    tipsFollowers: ''
   }
 };
 const defaultState = {

@@ -37,7 +37,7 @@ export function getDataRequest(param) {
 
 const responseResponse = createAction(ActionTypes.getDataResponse);
 
-export function getDataResponse(data,param) {
+export function getDataResponse(data,param,method) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
     if (param === "api/sign-in") {
@@ -51,11 +51,19 @@ export function getDataResponse(data,param) {
       newState.user.lastName = data.lastname;
       newState.user.email = data.email;
       newState.user.twUsername = data.twUsername;
-    }else if(param === "auth/tw-api-details"){
+    }else if(param === "auth/tw-api-details" && method === "get"){
       newState.twitter.consumerKey = data.consumerKey;
       newState.twitter.consumerSecret = data.consumerSecret;
       newState.twitter.accessToken = data.accessToken;
       newState.twitter.accessTokenSecret = data.accessTokenSecret;
+    }else if(param = "auth/tw-tip-criteria" && method === "get"){
+      console.log(data, "data in action");
+      newState.twitter.minFollowers = data.minFollowers;
+      newState.twitter.tipsPerDay = data.tipsPerDay;
+      newState.twitter.tipsLike = data.tipsLike;
+      newState.twitter.tipsTweet = data.tipsTweet;
+      newState.twitter.tipsReTweet = data.tipsReTweet;
+      newState.twitter.tipsFollowers = data.tipsFollowers;
     }
 
     return dispatch(responseResponse(newState));
@@ -82,7 +90,7 @@ export function getData(param, method, obj, token) {
     return (dispatch) => {
     dispatch(getDataRequest(param));
     return api.getData(param, method, obj, token)
-        .then(data => dispatch(getDataResponse(data.data, param)))
+        .then(data => dispatch(getDataResponse(data.data, param, method)))
         .catch(error => dispatch(getDataResponseError(error, param)));
     };
 }
