@@ -14,7 +14,7 @@ export class Admin extends React.Component {
     return (
     	<div>
     		<Menu />
-    		<div  className="main-content">Admin</div>
+    		<div  className="main-content"><div className="header-section">Admin area</div></div>
         <Footer />
     	</div>)
   }

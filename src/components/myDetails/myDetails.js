@@ -15,27 +15,27 @@ const MyDetails = (...props) => {
         <form className="form-horizontal" role="form">
           <div className="form-group">
             <label htmlFor="first_name" className="col-lg-3 control-label">First name</label>
-            <div className="col-lg-3 form-group-values">
+            <div className="col-lg-3 form-group-values-my-details">
               <input id="first_name" className="form-control" type="text" placeholder={props[0].user.firstName}/>
             </div>
           </div>
 
           <div className="form-group">
             <label htmlFor="last_name" className="col-lg-3 control-label">Last name</label>
-            <div className="col-lg-3 form-group-values">
+            <div className="col-lg-3 form-group-values-my-details">
               <input id="last_name" className="form-control" type="text" placeholder={props[0].user.lastName}/>
             </div>
           </div>
 
           <div className="form-group">
             <label htmlFor="user_email" className="col-lg-3 control-label">Email</label>
-            <div className="col-lg-3 form-group-values">
+            <div className="col-lg-3 form-group-values-my-details">
               <input id="user_email" className="form-control" type="text" placeholder={props[0].user.email}/>
             </div>
           </div>
           <div className="form-group">
             <label htmlFor="position" className="col-lg-3 control-label">Twitter Username</label>
-            <div className="col-lg-3 form-group-values">
+            <div className="col-lg-3 form-group-values-my-details">
               <input id="position" className="form-control" type="text" placeholder={props[0].user.twUsername}/>
             </div>
           </div>
@@ -48,7 +48,7 @@ const MyDetails = (...props) => {
         </div>
         <div className="rect">Need any help? <a className="contact-us" href="">Contact us here</a></div>
         <div className="update-info">
-          <button className="btn-warning" onClick={(e) => this.handleUpdateSettings(e)}>Update Settings</button>
+          <button className="btn-warning" onClick={(e) => this.handleUpdateSettings(e)}>Update My Details</button>
         </div>
       </div>)
 }

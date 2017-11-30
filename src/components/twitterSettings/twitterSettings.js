@@ -59,6 +59,14 @@ export class TwitterSettings extends React.Component {
       <div>
 
         <form className="form-horizontal" role="form">
+          <div className="cube">
+          <div className="cube1">
+
+          <br/>
+          <h6>Twitter Api Details</h6>
+
+          <hr/>
+          <br/>
           <div className="form-group">
             <label htmlFor="consumerKey" className="col-lg-3 control-label tw-crit">Consumer Key</label>
             <div className="col-lg-3 form-group-values tw-crit">
@@ -87,6 +95,13 @@ export class TwitterSettings extends React.Component {
                      placeholder={this.props.prop.data.twitter.accessTokenSecret}/>
             </div>
           </div>
+          </div>
+          <div className="cube1">
+<br/>
+          <h6>Select when to tip coin</h6>
+
+          <hr/>
+          <br/>
 
 
           <div className="form-group">
@@ -102,24 +117,24 @@ export class TwitterSettings extends React.Component {
             </div>
           </div>
 
-          <hr/>
-          <h6>Select when to tip coin</h6>
           <div className="checkbox">
-            <label><input type="checkbox" ref="tipsLike" value=""/>Like</label>
+            <label><input type="checkbox" ref="tipsLike" value=""/> Like</label>
           </div>
           <div className="checkbox">
-            <label><input type="checkbox" ref="tipsTweet" value=""/>Tweet</label>
+            <label><input type="checkbox" ref="tipsTweet" value=""/> Tweet</label>
           </div>
           <div className="checkbox">
-            <label><input type="checkbox" ref="tipsReTweet" value=""/>ReTweet</label>
+            <label><input type="checkbox" ref="tipsReTweet" value=""/> ReTweet</label>
           </div>
           <div className="checkbox">
-            <label><input type="checkbox" ref="tipsFollowers" value=""/>is Follower</label>
+            <label><input type="checkbox" ref="tipsFollowers" value=""/> is Follower</label>
+          </div>
+          </div>
           </div>
         </form>
         <div className="rect">Need any help? <a className="contact-us" href="">Contact us here</a></div>
         <div className="update-info">
-          <button className="btn-warning" onClick={(e) => this.handleUpdateSettings(e)}>Update Settings</button>
+          <button className="btn-warning" onClick={(e) => this.handleUpdateSettings(e)}>Update Twitter Settings</button>
         </div>
       </div>)
   }

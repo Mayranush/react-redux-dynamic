@@ -15,7 +15,8 @@ export class Dashboard extends React.Component {
     return (
       <div>
         <Menu />
-        <div  className="main-content"><h1>Coming Soon</h1></div>
+
+        <div  className="main-content"><div className="header-section">Dashboard</div><h1>Coming Soon</h1></div>
         <Footer />
       </div>
     )

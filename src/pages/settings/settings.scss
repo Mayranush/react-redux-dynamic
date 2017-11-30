@@ -9,7 +9,7 @@
   margin: 0 auto;
 }
 
-ul li {
+ul li.tab {
   display: inline;
   text-align: center;
 }
@@ -73,14 +73,19 @@ hr {
 }
 
 .update-info {
-  background-color: gainsboro;
+  background-color: #e7e7e7;
   height: 40px;
 }
 
 .btn-warning {
+
   margin-left: 70%;
   height: inherit;
-  font-size: large;
+  font-size: 15px;
+  color: white;
+  background-color: rgba(218,143,22,0.88);
+}
+.btn-warning:hover{
   color: white;
 }
 .settings-tab{

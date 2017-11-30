@@ -1,11 +1,22 @@
-.form-group-values.tw-crit{
+.form-group-values.tw-crit {
   float: right;
   max-width: 50% !important;
-  width: 80px;
+  width: 50%;
 }
-.form-group{
-  margin-right: 60%;
+
+.form-group {
+  margin-right: 10%;
 }
-.control-label.tw-crit{
-  max-width: 80%;
+
+.control-label.tw-crit {
+  max-width: 50%;
+}
+
+.cube1 {
+  float: left;
+  width: 50%;
+}
+
+.cube {
+  height: -webkit-fill-available;
 }

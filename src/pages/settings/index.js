@@ -72,15 +72,16 @@ export class Settings extends React.Component {
       <div>
         <Menu />
         <div className="main-content">
+          <div className="header-section">Settings</div>
           <ul>
-            <li className={this.props.data.settingsCurrentTab == 'myDetails' ? "one active" : "one"}>
+            <li className={this.props.data.settingsCurrentTab == 'myDetails' ? "one active tab" : "one tab"}>
               <span><p onClick={(e) => this.handleGetTwitterSettings(e, 'myDetails')}>My details</p></span>
             </li>
-            <li className={this.props.data.settingsCurrentTab == 'twitterSettings' ? "two active" : "two"}>
+            <li className={this.props.data.settingsCurrentTab == 'twitterSettings' ? "two active tab" : "two tab"}>
               <span> <p onClick={(e) => this.handleGetTwitterSettings(e, 'twitterSettings')}
                         >Twitter Settings</p></span>
             </li>
-            <li className={this.props.data.settingsCurrentTab == 'paymentSettings' ? "three active" : "three"}>
+            <li className={this.props.data.settingsCurrentTab == 'paymentSettings' ? "three active tab" : "three tab"}>
               <span><p onClick={(e) => this.handleGetTwitterSettings(e, 'paymentSettings')}>Payment details</p></span>
             </li>
             <hr/>
