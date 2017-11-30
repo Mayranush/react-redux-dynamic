@@ -13,7 +13,7 @@ function loadRoute(cb) {
 
 function requireAuth (nextState, replace, callback) {
   const token = store.getState().projectDataReducer.data.user.token || window.sessionStorage.getItem("token");
-  if (!token) replace('/');
+  if (!token) replace('/login');
   return callback()
 }
 

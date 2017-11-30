@@ -10,7 +10,7 @@ export class Home extends React.Component {
   }
 
   render() {
-    {console.log(this.props.data,"this props---------------Hommmme");   }
+    {console.log(this.props,"this props---------------Hommmme");   }
     return (
       <div>
 

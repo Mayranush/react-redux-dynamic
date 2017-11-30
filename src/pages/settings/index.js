@@ -91,7 +91,7 @@ export class Settings extends React.Component {
     console.log(this.props,"<<<<<<<<<<<<<<<<<<<<<<<<<<");
     return (
       <div>
-        <Menu />
+        <Menu data={this.props}/>
         <div className="main-content">
           <div className="header-section">Settings</div>
           <ul>

@@ -1,13 +1,21 @@
 import React from "react";
-import { connect } from "react-redux";
 import {projectDataActions} from "../../actions/index";
 import { Link } from 'react-router/es6';
 import "./menu.scss";
-
+import store from 'store';
+import { push } from 'react-router-redux';
 
 export class Menu extends React.Component {
   constructor(props) {
     super(props);
+    this.handleLogout = this.logout.bind(this);
+  }
+
+  logout() {
+    console.log(this.props,"ppppppppppppppppppS")
+    this.props.data.changeMessage('user', 'token', null);
+    window.sessionStorage.removeItem("token");
+    store.dispatch(push('/'))
   }
 
   render() {
@@ -105,7 +113,7 @@ export class Menu extends React.Component {
                   <a className="dropdown-item small" href="#">View all alerts</a>
                 </div>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onClick={this.handleLogout}>
                 <a className="nav-link" data-toggle="modal" data-target="#exampleModal">
                   <i className="fa fa-fw fa-sign-out"/>Logout</a>
               </li>
@@ -115,9 +123,4 @@ export class Menu extends React.Component {
       </div>
     )
   }
-  }
-
-  export default connect(
-  state => ({ data:  state.projectDataReducer.data }),
-  { ...projectDataActions }
-  )(Menu);
+}
