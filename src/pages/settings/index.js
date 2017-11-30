@@ -13,7 +13,7 @@ export class Settings extends React.Component {
 
     super(props);
     this.handleGetTwitterSettings = this.getTwitterSettings.bind(this);
-
+    this.handleUpdateSettings = this.updateSettings.bind(this);
     this.currentTab = 'myDetails';
   }
 
@@ -32,6 +32,21 @@ export class Settings extends React.Component {
 
     this.props.changeTabInSettings(param);
 
+  }
+
+  updateSettings() {
+    this.settings.refs.firstName.value !== "" && this.props.changeMessage('user', 'firstName', this.settings.refs.firstName.value);
+    this.settings.refs.lastName.value !== "" && this.props.changeMessage('user', 'lastName', this.settings.refs.lastName.value);
+    this.settings.refs.email.value !== "" && this.props.changeMessage('user', 'email', this.settings.refs.email.value);
+    this.settings.refs.twUsername.value !== "" && this.props.changeMessage('user', 'twUsername', this.settings.refs.twUsername.value);
+    let obj = {
+      "firstName": this.props.data.user.firstName,
+      "lastName": this.props.data.user.lastName,
+      "email": this.props.data.user.email,
+      "twUsername": this.props.data.user.twUsername
+    };
+    console.log(obj,"obj")
+   // this.props.getData("auth/", "post", obj);
   }
 
   componentDidMount() {
@@ -88,7 +103,10 @@ export class Settings extends React.Component {
           </ul>
           <div className="settings-tab">
 
-            {this.props.data.settingsCurrentTab == 'myDetails' && <MyDetails user={this.props.data.user}/>}
+            {this.props.data.settingsCurrentTab == 'myDetails' && <MyDetails 
+                                                                    user={this.props.data.user}
+                                                                    updateSettings={this.handleUpdateSettings}
+                                                                    ref={(input) => this.settings = input} />}
             {this.props.data.settingsCurrentTab == 'twitterSettings' && <TwitterSettings prop={this.props}/>}
             {this.props.data.settingsCurrentTab == 'paymentSettings' && <PaymentSettings />}
 

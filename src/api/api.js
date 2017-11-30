@@ -9,7 +9,7 @@ if (window && !window.api) {
 
 const getData = (param, method, obj, token) => {
 
-    const tokenFromStore = "Token " + store.getState().projectDataReducer.data.user.token;
+    const tokenFromStore = "Token " + (store.getState().projectDataReducer.data.user.token  || window.sessionStorage.getItem("token"));
 
     if (token) {
         api = axios.create({
