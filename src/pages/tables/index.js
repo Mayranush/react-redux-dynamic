@@ -13,7 +13,7 @@ export class Tables extends React.Component {
   render() {
     return (
     	<div>
-    		<Menu />
+    		<Menu changeMessage={this.props.changeMessage}/>
     		<div  className="main-content">
           <div className="header-section">Tables</div>
           Here will be reports with table view</div>

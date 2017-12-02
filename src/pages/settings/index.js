@@ -25,11 +25,11 @@ export class Settings extends React.Component {
     if (param === this.props.data.settingsCurrentTab) {
       return;
     }
-    if (param === 'myDetails') {
+    if (param === 'myDetails' && !this.props.data.user.dataReceived) {
       this.props.getData("auth/settings", "get", {}, true);
-    } else if (param === 'twitterSettings') {
-      this.props.getData("auth/tw-api-details", "get", {}, true);
-      this.props.getData("auth/tw-tip-criteria", "get", {}, true);
+    } else if (param === 'twitterSettings' && !this.props.data.twitter.dataReceivedApiDetails &&  !this.props.data.twitter.dataReceivedTipCriteria) {    
+        this.props.getData("auth/tw-api-details", "get", {}, true);
+        this.props.getData("auth/tw-tip-criteria", "get", {}, true);
     }
 
     this.props.changeTabInSettings(param);
@@ -48,14 +48,13 @@ export class Settings extends React.Component {
       "accessTokenSecret": this.props.data.twitter.accessTokenSecret,
     };
     this.props.getData("auth/tw-api-details", "post", objDetails, true);
-    console.log(this.props);
 
     this.twSettings.refs.minFollowers.value !== "" && this.props.changeMessage('twitter', 'minFollowers', this.twSettings.refs.minFollowers.value);
     this.twSettings.refs.tipsPerDay.value !== "" && this.props.changeMessage('twitter', 'tipsPerDay', this.twSettings.refs.tipsPerDay.value);
-    this.props.changeMessage('twitter', 'tipsLike', this.twSettings.refs.tipsLike.checked);
-    this.props.changeMessage('twitter', 'tipsTweet', this.twSettings.refs.tipsTweet.checked);
-    this.props.changeMessage('twitter', 'tipsReTweet', this.twSettings.refs.tipsReTweet.checked);
-    this.props.changeMessage('twitter', 'tipsFollowers', this.twSettings.refs.tipsFollowers.checked);
+    this.props.changeMessage("twitter", "tipsLike", this.twSettings.refs.tipsLike.checked);
+    this.props.changeMessage("twitter", "tipsTweet", this.twSettings.refs.tipsTweet.checked);
+    this.props.changeMessage("twitter", "tipsReTweet", this.twSettings.refs.tipsReTweet.checked);
+    this.props.changeMessage("twitter", "tipsFollowers", this.twSettings.refs.tipsFollowers.checked);
     let objCrit = {
       "minFollowers": this.props.data.twitter.minFollowers,
       "tipsPerDay": this.props.data.twitter.tipsPerDay,
@@ -64,7 +63,6 @@ export class Settings extends React.Component {
       "tipsReTweet": this.props.data.twitter.tipsReTweet,
       "tipsFollowers": this.props.data.twitter.tipsFollowers,
     };
-    //check if there is need to send request
     this.props.getData("auth/tw-tip-criteria", "post", objCrit, true);
   }
 
@@ -88,10 +86,9 @@ export class Settings extends React.Component {
   }
 
   render() {
-    console.log(this.props,"<<<<<<<<<<<<<<<<<<<<<<<<<<");
     return (
       <div>
-        <Menu data={this.props}/>
+        <Menu changeMessage={this.props.changeMessage}/>
         <div className="main-content">
           <div className="header-section">Settings</div>
           <ul>
@@ -109,14 +106,16 @@ export class Settings extends React.Component {
           </ul>
           <div className="settings-tab">
 
-            {this.props.data.settingsCurrentTab == 'myDetails' && <MyDetails
-              user={this.props.data.user}
-              updateSettings={this.handleUpdateSettings}
-              ref={(input) => this.settings = input}/>}
-            {this.props.data.settingsCurrentTab == 'twitterSettings' &&
-            <TwitterSettings twitter={this.props.data.twitter}
-                             updateSettings={this.handleUpdateTwSettings}
-                             ref={(input) => this.twSettings = input}/>}
+            {this.props.data.settingsCurrentTab == 'myDetails' && this.props.data.user.dataReceived
+            && <MyDetails
+                    user={this.props.data.user}
+                    updateSettings={this.handleUpdateSettings}
+                    ref={(input) => this.settings = input}/>}
+            {this.props.data.settingsCurrentTab == 'twitterSettings' && this.props.data.twitter.dataReceivedApiDetails &&  this.props.data.twitter.dataReceivedTipCriteria
+              && <TwitterSettings twitter={this.props.data.twitter}
+                    updateSettings={this.handleUpdateTwSettings}
+                    changeMessage={this.props.changeMessage}
+                    ref={(input) => this.twSettings = input}/>}
             {this.props.data.settingsCurrentTab == 'paymentSettings' && <PaymentSettings />}
 
           </div>

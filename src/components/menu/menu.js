@@ -4,6 +4,7 @@ import { Link } from 'react-router/es6';
 import "./menu.scss";
 import store from 'store';
 import { push } from 'react-router-redux';
+import PropTypes from 'prop-types';
 
 export class Menu extends React.Component {
   constructor(props) {
@@ -11,11 +12,15 @@ export class Menu extends React.Component {
     this.handleLogout = this.logout.bind(this);
   }
 
+  static propTypes = {
+    changeMessage: PropTypes.func.isRequired
+  }
+
+
   logout() {
-    console.log(this.props,"ppppppppppppppppppS")
-    this.props.data.changeMessage('user', 'token', null);
+    this.props.changeMessage('user', 'token', null);
     window.sessionStorage.removeItem("token");
-    store.dispatch(push('/'))
+    store.dispatch(push('/'));
   }
 
   render() {

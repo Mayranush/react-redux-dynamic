@@ -14,7 +14,7 @@ export class Dashboard extends React.Component {
     console.log(this.props,"--------------------------------");
     return (
       <div>
-        <Menu />
+        <Menu changeMessage={this.props.changeMessage}/>
 
         <div  className="main-content"><div className="header-section">Dashboard</div><h1>Coming Soon</h1></div>
         <Footer />

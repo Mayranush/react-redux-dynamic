@@ -13,7 +13,7 @@ export class Admin extends React.Component {
   render() {
     return (
     	<div>
-    		<Menu />
+    		<Menu changeMessage={this.props.changeMessage}/>
     		<div  className="main-content"><div className="header-section">Admin area</div></div>
         <Footer />
     	</div>)

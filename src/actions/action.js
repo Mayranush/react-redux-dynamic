@@ -51,19 +51,21 @@ export function getDataResponse(data,param,method) {
       newState.user.lastName = data.lastname;
       newState.user.email = data.email;
       newState.user.twUsername = data.twUsername;
+      newState.user.dataReceived = true;
     }else if(param === "auth/tw-api-details" && method === "get"){
       newState.twitter.consumerKey = data.consumerKey;
       newState.twitter.consumerSecret = data.consumerSecret;
       newState.twitter.accessToken = data.accessToken;
       newState.twitter.accessTokenSecret = data.accessTokenSecret;
+      newState.twitter.dataReceivedApiDetails = true;
     }else if(param = "auth/tw-tip-criteria" && method === "get"){
-      console.log(data, "data in action");
       newState.twitter.minFollowers = data.minFollowers;
       newState.twitter.tipsPerDay = data.tipsPerDay;
       newState.twitter.tipsLike = data.tipsLike;
       newState.twitter.tipsTweet = data.tipsTweet;
       newState.twitter.tipsReTweet = data.tipsReTweet;
       newState.twitter.tipsFollowers = data.tipsFollowers;
+      newState.twitter.dataReceivedTipCriteria = true;
     }
 
     return dispatch(responseResponse(newState));
