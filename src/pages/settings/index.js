@@ -102,7 +102,7 @@ export class Settings extends React.Component {
             <li className={this.props.data.settingsCurrentTab == 'paymentSettings' ? "three active tab" : "three tab"}>
               <span><p onClick={(e) => this.handleGetTwitterSettings(e, 'paymentSettings')}>Payment details</p></span>
             </li>
-            <hr/>
+            <hr className="hr"/>
           </ul>
           <div className="settings-tab">
 
