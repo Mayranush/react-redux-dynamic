@@ -41,7 +41,7 @@ const mockData = {
     tipsPerDay: 0,
     tipsPerDayPerUser: 0,
     coinAmount: 0,
-    coinAmount: '',
+    coinType: '',
     hashtags: '',
     // tipsLike: false,
     tipsTweet: false,

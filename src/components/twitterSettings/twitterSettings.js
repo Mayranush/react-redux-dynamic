@@ -21,6 +21,8 @@ export class TwitterSettings extends React.Component {
     tipsPerDay: PropTypes.number,
     tipsPerDayPerUser: PropTypes.number,
     coinAmount: PropTypes.number,
+    coinType: PropTypes.string,
+    hashtags: PropTypes.string,
     // tipsLike: PropTypes.bool,
     tipsTweet: PropTypes.bool,
     tipsReTweet: PropTypes.bool,
@@ -44,21 +46,21 @@ export class TwitterSettings extends React.Component {
                 <label htmlFor="consumerKey" className="col-lg-3 control-label tw-crit">Consumer Key</label>
                 <div className="col-lg-3 form-group-values tw-crit">
                   <input id="consumerKey" ref="consumerKey" className="form-control" type="text"
-                         placeholder={this.props.twitter.consumerKey}/>
+                         defaultValue={this.props.twitter.consumerKey}/>
                 </div>
               </div>
               <div className="form-group">
                 <label htmlFor="consumerSecret" className="col-lg-3 control-label tw-crit">Consumer Secret</label>
                 <div className="col-lg-3 form-group-values tw-crit">
                   <input id="consumerSecret" ref="consumerSecret" className="form-control" type="text"
-                         placeholder={this.props.twitter.consumerSecret}/>
+                         defaultValue={this.props.twitter.consumerSecret}/>
                 </div>
               </div>
               <div className="form-group">
                 <label htmlFor="accessToken" className="col-lg-3 control-label tw-crit">Access Token</label>
                 <div className="col-lg-3 form-group-values tw-crit">
                   <input id="accessToken" ref="accessToken" className="form-control" type="text"
-                         placeholder={this.props.twitter.accessToken}/>
+                         defaultValue={this.props.twitter.accessToken}/>
                 </div>
               </div>
               <div className="form-group">
@@ -66,7 +68,7 @@ export class TwitterSettings extends React.Component {
                   Secret</label>
                 <div className="col-lg-3 form-group-values tw-crit">
                   <input id="accessTokenSecret" ref="accessTokenSecret" className="form-control" type="text"
-                         placeholder={this.props.twitter.accessTokenSecret}/>
+                         defaultValue={this.props.twitter.accessTokenSecret}/>
                 </div>
               </div>
             </div>
@@ -84,7 +86,7 @@ export class TwitterSettings extends React.Component {
                       followers</label>
                     <div className="col-lg-3 form-group-values tw-crit">
                       <input id="minFollowers" ref="minFollowers" className="form-control" type="text"
-                             placeholder={this.props.twitter.minFollowers}/>
+                             defaultValue={this.props.twitter.minFollowers}/>
                     </div>
                   </div>
                   <div className="form-group">
@@ -92,7 +94,7 @@ export class TwitterSettings extends React.Component {
                       day</label>
                     <div className="col-lg-3 form-group-values tw-crit">
                       <input id="tipsPerDay" ref="tipsPerDay" className="form-control" type="text"
-                             placeholder={this.props.twitter.tipsPerDay}/>
+                             defaultValue={this.props.twitter.tipsPerDay}/>
                     </div>
                   </div>
                   <div className="form-group">
@@ -101,7 +103,7 @@ export class TwitterSettings extends React.Component {
                       day per user</label>
                     <div className="col-lg-3 form-group-values tw-crit">
                       <input id="tipsPerDayPerUser" ref="tipsPerDayPerUser" className="form-control" type="text"
-                             placeholder={this.props.twitter.tipsPerDayPerUser}/>
+                             defaultValue={this.props.twitter.tipsPerDayPerUser}/>
                     </div>
                   </div>
                   <div className="form-group">
@@ -109,7 +111,7 @@ export class TwitterSettings extends React.Component {
                       tipping</label>
                     <div className="col-lg-3 form-group-values tw-crit">
                       <input id="coinAmount" ref="coinAmount" className="form-control" type="text"
-                             placeholder={this.props.twitter.coinAmount}/>
+                             defaultValue={this.props.twitter.coinAmount}/>
                     </div>
                   </div>
                 </div>
@@ -118,7 +120,7 @@ export class TwitterSettings extends React.Component {
                     <label htmlFor="coinType" className="col-lg-3 control-label tw-crit">Coin type</label>
                     <div className="col-lg-3 form-group-values tw-crit">
                       <input id="coinType" ref="coinType" className="form-control" type="text"
-                             placeholder={this.props.twitter.coinType}/>
+                             defaultValue={this.props.twitter.coinType}/>
                     </div>
                   </div>
                   <div className="form-group">
@@ -126,7 +128,7 @@ export class TwitterSettings extends React.Component {
                       tipped</label>
                     <div className="col-lg-3 form-group-values tw-crit">
                       <input id="hashtags" ref="hashtags" className="form-control" type="text"
-                             placeholder={this.props.twitter.coinType}/>
+                             defaultValue={this.props.twitter.hashtags}/>
                     </div>
                   </div>
                   {/*<div className="checkbox">*/}
