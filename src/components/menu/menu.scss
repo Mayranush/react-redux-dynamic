@@ -16,3 +16,17 @@
 	font-size: 20px;
 	color: #4d4d4d;
 }
+.sticky-footer{
+	position: fixed !important;
+	height: 30px !important;
+	width: 100% !important;
+	line-height: 30px !important;
+	padding: 2px !important;
+}
+#mainNav{
+	position: fixed;
+}
+.navbar-nav.navbar-sidenav{
+	height:100vh;
+	background-color: #4d4d4d;
+}

@@ -14,7 +14,7 @@ ul li.tab {
   text-align: center;
 }
 
-p {
+.tab p {
   display: inline-block;
   font-size: 15px;
   width: 12%;
@@ -24,7 +24,9 @@ p {
   color: #333;
 }
 
-
+.tab p:hover {
+  cursor: pointer;
+}
 
 hr.hr {
   height: .25rem;
@@ -64,26 +66,26 @@ hr.hr {
 }
 
 .rect {
+  border-radius: 25px;
   width: 70%;
   height: 70px;
-  border: 5px dashed gray;
+  border: 2px dashed gray;
   margin: 15px;
   text-align: center;
   padding: 20px;
 }
 
-.update-info {
-  background-color: #e7e7e7;
-  height: 40px;
-}
+//.update-info {
+//  background-color: #e7e7e7;
+//  height: 40px;
+//}
 
-.btn-warning {
+.btn-warning.settings {
 
   margin-left: 70%;
   height: inherit;
   font-size: 15px;
   color: white;
-  background-color: rgba(218,143,22,0.88);
 }
 .btn-warning:hover{
   color: white;
@@ -96,5 +98,8 @@ hr.hr {
  color: #15905f ;
   text-decoration: underline;
   font-size: 15px;
+}
+.btn{
+  cursor: pointer;
 }
 

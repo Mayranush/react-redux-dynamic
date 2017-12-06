@@ -51,14 +51,22 @@ export class Settings extends React.Component {
 
     this.twSettings.refs.minFollowers.value !== "" && this.props.changeMessage('twitter', 'minFollowers', this.twSettings.refs.minFollowers.value);
     this.twSettings.refs.tipsPerDay.value !== "" && this.props.changeMessage('twitter', 'tipsPerDay', this.twSettings.refs.tipsPerDay.value);
-    this.props.changeMessage("twitter", "tipsLike", this.twSettings.refs.tipsLike.checked);
+    this.twSettings.refs.tipsPerDayPerUser.value !== "" && this.props.changeMessage('twitter', 'tipsPerDayPerUser', this.twSettings.refs.tipsPerDayPerUser.value);
+    this.twSettings.refs.coinAmount.value !== "" && this.props.changeMessage('twitter', 'coinAmount', this.twSettings.refs.coinAmount.value);
+    this.twSettings.refs.coinType.value !== "" && this.props.changeMessage('twitter', 'coinType', this.twSettings.refs.coinType.value);
+    this.twSettings.refs.hashtags.value !== "" && this.props.changeMessage('twitter', 'hashtags', this.twSettings.refs.hashtags.value);
+    // this.props.changeMessage("twitter", "tipsLike", this.twSettings.refs.tipsLike.checked);
     this.props.changeMessage("twitter", "tipsTweet", this.twSettings.refs.tipsTweet.checked);
     this.props.changeMessage("twitter", "tipsReTweet", this.twSettings.refs.tipsReTweet.checked);
     this.props.changeMessage("twitter", "tipsFollowers", this.twSettings.refs.tipsFollowers.checked);
     let objCrit = {
       "minFollowers": this.props.data.twitter.minFollowers,
       "tipsPerDay": this.props.data.twitter.tipsPerDay,
-      "tipsLike": this.props.data.twitter.tipsLike,
+      "tipsPerDayPerUser": this.props.data.twitter.tipsPerDayPerUser,
+      "coinAmount": this.props.data.twitter.coinAmount,
+      "coinType": this.props.data.twitter.coinType,
+      "hashtags": this.props.data.twitter.hashtags,
+      // "tipsLike": this.props.data.twitter.tipsLike,
       "tipsTweet": this.props.data.twitter.tipsTweet,
       "tipsReTweet": this.props.data.twitter.tipsReTweet,
       "tipsFollowers": this.props.data.twitter.tipsFollowers,

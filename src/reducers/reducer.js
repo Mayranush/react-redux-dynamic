@@ -39,7 +39,11 @@ const mockData = {
     accessTokenSecret: '',
     minFollowers: 0,
     tipsPerDay: 0,
-    tipsLike: false,
+    tipsPerDayPerUser: 0,
+    coinAmount: 0,
+    coinAmount: '',
+    hashtags: '',
+    // tipsLike: false,
     tipsTweet: false,
     tipsReTweet: false,
     tipsFollowers: false

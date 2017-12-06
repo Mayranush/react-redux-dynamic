@@ -10,13 +10,22 @@
 
 .control-label.tw-crit {
   max-width: 50%;
+  height: 25px;
 }
 
 .cube1 {
   float: left;
-  width: 50%;
+  width: 33%;
+}
+.cube2 {
+  float: left;
+  width: 66%;
 }
 
+.subCube1 {
+  float: left;
+  //width: 33%;
+}
 .cube {
   height: -webkit-fill-available;
 }

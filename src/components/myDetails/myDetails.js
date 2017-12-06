@@ -54,7 +54,7 @@ export class MyDetails extends React.Component {
         </div>
         <div className="rect">Need any help? <a className="contact-us" href="">Contact us here</a></div>
         <div className="update-info">
-          <button className="btn-warning" onClick={() => this.props.updateSettings()}>Update Settings</button>
+          <button className="btn btn-warning settings" onClick={() => this.props.updateSettings()}>Update Settings</button>
         </div>
       </div>
     )
