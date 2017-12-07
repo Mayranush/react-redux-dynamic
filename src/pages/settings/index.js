@@ -85,8 +85,8 @@ export class Settings extends React.Component {
       "email": this.props.data.user.email,
       "twUsername": this.props.data.user.twUsername
     };
-    console.log(obj, "obj")
-    // this.props.getData("auth/", "post", obj);
+
+    this.props.getData("auth/settings", "post", obj,true);
   }
 
   componentDidMount() {

@@ -9,6 +9,6 @@ const Header = (...props) => {
       <Link to="/login">Login</Link>
     </nav>
   )  
-}
+};
 
 export {Header}

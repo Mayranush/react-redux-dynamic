@@ -14,7 +14,7 @@ export class Menu extends React.Component {
 
   static propTypes = {
     changeMessage: PropTypes.func.isRequired
-  }
+  };
 
 
   logout() {
@@ -119,8 +119,8 @@ export class Menu extends React.Component {
                 </div>
               </li>
               <li className="nav-item" onClick={this.handleLogout}>
-                <a className="nav-link" data-toggle="modal" data-target="#exampleModal">
-                  <i className="fa fa-fw fa-sign-out"/>Logout</a>
+                <Link to="/home" className="nav-link" data-toggle="modal" data-target="#exampleModal">
+                  <i className="fa fa-fw fa-sign-out"/>Logout</Link>
               </li>
             </ul>
           </div>

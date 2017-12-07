@@ -7,13 +7,12 @@ import "./login.scss";
 export class Login extends React.Component {
   constructor(props) {
     super(props);
-
-    console.log(this.props, "props")
-
     this.handleEmailChange = this.emailChange.bind(this);
     this.handlePasswordChange = this.passwordChange.bind(this);
     this.handleLoginUser = this.loginUser.bind(this);
   }
+
+
 
   emailChange(e) {
     let email = e.target.value;
@@ -74,18 +73,22 @@ export class Login extends React.Component {
                   id="inputEmail" type="email"
                   placeholder="Enter email"
                   onBlur={(e) => this.handleEmailChange(e)}/>
-                <p className="error-for-input">{this.props.data.login.emailErrorText.length != 0 ? '*' + this.props.data.login.emailErrorText : ''}</p>
+                <p
+                  className="error-for-input">{this.props.data.login.emailErrorText.length != 0 ? '*' + this.props.data.login.emailErrorText : ''}</p>
               </div>
               <div className="form-group">
                 <label htmlFor="inputPassword">Password</label>
+
                 <input
-                  className={this.props.data.login.passwordErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
-                  id="inputPassword"
-                  type="password"
-                  placeholder="Password"
-                  onBlur={(e) => this.handlePasswordChange(e)}/>
-                <p className="error-for-input">{this.props.data.login.passwordErrorText.length != 0 ? '*' + this.props.data.login.passwordErrorText : ''}</p>
-                <p className="error-for-input">{this.props.data.login.errorText.length != 0 ? '*' + this.props.data.login.errorText : ''}</p>
+                       className={this.props.data.login.passwordErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
+                       id="inputPassword"
+                       type="password"
+                       placeholder="Password"
+                       onKeyUp={(e) => this.handlePasswordChange(e)}/>
+                <p
+                  className="error-for-input">{this.props.data.login.passwordErrorText.length != 0 ? '*' + this.props.data.login.passwordErrorText : ''}</p>
+                <p
+                  className="error-for-input">{this.props.data.login.errorText.length != 0 ? '*' + this.props.data.login.errorText : ''}</p>
               </div>
               <div className="form-group">
                 <div className="form-check">
