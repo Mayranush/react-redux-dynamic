@@ -116,6 +116,7 @@ export class Login extends React.Component {
             <div className="text-center">
               <Link className="d-block small mt-3 register-link" to="/register">Register an Account</Link>
               <a className="d-block small" href="/password/recovery">Forgot Password?</a>
+              <Link className="d-block small mt-3 home-link" to="/">Back to home</Link>
             </div>
           </div>
         </div>
