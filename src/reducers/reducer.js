@@ -51,38 +51,16 @@ const mockData = {
   },
 log:[
   {
-    twUserName:'fd',
-    tweetId:'dfs',
-    tweetText:'scs',
-    reTweetText:'dssd',
-    createdAt:'dssd',
-    twTime:'sdfdsf'
-  },
-  {
-    twUserName:'fd',
-    tweetId:'dfs',
-    tweetText:'scs',
-    reTweetText:'dssd',
-    createdAt:'dssd',
-    twTime:'sdfdsf'
-  },
-  {
-    twUserName:'fd',
-    tweetId:'dfs',
-    tweetText:'scs',
-    reTweetText:'dssd',
-    createdAt:'dssd',
-    twTime:'sdfdsf'
-  },
-  {
-    twUserName:'fd',
-    tweetId:'dfs',
-    tweetText:'scs',
-    reTweetText:'dssd',
-    createdAt:'dssd',
-    twTime:'sdfdsf'
+    twUserName:'',
+    tweetId:'',
+    tweetText:'',
+    reTweetText:'',
+    createdAt:'',
+    twTime:''
   }
-]
+
+],
+  logMessage:''
 };
 const defaultState = {
   data: mockData

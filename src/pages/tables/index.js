@@ -35,7 +35,7 @@ export class Tables extends React.Component {
               </thead>
               <tbody>
               { this.props.data.log.map((item) => {
-                return ( <tr>
+                return ( <tr key={item.tweetId}>
                   <th scope="row">{item.tweetId}</th>
                   <td>{item.twUserName}</td>
                   <td>{item.tweetText}</td>
@@ -48,6 +48,7 @@ export class Tables extends React.Component {
 
               </tbody>
             </table>
+            <p className="log-message">{this.props.data.logMessage}</p>
           </div>
 
         </div>
