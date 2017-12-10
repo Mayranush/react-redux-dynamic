@@ -27,7 +27,9 @@ const getData = (param, method, obj, token) => {
         return api.post("/" + param, obj);
     } else if (method === "get") {
         return api.get("/" + param);
-    }    
+    }  else if (method === "put") {
+      return api.put("/" + param);
+    }
 };
 
 export default { getData };

@@ -75,15 +75,14 @@ export class Settings extends React.Component {
   }
 
   updateSettings() {
-    this.settings.refs.firstName.value !== "" && this.props.changeMessage('user', 'firstName', this.settings.refs.firstName.value);
-    this.settings.refs.lastName.value !== "" && this.props.changeMessage('user', 'lastName', this.settings.refs.lastName.value);
-    this.settings.refs.email.value !== "" && this.props.changeMessage('user', 'email', this.settings.refs.email.value);
+    this.settings.refs.firstname.value !== "" && this.props.changeMessage('user', 'firstname', this.settings.refs.firstname.value);
+    this.settings.refs.lastname.value !== "" && this.props.changeMessage('user', 'lastname', this.settings.refs.lastname.value);
+    // this.settings.refs.email.value !== "" && this.props.changeMessage('user', 'email', this.settings.refs.email.value);
     this.settings.refs.twUsername.value !== "" && this.props.changeMessage('user', 'twUsername', this.settings.refs.twUsername.value);
     let obj = {
-      "firstName": this.props.data.user.firstName,
-      "lastName": this.props.data.user.lastName,
-      "email": this.props.data.user.email,
-      "twUsername": this.props.data.user.twUsername
+      "firstname": this.props.data.user.firstname,
+      "lastname": this.props.data.user.lastname,
+      "twUsername": this.props.data.user.twUsername,
     };
 
     this.props.getData("auth/settings", "post", obj,true);

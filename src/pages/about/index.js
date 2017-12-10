@@ -10,7 +10,6 @@ export class About extends React.Component {
   }
   
   render() {      
-    {console.log(this.props.data,"this props---------------About");   } 
     return (
       <div>
         <Header />    

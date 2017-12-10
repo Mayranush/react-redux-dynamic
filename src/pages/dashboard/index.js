@@ -8,10 +8,26 @@ import "./dashboard.scss";
 export class Dashboard extends React.Component {
   constructor(props) {
     super(props);
+    this.handleActivateBot = this.activateBot.bind(this);
+    this.handleDeactivateBot = this.deactivateBot.bind(this);
   }
-
+  activateBot(e) {
+    e.stopPropagation();
+    e.preventDefault();
+      this.props.getData("auth/bot", "post", {},true);
+    this.props.changeMessage('twitter', 'botStatus', 'RUNNING');
+  }
+  deactivateBot(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.props.getData("auth/bot", "put", {},true);
+    this.props.changeMessage('twitter', 'botStatus', 'STOPPED');
+  }
+  componentDidMount() {
+    this.props.getData("auth/bot", "get", {}, true);
+  }
   render() {
-    console.log(this.props, "--------------------------------");
+
     return (
       <div>
         <Menu changeMessage={this.props.changeMessage}/>
@@ -21,13 +37,13 @@ export class Dashboard extends React.Component {
           <div>
             <div className="bot">
               <div className="bot-info">
-                <p className="bot-status active"><span className="dot dotRed"/>Your Tipping bot is not active </p>
-                <p className="bot-status"><span className="dot dotGreen"/>Your Tipping bot is active </p>
+                <p className={this.props.data.twitter.botStatus == 'RUNNING' ? "bot-status" : "bot-status active"}><span className="dot dotRed"/>Your Tipping bot is not active </p>
+                <p className={this.props.data.twitter.botStatus == 'RUNNING' ? "bot-status active" : "bot-status"}><span className="dot dotGreen"/>Your Tipping bot is active </p>
               </div>
               <br/>
               <div className="bot-btn">
-                <button className="btn btn-success dashboard">Activate tipping</button>
-                <button className="btn bg-danger dashboard">Stop tipping</button>
+                <button className="btn btn-success dashboard" onClick={(e) => this.handleActivateBot(e)}>Activate tipping</button>
+                <button className="btn bg-danger dashboard" onClick={(e) => this.handleDeactivateBot(e) }>Stop tipping</button>
               </div>
 
             </div>

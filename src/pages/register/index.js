@@ -8,9 +8,8 @@ import axios from "axios";
 export class Register extends React.Component {
   constructor(props) {
     super(props);
-console.log(this.props,"props in register")
-    this.handleFirstNameChange = this.firstNameChange.bind(this);
-    this.handleLastNameChange = this.lastNameChange.bind(this);
+    this.handleFirstnameChange = this.firstnameChange.bind(this);
+    this.handleLastnameChange = this.lastnameChange.bind(this);
     this.handleREmailChange = this.emailChange.bind(this);
     this.handleTwitterChange = this.twitterChange.bind(this);
     this.handleRPasswordChange = this.passwordChange.bind(this);
@@ -27,18 +26,18 @@ console.log(this.props,"props in register")
     this.props.changeMessage('register','twitterAccount', twitterAccount);
   }
 
-  firstNameChange(e) {
-    let firstName = e.target.value;
-    if (firstName != '') {
-      this.props.changeMessage('register','firstName', firstName);
+  firstnameChange(e) {
+    let firstname = e.target.value;
+    if (firstname != '') {
+      this.props.changeMessage('register','firstname', firstname);
     }
 
   }
 
-  lastNameChange(e) {
-    let lastName = e.target.value;
-    if (lastName != '') {
-      this.props.changeMessage('register','lastName', lastName);
+  lastnameChange(e) {
+    let lastname = e.target.value;
+    if (lastname != '') {
+      this.props.changeMessage('register','lastname', lastname);
     }
 
   }
@@ -77,8 +76,8 @@ console.log(this.props,"props in register")
     let obj = {
       email: this.props.data.register.email,
       password: this.props.data.register.password,
-      firstname: this.props.data.register.firstName,
-      lastname: this.props.data.register.lastName,
+      firstname: this.props.data.register.firstname,
+      lastname: this.props.data.register.lastname,
       twUsername: this.props.data.register.twitterAccount,
 
     };
@@ -112,17 +111,17 @@ console.log(this.props,"props in register")
               <div className="form-group">
                 <div className="form-row">
                   <div className="col-md-6">
-                    <label htmlFor="firstName">First name</label>
-                    <input className="form-control" id="inputName"
+                    <label htmlFor="firstname">First name</label>
+                    <input className="form-control" id="inputname"
                            type="text" aria-describedby="nameHelp"
-                           onBlur={(e) => this.handleFirstNameChange(e)}
+                           onBlur={(e) => this.handleFirstnameChange(e)}
                            placeholder="Enter first name"/>
                   </div>
                   <div className="col-md-6">
-                    <label htmlFor="lastName">Last name</label>
-                    <input className="form-control" id="inputLastName"
+                    <label htmlFor="lastname">Last name</label>
+                    <input className="form-control" id="inputLastname"
                            type="text" aria-describedby="nameHelp"
-                           onBlur={(e) => this.handleLastNameChange(e)}
+                           onBlur={(e) => this.handleLastnameChange(e)}
                            placeholder="Enter last name"/>
                   </div>
                 </div>

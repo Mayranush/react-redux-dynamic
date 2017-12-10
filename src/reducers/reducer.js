@@ -7,8 +7,8 @@ const mockData = {
   user: {
     dataReceived: false,
     token: null,
-    firstName: 'ssssssssss',
-    lastName:'',
+    firstname: '',
+    lastname:'',
     email:'',
     twUsername:''
   },
@@ -46,8 +46,43 @@ const mockData = {
     // tipsLike: false,
     tipsTweet: false,
     tipsReTweet: false,
-    tipsFollowers: false
+    tipsFollowers: false,
+    botStatus:''
+  },
+log:[
+  {
+    twUserName:'fd',
+    tweetId:'dfs',
+    tweetText:'scs',
+    reTweetText:'dssd',
+    createdAt:'dssd',
+    twTime:'sdfdsf'
+  },
+  {
+    twUserName:'fd',
+    tweetId:'dfs',
+    tweetText:'scs',
+    reTweetText:'dssd',
+    createdAt:'dssd',
+    twTime:'sdfdsf'
+  },
+  {
+    twUserName:'fd',
+    tweetId:'dfs',
+    tweetText:'scs',
+    reTweetText:'dssd',
+    createdAt:'dssd',
+    twTime:'sdfdsf'
+  },
+  {
+    twUserName:'fd',
+    tweetId:'dfs',
+    tweetText:'scs',
+    reTweetText:'dssd',
+    createdAt:'dssd',
+    twTime:'sdfdsf'
   }
+]
 };
 const defaultState = {
   data: mockData

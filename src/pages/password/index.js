@@ -9,7 +9,6 @@ export class Login extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log(this.props, "props")
 
     this.handleEmailChange = this.emailChange.bind(this);
     this.handleLoginUser = this.loginUser.bind(this);

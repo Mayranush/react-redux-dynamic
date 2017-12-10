@@ -45,10 +45,10 @@ export function getDataResponse(data,param,method) {
       window.sessionStorage.setItem("token", data.token);
       store.dispatch(push('/dashboard'))
     } else if (param === "api/sign-up") {
-      alert("ok")
-    } else if(param === "auth/settings") {
-      newState.user.firstName = data.firstname;
-      newState.user.lastName = data.lastname;
+
+    } else if(param === "auth/settings" && method === "get") {
+      newState.user.firstname = data.firstname;
+      newState.user.lastname = data.lastname;
       newState.user.email = data.email;
       newState.user.twUsername = data.twUsername;
       newState.user.dataReceived = true;
@@ -58,7 +58,7 @@ export function getDataResponse(data,param,method) {
       newState.twitter.accessToken = data.accessToken;
       newState.twitter.accessTokenSecret = data.accessTokenSecret;
       newState.twitter.dataReceivedApiDetails = true;
-    }else if(param = "auth/tw-tip-criteria" && method === "get"){
+    }else if(param === "auth/tw-tip-criteria" && method === "get"){
       newState.twitter.minFollowers = data.minFollowers;
       newState.twitter.tipsPerDay = data.tipsPerDay;
       newState.twitter.tipsLike = data.tipsLike;
@@ -66,6 +66,11 @@ export function getDataResponse(data,param,method) {
       newState.twitter.tipsReTweet = data.tipsReTweet;
       newState.twitter.tipsFollowers = data.tipsFollowers;
       newState.twitter.dataReceivedTipCriteria = true;
+    }else if (param === "auth/bot" && method === "get"){
+      newState.twitter.botStatus = data.message;
+    }else if (param === "auth/tw-tip-logs" && method === "get"){
+      newState.log = data;
+
     }
 
     return dispatch(responseResponse(newState));
@@ -89,7 +94,8 @@ export function getDataResponseError(error, param) {
 
 
 export function getData(param, method, obj, token) {
-    return (dispatch) => {
+
+  return (dispatch) => {
     dispatch(getDataRequest(param));
     return api.getData(param, method, obj, token)
         .then(data => dispatch(getDataResponse(data.data, param, method)))
