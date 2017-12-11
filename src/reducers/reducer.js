@@ -33,21 +33,21 @@ const mockData = {
   twitter: {
     dataReceivedApiDetails: false,
     dataReceivedTipCriteria: false,
-    consumerKey: '',
-    consumerSecret: '',
-    accessToken: '',
-    accessTokenSecret: '',
+    consumerKey: ' ',
+    consumerSecret: ' ',
+    accessToken: ' ',
+    accessTokenSecret: ' ',
     minFollowers: 0,
     tipsPerDay: 0,
     tipsPerDayPerUser: 0,
     coinAmount: 0,
-    coinType: '',
-    hashtags: '',
+    coinType: ' ',
+    hashtags: ' ',
     // tipsLike: false,
     tipsTweet: false,
     tipsReTweet: false,
     tipsFollowers: false,
-    botStatus:''
+    botStatus:' '
   },
 log:[
   {

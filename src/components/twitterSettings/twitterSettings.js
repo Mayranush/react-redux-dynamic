@@ -46,21 +46,21 @@ export class TwitterSettings extends React.Component {
                 <label htmlFor="consumerKey" className="col-lg-3 control-label tw-crit">Consumer Key</label>
                 <div className="col-lg-3 form-group-values tw-crit">
                   <input id="consumerKey" ref="consumerKey" className="form-control" type="text"
-                         defaultValue={this.props.twitter.consumerKey}/>
+                         defaultValue={this.props.twitter.consumerKey ? this.props.twitter.consumerKey : " "}/>
                 </div>
               </div>
               <div className="form-group">
                 <label htmlFor="consumerSecret" className="col-lg-3 control-label tw-crit">Consumer Secret</label>
                 <div className="col-lg-3 form-group-values tw-crit">
                   <input id="consumerSecret" ref="consumerSecret" className="form-control" type="text"
-                         defaultValue={this.props.twitter.consumerSecret}/>
+                         defaultValue={this.props.twitter.consumerSecret ? this.props.twitter.consumerSecret : " "}/>
                 </div>
               </div>
               <div className="form-group">
                 <label htmlFor="accessToken" className="col-lg-3 control-label tw-crit">Access Token</label>
                 <div className="col-lg-3 form-group-values tw-crit">
                   <input id="accessToken" ref="accessToken" className="form-control" type="text"
-                         defaultValue={this.props.twitter.accessToken}/>
+                         defaultValue={this.props.twitter.accessToken ? this.props.twitter.accessToken : " "}/>
                 </div>
               </div>
               <div className="form-group">
@@ -68,7 +68,7 @@ export class TwitterSettings extends React.Component {
                   Secret</label>
                 <div className="col-lg-3 form-group-values tw-crit">
                   <input id="accessTokenSecret" ref="accessTokenSecret" className="form-control" type="text"
-                         defaultValue={this.props.twitter.accessTokenSecret}/>
+                         defaultValue={this.props.twitter.accessTokenSecret ? this.props.twitter.accessTokenSecret : " "}/>
                 </div>
               </div>
             </div>
@@ -86,7 +86,7 @@ export class TwitterSettings extends React.Component {
                       followers</label>
                     <div className="col-lg-3 form-group-values tw-crit">
                       <input id="minFollowers" ref="minFollowers" className="form-control" type="text"
-                             defaultValue={this.props.twitter.minFollowers}/>
+                             defaultValue={this.props.twitter.minFollowers ? this.props.twitter.minFollowers : " "}/>
                     </div>
                   </div>
                   <div className="form-group">
@@ -143,7 +143,8 @@ export class TwitterSettings extends React.Component {
                       ReTweet</label>
                   </div>
                   <div className="checkbox">
-                    <label><input type="checkbox" ref="tipsFollowers" defaultChecked={this.props.twitter.tipsFollowers}/>
+                    <label><input type="checkbox" ref="tipsFollowers"
+                                  defaultChecked={this.props.twitter.tipsFollowers}/>
                       is
                       Follower</label>
                   </div>
@@ -155,7 +156,8 @@ export class TwitterSettings extends React.Component {
         </form>
         <div className="rect">Need any help? <a className="contact-us" href="">Contact us here</a></div>
         <div className="update-info">
-          <button className=" btn btn-warning settings" onClick={() => this.props.updateSettings()}>Update Twitter Settings
+          <button className=" btn btn-warning settings" onClick={() => this.props.updateSettings()}>Update Twitter
+            Settings
           </button>
         </div>
       </div>)

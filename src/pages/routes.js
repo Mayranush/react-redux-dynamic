@@ -53,6 +53,14 @@ const routes = {
       }
     },
     {
+      path: 'success',
+      getComponent(location, cb) {
+        System.import('pages/successPage')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      }
+    },
+    {
       path: 'dashboard',
       onEnter: requireAuth,
       getComponent(location, cb) {
