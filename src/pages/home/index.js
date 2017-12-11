@@ -3,6 +3,7 @@ import {Header} from '../../components/header/header';
 import { connect } from "react-redux";
 import { projectDataActions } from "../../actions/index";
 import "./home.scss";
+import { Link } from 'react-router/es6';
 
 export class Home extends React.Component {
   constructor(props) {
@@ -10,7 +11,6 @@ export class Home extends React.Component {
   }
 
   render() {
-
     return (
       <div>
 
@@ -26,10 +26,10 @@ export class Home extends React.Component {
                   <a className="nav-link" href="#about">About</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="login">Sign in</a>
+                  <Link className="nav-link" to="/login">Sign in</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="register">Sign up</a>
+                  <Link className="nav-link" to="/register">Sign up</Link>
                 </li>
               </ul>
             </div>

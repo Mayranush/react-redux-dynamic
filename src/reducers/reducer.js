@@ -62,6 +62,8 @@ log:[
 ],
   logMessage:''
 };
+console.log("here in clear")
+let clearMocData = JSON.parse(JSON.stringify(mockData));
 const defaultState = {
   data: mockData
 };
@@ -71,5 +73,9 @@ export default handleActions({
   [ActionTypes.changeTabInSettings]: (state, {payload}) => ({...state, data: payload}),
   [ActionTypes.getDataRequest]: (state, {payload}) => ({...state, data: payload}),
   [ActionTypes.getDataResponse]: (state, {payload}) => ({...state, data: payload}),
-  [ActionTypes.getDataResponseError]: (state, {payload}) => ({...state, data: payload})
+  [ActionTypes.getDataResponseError]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.emptyData]: (state) => {
+    console.log("here in change state-----------------", clearMocData)
+    return ({...state, data: clearMocData})
+  }
 }, defaultState);

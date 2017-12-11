@@ -47,24 +47,30 @@ export function getDataResponse(data, param, method) {
     } else if (param === "api/sign-up") {
 
     } else if (param === "auth/settings" && method === "get") {
-      newState.user.firstname = data.firstname;
-      newState.user.lastname = data.lastname;
-      newState.user.email = data.email;
-      newState.user.twUsername = data.twUsername;
+      if (data) {
+        newState.user.firstname = data.firstname;
+        newState.user.lastname = data.lastname;
+        newState.user.email = data.email;
+        newState.user.twUsername = data.twUsername;
+      }
       newState.user.dataReceived = true;
     } else if (param === "auth/tw-api-details" && method === "get") {
-      newState.twitter.consumerKey = data.consumerKey;
-      newState.twitter.consumerSecret = data.consumerSecret;
-      newState.twitter.accessToken = data.accessToken;
-      newState.twitter.accessTokenSecret = data.accessTokenSecret;
+      if (data) {
+        newState.twitter.consumerKey = data.consumerKey;
+        newState.twitter.consumerSecret = data.consumerSecret;
+        newState.twitter.accessToken = data.accessToken;
+        newState.twitter.accessTokenSecret = data.accessTokenSecret;        
+      }
       newState.twitter.dataReceivedApiDetails = true;
     } else if (param === "auth/tw-tip-criteria" && method === "get") {
-      newState.twitter.minFollowers = data.minFollowers;
-      newState.twitter.tipsPerDay = data.tipsPerDay;
-      newState.twitter.tipsLike = data.tipsLike;
-      newState.twitter.tipsTweet = data.tipsTweet;
-      newState.twitter.tipsReTweet = data.tipsReTweet;
-      newState.twitter.tipsFollowers = data.tipsFollowers;
+      if (data) {
+        newState.twitter.minFollowers = data.minFollowers;
+        newState.twitter.tipsPerDay = data.tipsPerDay;
+        newState.twitter.tipsLike = data.tipsLike;
+        newState.twitter.tipsTweet = data.tipsTweet;
+        newState.twitter.tipsReTweet = data.tipsReTweet;
+        newState.twitter.tipsFollowers = data.tipsFollowers;
+      }
       newState.twitter.dataReceivedTipCriteria = true;
     } else if (param === "auth/bot" && method === "get") {
       newState.twitter.botStatus = data.message;
@@ -75,8 +81,6 @@ export function getDataResponse(data, param, method) {
         newState.log = data;
         newState.logMessage = "";
       }
-
-
     }
 
     return dispatch(responseResponse(newState));
@@ -104,5 +108,13 @@ export function getData(param, method, obj, token) {
     return api.getData(param, method, obj, token)
       .then(data => dispatch(getDataResponse(data.data, param, method)))
       .catch(error => dispatch(getDataResponseError(error, param)));
+  };
+}
+
+const emptyData = createAction(ActionTypes.emptyData);
+
+export function emptyDataFunc() {
+  return (dispatch) => {
+    return dispatch(emptyData());
   };
 }

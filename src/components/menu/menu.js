@@ -20,7 +20,7 @@ export class Menu extends React.Component {
   logout() {
     this.props.changeMessage('user', 'token', null);
     window.sessionStorage.removeItem("token");
-    store.dispatch(push('/'));
+    this.props.emptyDataFunc();
   }
 
   render() {
@@ -119,7 +119,7 @@ export class Menu extends React.Component {
                 </div>
               </li>
               <li className="nav-item" onClick={this.handleLogout}>
-                <Link to="/home" className="nav-link" data-toggle="modal" data-target="#exampleModal">
+                <Link to="/" className="nav-link" data-toggle="modal" data-target="#exampleModal">
                   <i className="fa fa-fw fa-sign-out"/>Logout</Link>
               </li>
             </ul>

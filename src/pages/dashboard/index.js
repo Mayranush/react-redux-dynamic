@@ -27,10 +27,9 @@ export class Dashboard extends React.Component {
     this.props.getData("auth/bot", "get", {}, true);
   }
   render() {
-
     return (
       <div>
-        <Menu changeMessage={this.props.changeMessage}/>
+        <Menu changeMessage={this.props.changeMessage} emptyDataFunc={this.props.emptyDataFunc}/>
 
         <div className="main-content">
           <div className="header-section">Dashboard</div>

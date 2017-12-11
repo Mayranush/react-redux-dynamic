@@ -14,7 +14,7 @@ export class Charts extends React.Component {
   render() {
     return (
       <div>
-        <Menu changeMessage={this.props.changeMessage}/>
+        <Menu changeMessage={this.props.changeMessage} emptyDataFunc={this.props.emptyDataFunc}/>
         <div  className="main-content">
           <div className="header-section">Charts</div>
           <h6>Sample chart</h6>
