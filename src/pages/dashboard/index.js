@@ -3,6 +3,7 @@ import {Menu} from "../../components/menu/menu";
 import {Footer} from "../../components/menu/footer";
 import {connect} from "react-redux";
 import {projectDataActions} from "../../actions/index";
+import PropTypes from "prop-types";
 import "./dashboard.scss";
 
 export class Dashboard extends React.Component {
@@ -15,7 +16,7 @@ export class Dashboard extends React.Component {
     e.stopPropagation();
     e.preventDefault();
       this.props.getData("auth/bot", "post", {},true);
-    this.props.changeMessage('twitter', 'botStatus', 'RUNNING');
+
   }
   deactivateBot(e) {
     e.stopPropagation();
@@ -23,26 +24,37 @@ export class Dashboard extends React.Component {
     this.props.getData("auth/bot", "put", {},true);
     this.props.changeMessage('twitter', 'botStatus', 'STOPPED');
   }
+  static propTypes = {
+    botStart: PropTypes.string
+  };
+
   componentDidMount() {
     this.props.getData("auth/bot", "get", {}, true);
   }
   render() {
+
     return (
       <div>
-        <Menu changeMessage={this.props.changeMessage} emptyDataFunc={this.props.emptyDataFunc}/>
+        <Menu changeMessage={this.props.changeMessage} cleanData={this.props.cleanData}/>
 
         <div className="main-content">
           <div className="header-section">Dashboard</div>
           <div>
             <div className="bot">
               <div className="bot-info">
-                <p className={this.props.data.twitter.botStatus == 'RUNNING' ? "bot-status" : "bot-status active"}><span className="dot dotRed"/>Your Tipping bot is not active </p>
-                <p className={this.props.data.twitter.botStatus == 'RUNNING' ? "bot-status active" : "bot-status"}><span className="dot dotGreen"/>Your Tipping bot is active </p>
+                <p className={this.props.data.twitter.botStart == 'STARTED.' ? "bot-status active" : "bot-status"}><span className="dot dotGreen"/>You started Tipping bot</p>
+                <p className={this.props.data.twitter.botStart == 'STARTED.' || this.props.data.twitter.botStart == 'The bot is running.' ? "bot-status" : "bot-status active"}><span className="yellow">{this.props.data.twitter.botStart}</span></p>
+
+                <p className={this.props.data.twitter.botStatus == 'RUNNING' ? "bot-status" : "bot-status active"}><span className="dot dotRed"/>Your Tipping bot is not running </p>
+                <p className={this.props.data.twitter.botStatus == 'RUNNING' && this.props.data.twitter.botStart != 'STARTED.' ? "bot-status active" : "bot-status"}><span className="dot dotGreen"/>Your Tipping bot is running </p>
+
+
               </div>
               <br/>
               <div className="bot-btn">
-                <button className="btn btn-success dashboard" onClick={(e) => this.handleActivateBot(e)}>Activate tipping</button>
-                <button className="btn bg-danger dashboard" onClick={(e) => this.handleDeactivateBot(e) }>Stop tipping</button>
+                <button className="btn btn-success dashboard bot-btn-sub" onClick={(e) => this.handleActivateBot(e)}>Activate tipping</button>
+
+                <button className="btn bg-danger dashboard  bot-btn-sub" onClick={(e) => this.handleDeactivateBot(e) }>Stop tipping</button>
               </div>
 
             </div>
@@ -54,7 +66,7 @@ export class Dashboard extends React.Component {
               </div>
               <br/>
               <div className="bot-btn">
-                <button className="btn btn-success dashboard">Recharge wallet</button>
+                <button className="btn btn-success dashboard  bot-btn-sub">Recharge wallet</button>
               </div>
 
             </div>

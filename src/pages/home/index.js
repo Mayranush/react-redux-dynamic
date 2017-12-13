@@ -11,6 +11,7 @@ export class Home extends React.Component {
   }
 
   render() {
+
     return (
       <div>
 
@@ -26,10 +27,10 @@ export class Home extends React.Component {
                   <a className="nav-link" href="#about">About</a>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/login">Sign in</Link>
+                  <a className="nav-link" href="/login">Sign in</a>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/register">Sign up</Link>
+                  <a className="nav-link" href="/register">Sign up</a>
                 </li>
               </ul>
             </div>
@@ -41,9 +42,7 @@ export class Home extends React.Component {
           <div className="container">
             <div className="intro-message">
               <h1>Promote your Cryptocurrency</h1>
-
               <hr className="intro-divider"/>
-
             </div>
           </div>
         </header>

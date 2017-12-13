@@ -90,7 +90,9 @@ export class Register extends React.Component {
       && this.props.data.register.password.length != 0) {
     
       this.props.getData("api/sign-up", "post", obj);
+
     }
+
   }
 
   render() {

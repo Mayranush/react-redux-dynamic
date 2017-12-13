@@ -27,9 +27,9 @@ export class Settings extends React.Component {
     }
     if (param === 'myDetails' && !this.props.data.user.dataReceived) {
       this.props.getData("auth/settings", "get", {}, true);
-    } else if (param === 'twitterSettings' && !this.props.data.twitter.dataReceivedApiDetails &&  !this.props.data.twitter.dataReceivedTipCriteria) {    
-        this.props.getData("auth/tw-api-details", "get", {}, true);
-        this.props.getData("auth/tw-tip-criteria", "get", {}, true);
+    } else if (param === 'twitterSettings' && !this.props.data.twitter.dataReceivedApiDetails && !this.props.data.twitter.dataReceivedTipCriteria) {
+      this.props.getData("auth/tw-api-details", "get", {}, true);
+      this.props.getData("auth/tw-tip-criteria", "get", {}, true);
     }
 
     this.props.changeTabInSettings(param);
@@ -85,7 +85,7 @@ export class Settings extends React.Component {
       "twUsername": this.props.data.user.twUsername,
     };
 
-    this.props.getData("auth/settings", "post", obj,true);
+    this.props.getData("auth/settings", "post", obj, true);
   }
 
   componentDidMount() {
@@ -95,7 +95,7 @@ export class Settings extends React.Component {
   render() {
     return (
       <div>
-        <Menu changeMessage={this.props.changeMessage} emptyDataFunc={this.props.emptyDataFunc}/>
+        <Menu changeMessage={this.props.changeMessage} cleanData={this.props.cleanData}/>
         <div className="main-content">
           <div className="header-section">Settings</div>
           <ul>
@@ -115,14 +115,15 @@ export class Settings extends React.Component {
 
             {this.props.data.settingsCurrentTab == 'myDetails' && this.props.data.user.dataReceived
             && <MyDetails
-                    user={this.props.data.user}
-                    updateSettings={this.handleUpdateSettings}
-                    ref={(input) => this.settings = input}/>}
-            {this.props.data.settingsCurrentTab == 'twitterSettings' && this.props.data.twitter.dataReceivedApiDetails &&  this.props.data.twitter.dataReceivedTipCriteria
-              && <TwitterSettings twitter={this.props.data.twitter}
-                    updateSettings={this.handleUpdateTwSettings}
-                    changeMessage={this.props.changeMessage}
-                    ref={(input) => this.twSettings = input}/>}
+              user={this.props.data.user}
+              updateSettings={this.handleUpdateSettings}
+              ref={(input) => this.settings = input}/>}
+            {this.props.data.settingsCurrentTab == 'twitterSettings' && this.props.data.twitter.dataReceivedApiDetails && this.props.data.twitter.dataReceivedTipCriteria
+            && <TwitterSettings twitter={this.props.data.twitter}
+                                updateSettings={this.handleUpdateTwSettings}
+                                changeMessage={this.props.changeMessage}
+                                cleanData={this.props.cleanData}
+                                ref={(input) => this.twSettings = input}/>}
             {this.props.data.settingsCurrentTab == 'paymentSettings' && <PaymentSettings />}
 
           </div>

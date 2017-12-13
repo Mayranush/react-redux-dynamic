@@ -27,16 +27,22 @@
 .dotGreen {
   background-color: #297004;
 }
- .btn.dashboard {
+
+.yellow {
+  color: #da8f16;
+}
+
+.btn.dashboard {
   //display: block;
   font-size: 15px;
   color: white !important;
 
   margin: 5px !important;
 }
-.btn:hover{
+
+.btn:hover {
   color: white;
-  cursor:pointer
+  cursor: pointer
 }
 
 //.bot-info .btn {
@@ -45,34 +51,45 @@
 //  color: white;
 //  margin: 5px;
 //}
-.bot-info{
-  margin: 25px;
+.bot-info {
+  //margin: 25px;
+  width: 100%;
 }
-.bot-btn{
+.bot-info p{
+  width: 100%;
+}
+.bot-btn {
+  position: relative;
   text-align: center;
+  width: 100%;
+}
+.bot-btn-sub{
 }
 
-.bot{
+.bot {
+  align-content: center;
   border-radius: 25px;
   border: 2px solid #73AD21;
   padding: 20px;
-  width: 350px;
-  height: 200px;
+  width: 400px;
+  height: 250px;
   margin: 15px;
   max-width: 50%;
   float: left;
 }
-.wallet{
+
+.wallet {
   border-radius: 25px;
   border: 2px solid #73AD21;
   padding: 20px;
-  width: 350px;
-  height: 200px;
+  width: 400px;
+  height: 250px;
   margin: 15px;
   max-width: 50%;
   float: left;
 }
-.wallet .btn{
+
+.wallet .btn {
   align-items: center;
 
 }

@@ -19,7 +19,7 @@ export class Register extends React.Component {
 
   render() {
     return (
-      <div className="success">You have been successfully registered</div>
+      <div className="success">You have been successfully registered. To activate your account please check your mail.</div>
     )
   }
 }
