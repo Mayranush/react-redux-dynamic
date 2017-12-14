@@ -111,7 +111,7 @@ export class Settings extends React.Component {
             </li>
             <li className={this.props.data.settingsCurrentTab == 'twitterSettings' ? "two active tab" : "two tab"}>
               <span> <p onClick={(e) => this.handleGetTwitterSettings(e, 'twitterSettings')}
-              >Twitter API Settings</p></span>
+              >Twitter API Details</p></span>
             </li>
             <li className={this.props.data.settingsCurrentTab == 'twitterCriteria' ? "three active tab" : "three tab"}>
               <span> <p onClick={(e) => this.handleGetTwitterSettings(e, 'twitterCriteria')}

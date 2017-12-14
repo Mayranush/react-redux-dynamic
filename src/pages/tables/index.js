@@ -30,7 +30,6 @@ export class Tables extends React.Component {
                 <th>Tipped Twitter username</th>
                 <th>Tweet text</th>
                 <th>ReTweet text</th>
-                <th>Created at</th>
                 <th>Tweet time</th>
               </tr>
               </thead>
@@ -42,7 +41,6 @@ export class Tables extends React.Component {
                   <td>{item.tweetText}</td>
                   <td>{item.reTweetText}</td>
                   <td>{item.createdAt}</td>
-                  <td>{item.twTime}</td>
                 </tr>)
               })
               }
