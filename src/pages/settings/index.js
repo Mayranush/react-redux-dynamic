@@ -1,4 +1,3 @@
-
 import React from "react";
 import {Menu} from "../../components/menu/menu";
 import {Footer} from "../../components/menu/footer";
@@ -7,6 +6,7 @@ import {projectDataActions} from "../../actions/index";
 import "./settings.scss";
 import {MyDetails} from "../../components/myDetails/myDetails";
 import {TwitterSettings} from "../../components/twitterSettings/twitterSettings";
+import {TwitterCriteria} from "../../components/twitterCriteria/twitterCriteria";
 import {PaymentSettings} from "../../components/paymentSettings/paymentSettings";
 
 export class Settings extends React.Component {
@@ -16,6 +16,7 @@ export class Settings extends React.Component {
     this.handleGetTwitterSettings = this.getTwitterSettings.bind(this);
     this.handleUpdateSettings = this.updateSettings.bind(this);
     this.handleUpdateTwSettings = this.updateTwSettings.bind(this);
+    this.handleUpdateTwCriteria = this.updateTwCriteria.bind(this);
     this.currentTab = 'myDetails';
   }
 
@@ -28,8 +29,9 @@ export class Settings extends React.Component {
     }
     if (param === 'myDetails' && !this.props.data.user.dataReceived) {
       this.props.getData("auth/settings", "get", {}, true);
-    } else if (param === 'twitterSettings' && !this.props.data.twitter.dataReceivedApiDetails && !this.props.data.twitter.dataReceivedTipCriteria) {
+    } else if (param === 'twitterSettings' && !this.props.data.twitter.dataReceivedApiDetails) {
       this.props.getData("auth/tw-api-details", "get", {}, true);
+    } else if (param === 'twitterCriteria' && !this.props.data.twitter.dataReceivedTipCriteria) {
       this.props.getData("auth/tw-tip-criteria", "get", {}, true);
     }
 
@@ -49,6 +51,10 @@ export class Settings extends React.Component {
       "accessTokenSecret": this.props.data.twitter.accessTokenSecret,
     };
     this.props.getData("auth/tw-api-details", "post", objDetails, true);
+
+  }
+
+  updateTwCriteria() {
 
     this.twSettings.refs.minFollowers.value !== "" && this.props.changeMessage('twitter', 'minFollowers', this.twSettings.refs.minFollowers.value);
     this.twSettings.refs.tipsPerDay.value !== "" && this.props.changeMessage('twitter', 'tipsPerDay', this.twSettings.refs.tipsPerDay.value);
@@ -105,9 +111,13 @@ export class Settings extends React.Component {
             </li>
             <li className={this.props.data.settingsCurrentTab == 'twitterSettings' ? "two active tab" : "two tab"}>
               <span> <p onClick={(e) => this.handleGetTwitterSettings(e, 'twitterSettings')}
-              >Twitter Settings</p></span>
+              >Twitter API Settings</p></span>
             </li>
-            <li className={this.props.data.settingsCurrentTab == 'paymentSettings' ? "three active tab" : "three tab"}>
+            <li className={this.props.data.settingsCurrentTab == 'twitterCriteria' ? "three active tab" : "three tab"}>
+              <span> <p onClick={(e) => this.handleGetTwitterSettings(e, 'twitterCriteria')}
+              >Twitter Criteria</p></span>
+            </li>
+            <li className={this.props.data.settingsCurrentTab == 'paymentSettings' ? "four active tab" : "four tab"}>
               <span><p onClick={(e) => this.handleGetTwitterSettings(e, 'paymentSettings')}>Payment details</p></span>
             </li>
             <hr className="hr"/>
@@ -119,9 +129,16 @@ export class Settings extends React.Component {
               user={this.props.data.user}
               updateSettings={this.handleUpdateSettings}
               ref={(input) => this.settings = input}/>}
-            {this.props.data.settingsCurrentTab == 'twitterSettings' && this.props.data.twitter.dataReceivedApiDetails && this.props.data.twitter.dataReceivedTipCriteria
+            {this.props.data.settingsCurrentTab == 'twitterSettings' && this.props.data.twitter.dataReceivedApiDetails
             && <TwitterSettings twitter={this.props.data.twitter}
                                 updateSettings={this.handleUpdateTwSettings}
+                                changeMessage={this.props.changeMessage}
+                                cleanData={this.props.cleanData}
+                                ref={(input) => this.twSettings = input}/>}
+
+            {this.props.data.settingsCurrentTab == 'twitterCriteria' && this.props.data.twitter.dataReceivedTipCriteria
+            && <TwitterCriteria twitter={this.props.data.twitter}
+                                updateSettings={this.handleUpdateTwCriteria}
                                 changeMessage={this.props.changeMessage}
                                 cleanData={this.props.cleanData}
                                 ref={(input) => this.twSettings = input}/>}
@@ -138,5 +155,4 @@ export class Settings extends React.Component {
 export default connect(
   state => ({data: state.projectDataReducer.data}),
   {...projectDataActions}
-
 )(Settings);

@@ -24,6 +24,7 @@ export class Dashboard extends React.Component {
     e.preventDefault();
     this.props.getData("auth/bot", "put", {},true);
     this.props.changeMessage('twitter', 'botStatus', 'STOPPED');
+    this.props.changeMessage('twitter', 'botStart', '');
   }
   static propTypes = {
     botStart: PropTypes.string

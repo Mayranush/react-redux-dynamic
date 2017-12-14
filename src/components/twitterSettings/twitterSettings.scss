@@ -1,29 +1,20 @@
-.form-group-values.tw-crit {
-  float: right;
-  max-width: 50% !important;
-  width: 50%;
+.form-group-values.tw-set {
+  width: 40%;
+  float: left;
 }
 
-.form-group {
-  margin-right: 10%;
+.form-group.tw-set {
+  width: 100%;
+  float: left;
 }
 
-.control-label.tw-crit {
-  max-width: 50%;
-  height: 25px;
+.control-label.tw-set {
+  float: left;
+  width: 15%;
 }
 
 .cube1 {
   float: left;
-  width: 33%;
-}
-.cube2 {
-  float: left;
-  width: 66%;
+  width: 100%;
 }
 
-.subCube1 {
-  width: 50%;
-  float: left;
-  //width: 33%;
-}

@@ -98,7 +98,7 @@ export class Register extends React.Component {
 
   render() {
     return (
-      <div className="bg-dark">
+      <div className="bg-dark bg-dark-register">
         <div className="card card-register mx-auto mt-5">
           <div className="card-header">
             <span className="register">Register an Account</span>

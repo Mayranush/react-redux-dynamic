@@ -18,7 +18,7 @@ export class Home extends React.Component {
 
         <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
           <div className="container">
-            <a className="navbar-brand" href="#">LOGO HERE</a>
+            <Link className="navbar-brand" to="#">LOGO HERE</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"/>
             </button>
@@ -28,10 +28,10 @@ export class Home extends React.Component {
                   <a className="nav-link" href="#about">About</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/login">Sign in</a>
+                  <Link className="nav-link" to="/login">Sign in</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/register">Sign up</a>
+                  <Link className="nav-link" to="/register">Sign up</Link>
                 </li>
               </ul>
             </div>

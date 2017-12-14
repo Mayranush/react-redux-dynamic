@@ -47,7 +47,7 @@ export class Login extends React.Component {
 
   render() {
     return (
-      <div className="bg-dark">
+      <div className="bg-dark bg-dark-password-recovery">
         <div className="card card-login mx-auto mt-5">
           <div className="card-header">
             <span className="register">Password recovery</span>
@@ -75,7 +75,7 @@ export class Login extends React.Component {
             </form>
             <div className="text-center">
               <Link className="d-block small mt-3 register-link" to="/register">Register an Account</Link>
-              <a className="d-block small" href="/login">Back to login page</a>
+              <Link className="d-block small" to="/login">Back to login page</Link>
             </div>
           </div>
         </div>

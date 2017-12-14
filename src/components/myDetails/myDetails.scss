@@ -1,15 +1,14 @@
-.control-label{
-  max-width: 20%;
-
+.control-label.my-detail{
+  float: left;
+  width: 15%;
 }
 .form-group-values-my-details{
-  margin-right: 50%;
-  float: right;
-  max-width: 50% !important;
-  width: 30%;
+  width: 40%;
+  float: left;
 }
-.form-group{
-  margin-right: 30%;
+.form-group.my-detail{
+  width: 100%;
+  float: left;
 
 }
 .password-recovery{
@@ -20,4 +19,10 @@
 }
 .password-recovery:hover{
   color: #087047 !important ;
+}
+.div-password-recovery{
+  width: 100%;
+  position: relative;
+  float: left;
+  margin: 2%;
 }

@@ -1,4 +1,3 @@
-
 import React from "react";
 import {connect} from "react-redux";
 import {projectDataActions} from "../../actions/index";
@@ -11,7 +10,10 @@ export class Login extends React.Component {
     this.handleEmailChange = this.emailChange.bind(this);
     this.handlePasswordChange = this.passwordChange.bind(this);
     this.handleLoginUser = this.loginUser.bind(this);
-
+    console.log(this.props,"<<<<<<<<<<<<<<<<<<<<<<<login load")
+    if (this.props.data.user.token !== null) {
+      store.dispatch(push('/dashboard'));
+    }
   }
 
 
@@ -59,7 +61,7 @@ export class Login extends React.Component {
 
   render() {
     return (
-      <div className="bg-dark">
+      <div className="bg-dark bg-dark-login">
         <div className="card card-login mx-auto mt-5">
           <div className="card-header">
             <h4 className="register">Login</h4>
@@ -108,16 +110,16 @@ export class Login extends React.Component {
               </button>
             </form>
             <hr/>
-            <a href="#" className="fa fa-twitter">
+            <a href="#" className="fa fa-twitter tw-login fa-login">
               <span className=""> Twitter</span>
 
             </a>
-            <a href="#" className="fa fa-facebook">
+            <a href="#" className="fa fa-facebook fb-login fa-login">
               <span className=""> Facebook</span>
             </a>
             <div className="text-center">
               <Link className="d-block small mt-3 register-link" to="/register">Register an Account</Link>
-              <a className="d-block small" href="/password/recovery">Forgot Password?</a>
+              <Link className="d-block small" to="/password/recovery">Forgot Password?</Link>
               <Link className="d-block small mt-3 home-link" to="/">Back to home</Link>
             </div>
           </div>

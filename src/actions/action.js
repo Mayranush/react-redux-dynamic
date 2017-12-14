@@ -127,7 +127,11 @@ export function getDataResponse(data, param, method) {
       if (data) {
         newState.twitter.minFollowers = data.minFollowers;
         newState.twitter.tipsPerDay = data.tipsPerDay;
-        newState.twitter.tipsLike = data.tipsLike;
+        newState.twitter.tipsPerDayPerUser = data.tipsPerDayPerUser;
+        newState.twitter.coinAmount = data.coinAmount;
+        newState.twitter.coinType = data.coinType;
+        newState.twitter.hashtags = data.hashtags;
+        // newState.twitter.tipsLike = data.tipsLike;
         newState.twitter.tipsTweet = data.tipsTweet;
         newState.twitter.tipsReTweet = data.tipsReTweet;
         newState.twitter.tipsFollowers = data.tipsFollowers;

@@ -1,7 +1,7 @@
 
-.active p{
+.active p {
   color: #027041;
- font-size: 18px;
+  font-size: 18px;
 }
 
 .container {
@@ -36,18 +36,22 @@ hr.hr {
   border: none;
   transition: .3s ease-in-out;
 }
-.two.active ~ hr{
+
+.two.active ~ hr {
   margin-left: 12%;
 }
 
-.three.active ~hr{
+.three.active ~ hr {
   margin-left: 24%;
 }
-
+.four.active ~ hr {
+  margin-left: 36%;
+}
 
 .one:hover ~ hr {
   margin-left: 0%;
 }
+
 .two:hover ~ hr {
   margin-left: 12%;
 }
@@ -55,11 +59,9 @@ hr.hr {
 .three:hover ~ hr {
   margin-left: 24%;
 }
-
-
-
-
-
+.four:hover ~ hr {
+  margin-left: 36%;
+}
 
 .first-col {
   padding-right: 179px;
@@ -89,18 +91,23 @@ hr.hr {
   font-size: 15px;
   color: white;
 }
-.btn-warning:hover{
+
+.btn-warning:hover {
   color: white;
 }
-.settings-tab{
+
+.settings-tab {
   margin: 15px;
 }
-.contact-us{
- color: #15905f ;
+
+.contact-us {
+  color: #15905f;
   text-decoration: underline;
   font-size: 15px;
 }
-.btn{
+
+.btn {
   cursor: pointer;
 }
+
 

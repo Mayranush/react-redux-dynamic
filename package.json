@@ -40,6 +40,7 @@
     "prop-types": "^15.6.0",
     "react": "15.4.2",
     "react-bootstrap": "^0.31.5",
+    "react-datetime": "^2.11.1",
     "react-dom": "15.4.2",
     "react-font-awesome": "^1.0.3",
     "react-fontawesome": "^1.6.1",
