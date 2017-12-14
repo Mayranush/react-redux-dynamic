@@ -17,11 +17,18 @@ function requireAuth (nextState, replace, callback) {
   return callback()
 }
 
+function dontRequireAuth(nextState, replace, callback) {
+  const token = store.getState().projectDataReducer.data.user.token || window.sessionStorage.getItem("token");
+  if (token) replace('/dashboard');
+  return callback()
+}
+
 const routes = {
   component: MainLayout,
   childRoutes: [
     {
       path: '/',
+      onEnter: dontRequireAuth,
       getComponent(location, cb) {
         System.import('pages/home')
           .then(loadRoute(cb))
@@ -30,6 +37,7 @@ const routes = {
     },
     {
       path: 'about',
+      onEnter: dontRequireAuth,
       getComponent(location, cb) {
         System.import('pages/about')
           .then(loadRoute(cb))
@@ -38,6 +46,7 @@ const routes = {
     },
     {
       path: 'login',
+      onEnter: dontRequireAuth,
       getComponent(location, cb) {
         System.import('pages/login')
           .then(loadRoute(cb))
@@ -46,6 +55,7 @@ const routes = {
     },
     {
       path: 'register',
+      onEnter: dontRequireAuth,
       getComponent(location, cb) {
         System.import('pages/register')
           .then(loadRoute(cb))
