@@ -1,3 +1,4 @@
+
 import React from "react";
 import {Menu} from "../../components/menu/menu";
 import {Footer} from "../../components/menu/footer";
@@ -60,4 +61,5 @@ export class Tables extends React.Component {
 export default connect(
   state => ({data: state.projectDataReducer.data}),
   {...projectDataActions}
+
 )(Tables);

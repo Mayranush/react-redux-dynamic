@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {Header} from '../../components/header/header';
 import { connect } from "react-redux";
@@ -120,4 +121,5 @@ export class Home extends React.Component {
 export default connect(
   state => ({ data:  state.projectDataReducer.data }),
   { ...projectDataActions }
+
 )(Home);

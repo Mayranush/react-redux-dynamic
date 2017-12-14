@@ -1,3 +1,4 @@
+
 import React from "react";
 import {connect} from "react-redux";
 import {projectDataActions} from "../../actions/index";
@@ -189,4 +190,5 @@ export class Register extends React.Component {
 export default connect(
   state => ({data: state.projectDataReducer.data}),
   {...projectDataActions}
+
 )(Register);

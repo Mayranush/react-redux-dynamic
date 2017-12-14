@@ -1,3 +1,4 @@
+
 import React from "react";
 import {connect} from "react-redux";
 import {projectDataActions} from "../../actions/index";
@@ -10,6 +11,7 @@ export class Login extends React.Component {
     this.handleEmailChange = this.emailChange.bind(this);
     this.handlePasswordChange = this.passwordChange.bind(this);
     this.handleLoginUser = this.loginUser.bind(this);
+
   }
 
 
@@ -128,4 +130,5 @@ export class Login extends React.Component {
 export default connect(
   state => ({data: state.projectDataReducer.data}),
   {...projectDataActions}
+
 )(Login);

@@ -1,3 +1,4 @@
+
 import React from "react";
 import {projectDataActions} from "../../actions/index";
 import {Link} from "react-router/es6";
@@ -124,7 +125,7 @@ export class Menu extends React.Component {
               </li>
               <li className="nav-item">
                 <a href="/" onClick={this.handleLogout} className="nav-link">
-                  <i className="fa fa-fw fa-sign-out"/>Logout</a>
+                  <i className="fa fa-fw fa-sign-out"/>Sign out</a>
                 {/*data-toggle="modal" data-target="#exampleModal"*/}
               </li>
             </ul>
@@ -134,3 +135,4 @@ export class Menu extends React.Component {
     )
   }
 }
+

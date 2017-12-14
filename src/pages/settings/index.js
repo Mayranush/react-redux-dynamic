@@ -1,3 +1,4 @@
+
 import React from "react";
 import {Menu} from "../../components/menu/menu";
 import {Footer} from "../../components/menu/footer";
@@ -137,4 +138,5 @@ export class Settings extends React.Component {
 export default connect(
   state => ({data: state.projectDataReducer.data}),
   {...projectDataActions}
+
 )(Settings);
