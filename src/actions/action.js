@@ -123,6 +123,12 @@ export function getDataResponse(data, param, method) {
         newState.twitter.accessTokenSecret = data.accessTokenSecret;
       }
       newState.twitter.dataReceivedApiDetails = true;
+    } else if (param === "auth/settings" && method === "post") {
+      if (data) {
+        newState.popup.show = true;
+        newState.popup.text = "Successfully updated";
+      }
+      newState.twitter.dataReceivedApiDetails = true;
     } else if (param === "auth/tw-tip-criteria" && method === "get") {
       if (data) {
         newState.twitter.minFollowers = data.minFollowers;
@@ -172,7 +178,10 @@ export function getDataResponseError(error, param) {
     console.log(error, param, "error");
     if (param === "api/sign-in") {
       newState.login.errorText = "Not correct email or password!";
-    }
+    } else if (param === "auth/settings" && method === "post") {
+      newState.popup.show = true;
+      newState.popup.text = "ggggggggggggg";
+    }      
     return dispatch(errorResponse(newState));
   };
 }

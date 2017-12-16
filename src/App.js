@@ -5,8 +5,10 @@ import Root from 'pages/routes';
 
 const App = () => {
   return (
-    <Provider store={store}>    
-      <Root />
+    <Provider store={store}> 
+		<div>  
+			<Root />
+		</div>
     </Provider>
   );
 };

@@ -60,7 +60,11 @@ log:[
   }
 
 ],
-  logMessage:''
+  logMessage:'',
+  popup: {
+    show: false,
+    text: ''
+  }
 };
 const defaultState = {
   data: mockData

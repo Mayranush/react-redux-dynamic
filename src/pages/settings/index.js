@@ -8,6 +8,7 @@ import {MyDetails} from "../../components/myDetails/myDetails";
 import {TwitterSettings} from "../../components/twitterSettings/twitterSettings";
 import {TwitterCriteria} from "../../components/twitterCriteria/twitterCriteria";
 import {PaymentSettings} from "../../components/paymentSettings/paymentSettings";
+import {Popup} from "../../components/popup/popup";
 
 export class Settings extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ export class Settings extends React.Component {
     this.handleUpdateSettings = this.updateSettings.bind(this);
     this.handleUpdateTwSettings = this.updateTwSettings.bind(this);
     this.handleUpdateTwCriteria = this.updateTwCriteria.bind(this);
+    this.handleClosePopup = this.closePopup.bind(this);
     this.currentTab = 'myDetails';
   }
 
@@ -99,9 +101,15 @@ export class Settings extends React.Component {
     this.props.getData("auth/settings", "get", {}, true);
   }
 
+  closePopup() {
+    this.props.changeMessage('popup', 'show', false);
+    this.props.changeMessage('popup', 'text', '');
+  }
+
   render() {
     return (
       <div>
+        {this.props.data.popup.show && <Popup text={this.props.data.popup.text} closePopup={this.handleClosePopup}/>} 
         <Menu changeMessage={this.props.changeMessage} cleanData={this.props.cleanData}/>
         <div className="main-content">
           <div className="header-section">Settings</div>

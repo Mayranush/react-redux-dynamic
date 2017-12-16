@@ -23,9 +23,6 @@ export class MyDetails extends React.Component {
     return (
       <div className="my-details">
         <form className="form-horizontal" role="form">
-
-
-
           <div className="form-group my-detail">
             <label htmlFor="firstname" className="col-lg-3 control-label my-detail">First name</label>
             <div className="col-lg-3 form-group-values-my-details">
