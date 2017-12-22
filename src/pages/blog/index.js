@@ -11,7 +11,6 @@ export class Blog extends React.Component {
 
   
   render() {      
-    {console.log(this.props.data,"this props---------------Blog");   } 
     return (
       <div>
         <div>Blog</div>   

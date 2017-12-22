@@ -10,7 +10,6 @@ export class Login extends React.Component {
     this.handleEmailChange = this.emailChange.bind(this);
     this.handlePasswordChange = this.passwordChange.bind(this);
     this.handleLoginUser = this.loginUser.bind(this);
-    console.log(this.props,"<<<<<<<<<<<<<<<<<<<<<<<login load")
     if (this.props.data.user.token !== null) {
       store.dispatch(push('/dashboard'));
     }

@@ -1,7 +1,5 @@
 
 import React from 'react';
-import {Menu} from '../../components/menu/menu';
-import {Footer} from '../../components/menu/footer';
 import {GoogleChart} from '../../components/chart/googleChart';
 import { connect } from "react-redux";
 import { projectDataActions } from "../../actions/index";
@@ -14,15 +12,12 @@ export class Charts extends React.Component {
 
   render() {
     return (
-      <div>
-        <Menu changeMessage={this.props.changeMessage} cleanData={this.props.cleanData}/>
-        <div  className="main-content">
-          <div className="header-section">Charts</div>
-          <h6>Sample chart</h6>
-          <GoogleChart loadCharts="false"/>
-        </div>
-        <Footer />
-      </div>)
+      <div  className="main-content">
+        <div className="header-section">Charts</div>
+        <h6>Sample chart</h6>
+        <GoogleChart loadCharts="false"/>
+      </div>
+    )
   }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router, browserHistory } from 'react-router/es6';
-import {MainLayout} from 'containers/layout';
+import MainLayout from 'containers/layout';
 import store from 'store';
 
 function errorLoading(err) {

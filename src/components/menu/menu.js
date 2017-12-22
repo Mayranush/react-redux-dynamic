@@ -1,4 +1,3 @@
-
 import React from "react";
 import {projectDataActions} from "../../actions/index";
 import {Link} from "react-router/es6";
@@ -18,12 +17,8 @@ export class Menu extends React.Component {
 
 
   logout() {
-    // this.props.changeMessage('user', 'token', null);
     window.sessionStorage.removeItem("token");
     this.props.cleanData();
-    console.log(this.props, "......in logout()..");
-    // store.dispatch(push('/'));
-    // store.dispatch(push('/'));
   }
 
 

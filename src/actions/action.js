@@ -22,8 +22,6 @@ export function cleanData() {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
 
-    console.log(newState,"oooooooooooin clean dataooooooooooooooooooo");
-
     newState.user.dataReceived = false;
     newState.user.token = null;
     newState.user.firstname = '';

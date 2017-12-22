@@ -1,6 +1,4 @@
 import React from "react";
-import {Menu} from "../../components/menu/menu";
-import {Footer} from "../../components/menu/footer";
 import {connect} from "react-redux";
 import {projectDataActions} from "../../actions/index";
 import "./settings.scss";
@@ -8,7 +6,6 @@ import {MyDetails} from "../../components/myDetails/myDetails";
 import {TwitterSettings} from "../../components/twitterSettings/twitterSettings";
 import {TwitterCriteria} from "../../components/twitterCriteria/twitterCriteria";
 import {PaymentSettings} from "../../components/paymentSettings/paymentSettings";
-import {Popup} from "../../components/popup/popup";
 
 export class Settings extends React.Component {
   constructor(props) {
@@ -18,7 +15,6 @@ export class Settings extends React.Component {
     this.handleUpdateSettings = this.updateSettings.bind(this);
     this.handleUpdateTwSettings = this.updateTwSettings.bind(this);
     this.handleUpdateTwCriteria = this.updateTwCriteria.bind(this);
-    this.handleClosePopup = this.closePopup.bind(this);
     this.currentTab = 'myDetails';
   }
 
@@ -101,62 +97,50 @@ export class Settings extends React.Component {
     this.props.getData("auth/settings", "get", {}, true);
   }
 
-  closePopup() {
-    this.props.changeMessage('popup', 'show', false);
-    this.props.changeMessage('popup', 'text', '');
-  }
-
   render() {
     return (
-      <div>
-        {this.props.data.popup.show && <Popup text={this.props.data.popup.text} closePopup={this.handleClosePopup}/>} 
-        <Menu changeMessage={this.props.changeMessage} cleanData={this.props.cleanData}/>
-        <div className="main-content">
-          <div className="header-section">Settings</div>
-          <ul>
-            <li className={this.props.data.settingsCurrentTab == 'myDetails' ? "one active tab" : "one tab"}>
-              <span><p onClick={(e) => this.handleGetTwitterSettings(e, 'myDetails')}>My details</p></span>
-            </li>
-            <li className={this.props.data.settingsCurrentTab == 'twitterSettings' ? "two active tab" : "two tab"}>
-              <span> <p onClick={(e) => this.handleGetTwitterSettings(e, 'twitterSettings')}
-              >Twitter API Details</p></span>
-            </li>
-            <li className={this.props.data.settingsCurrentTab == 'twitterCriteria' ? "three active tab" : "three tab"}>
-              <span> <p onClick={(e) => this.handleGetTwitterSettings(e, 'twitterCriteria')}
-              >Twitter Criteria</p></span>
-            </li>
-            <li className={this.props.data.settingsCurrentTab == 'paymentSettings' ? "four active tab" : "four tab"}>
-              <span><p onClick={(e) => this.handleGetTwitterSettings(e, 'paymentSettings')}>Payment details</p></span>
-            </li>
-            <hr className="hr"/>
-          </ul>
-          <div className="settings-tab">
+      <div className="main-content">
+        <div className="header-section">Settings</div>
+        <ul>
+          <li className={this.props.data.settingsCurrentTab == 'myDetails' ? "one active tab" : "one tab"}>
+            <span><p onClick={(e) => this.handleGetTwitterSettings(e, 'myDetails')}>My details</p></span>
+          </li>
+          <li className={this.props.data.settingsCurrentTab == 'twitterSettings' ? "two active tab" : "two tab"}>
+            <span> <p onClick={(e) => this.handleGetTwitterSettings(e, 'twitterSettings')}
+            >Twitter API Details</p></span>
+          </li>
+          <li className={this.props.data.settingsCurrentTab == 'twitterCriteria' ? "three active tab" : "three tab"}>
+            <span> <p onClick={(e) => this.handleGetTwitterSettings(e, 'twitterCriteria')}
+            >Twitter Criteria</p></span>
+          </li>
+          <li className={this.props.data.settingsCurrentTab == 'paymentSettings' ? "four active tab" : "four tab"}>
+            <span><p onClick={(e) => this.handleGetTwitterSettings(e, 'paymentSettings')}>Payment details</p></span>
+          </li>
+          <hr className="hr"/>
+        </ul>
+        <div className="settings-tab">
+          {this.props.data.settingsCurrentTab == 'myDetails' && this.props.data.user.dataReceived
+          && <MyDetails
+            user={this.props.data.user}
+            updateSettings={this.handleUpdateSettings}
+            ref={(input) => this.settings = input}/>}
+          {this.props.data.settingsCurrentTab == 'twitterSettings' && this.props.data.twitter.dataReceivedApiDetails
+          && <TwitterSettings twitter={this.props.data.twitter}
+                              updateSettings={this.handleUpdateTwSettings}
+                              changeMessage={this.props.changeMessage}
+                              cleanData={this.props.cleanData}
+                              ref={(input) => this.twSettings = input}/>}
 
-            {this.props.data.settingsCurrentTab == 'myDetails' && this.props.data.user.dataReceived
-            && <MyDetails
-              user={this.props.data.user}
-              updateSettings={this.handleUpdateSettings}
-              ref={(input) => this.settings = input}/>}
-            {this.props.data.settingsCurrentTab == 'twitterSettings' && this.props.data.twitter.dataReceivedApiDetails
-            && <TwitterSettings twitter={this.props.data.twitter}
-                                updateSettings={this.handleUpdateTwSettings}
-                                changeMessage={this.props.changeMessage}
-                                cleanData={this.props.cleanData}
-                                ref={(input) => this.twSettings = input}/>}
-
-            {this.props.data.settingsCurrentTab == 'twitterCriteria' && this.props.data.twitter.dataReceivedTipCriteria
-            && <TwitterCriteria twitter={this.props.data.twitter}
-                                updateSettings={this.handleUpdateTwCriteria}
-                                changeMessage={this.props.changeMessage}
-                                cleanData={this.props.cleanData}
-                                ref={(input) => this.twSettings = input}/>}
-            {this.props.data.settingsCurrentTab == 'paymentSettings' && <PaymentSettings />}
-
-          </div>
-
+          {this.props.data.settingsCurrentTab == 'twitterCriteria' && this.props.data.twitter.dataReceivedTipCriteria
+          && <TwitterCriteria twitter={this.props.data.twitter}
+                              updateSettings={this.handleUpdateTwCriteria}
+                              changeMessage={this.props.changeMessage}
+                              cleanData={this.props.cleanData}
+                              ref={(input) => this.twSettings = input}/>}
+          {this.props.data.settingsCurrentTab == 'paymentSettings' && <PaymentSettings />}
         </div>
-        <Footer />
-      </div>)
+      </div>
+    )
   }
 }
 
