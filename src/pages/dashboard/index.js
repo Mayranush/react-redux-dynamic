@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {projectDataActions} from "../../actions/index";
 import PropTypes from "prop-types";
 import "./dashboard.scss";
+import { Link } from 'react-router/es6';
 
 export class Dashboard extends React.Component {
   constructor(props) {
@@ -33,7 +34,6 @@ export class Dashboard extends React.Component {
     this.props.getData("auth/bot", "get", {}, true);
   }
   render() {
-
     return (
       <div className="main-content">
         <div className="header-section">Dashboard</div>
@@ -41,7 +41,7 @@ export class Dashboard extends React.Component {
           <div className="bot">
             <div className="bot-info">
               <p className={this.props.data.twitter.botStart == 'STARTED.' ? "bot-status active" : "bot-status"}><span className="dot dotGreen"/>You started Tipping bot</p>
-              <p className={this.props.data.twitter.botStart == 'STARTED.' || this.props.data.twitter.botStart == 'The bot is running.' ? "bot-status" : "bot-status active"}><span className="yellow">{this.props.data.twitter.botStart}</span></p>
+              <p className={this.props.data.twitter.botStart == 'STARTED.' || this.props.data.twitter.botStart == 'The bot is running.' ? "bot-status" : "bot-status active"}><span className="yellow">{this.props.data.twitter.botStart.indexOf('criteria') > -1  ? <Link to="/settings" onClick={() => this.props.changeTabInSettings('twitterCriteria')}>{this.props.data.twitter.botStart}</Link> : this.props.data.twitter.botStart}</span></p>
 
               <p className={this.props.data.twitter.botStatus == 'RUNNING' ? "bot-status" : "bot-status active"}><span className="dot dotRed"/>Your Tipping bot is not running </p>
               <p className={this.props.data.twitter.botStatus == 'RUNNING' && this.props.data.twitter.botStart != 'STARTED.' ? "bot-status active" : "bot-status"}><span className="dot dotGreen"/>Your Tipping bot is running </p>

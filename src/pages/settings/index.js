@@ -38,10 +38,10 @@ export class Settings extends React.Component {
   }
 
   updateTwSettings() {
-    this.twSettings.refs.consumerKey.value !== "" && this.props.changeMessage('twitter', 'consumerKey', this.twSettings.refs.consumerKey.value);
-    this.twSettings.refs.consumerSecret.value !== "" && this.props.changeMessage('twitter', 'consumerSecret', this.twSettings.refs.consumerSecret.value);
-    this.twSettings.refs.accessToken.value !== "" && this.props.changeMessage('twitter', 'accessToken', this.twSettings.refs.accessToken.value);
-    this.twSettings.refs.accessTokenSecret.value !== "" && this.props.changeMessage('twitter', 'accessTokenSecret', this.twSettings.refs.accessTokenSecret.value);
+   this.props.changeMessage('twitter', 'consumerKey', this.twSettings.refs.consumerKey.value);
+   this.props.changeMessage('twitter', 'consumerSecret', this.twSettings.refs.consumerSecret.value);
+   this.props.changeMessage('twitter', 'accessToken', this.twSettings.refs.accessToken.value);
+   this.props.changeMessage('twitter', 'accessTokenSecret', this.twSettings.refs.accessTokenSecret.value);
     let objDetails = {
       "consumerKey": this.props.data.twitter.consumerKey,
       "consumerSecret": this.props.data.twitter.consumerSecret,
@@ -54,12 +54,12 @@ export class Settings extends React.Component {
 
   updateTwCriteria() {
 
-    this.twSettings.refs.minFollowers.value !== "" && this.props.changeMessage('twitter', 'minFollowers', this.twSettings.refs.minFollowers.value);
-    this.twSettings.refs.tipsPerDay.value !== "" && this.props.changeMessage('twitter', 'tipsPerDay', this.twSettings.refs.tipsPerDay.value);
-    this.twSettings.refs.tipsPerDayPerUser.value !== "" && this.props.changeMessage('twitter', 'tipsPerDayPerUser', this.twSettings.refs.tipsPerDayPerUser.value);
-    this.twSettings.refs.coinAmount.value !== "" && this.props.changeMessage('twitter', 'coinAmount', this.twSettings.refs.coinAmount.value);
-    this.twSettings.refs.coinType.value !== "" && this.props.changeMessage('twitter', 'coinType', this.twSettings.refs.coinType.value);
-    this.twSettings.refs.hashtags.value !== "" && this.props.changeMessage('twitter', 'hashtags', this.twSettings.refs.hashtags.value);
+    this.props.changeMessage('twitter', 'minFollowers', this.twSettings.refs.minFollowers.value);
+    this.props.changeMessage('twitter', 'tipsPerDay', this.twSettings.refs.tipsPerDay.value);
+    this.props.changeMessage('twitter', 'tipsPerDayPerUser', this.twSettings.refs.tipsPerDayPerUser.value);
+    this.props.changeMessage('twitter', 'coinAmount', this.twSettings.refs.coinAmount.value);
+    this.props.changeMessage('twitter', 'coinType', this.twSettings.refs.coinType.value);
+    this.props.changeMessage('twitter', 'hashtags', this.twSettings.refs.hashtags.value);
     // this.props.changeMessage("twitter", "tipsLike", this.twSettings.refs.tipsLike.checked);
     this.props.changeMessage("twitter", "tipsTweet", this.twSettings.refs.tipsTweet.checked);
     this.props.changeMessage("twitter", "tipsReTweet", this.twSettings.refs.tipsReTweet.checked);
@@ -80,10 +80,10 @@ export class Settings extends React.Component {
   }
 
   updateSettings() {
-    this.settings.refs.firstname.value !== "" && this.props.changeMessage('user', 'firstname', this.settings.refs.firstname.value);
-    this.settings.refs.lastname.value !== "" && this.props.changeMessage('user', 'lastname', this.settings.refs.lastname.value);
+    this.props.changeMessage('user', 'firstname', this.settings.refs.firstname.value);
+    this.props.changeMessage('user', 'lastname', this.settings.refs.lastname.value);
     // this.settings.refs.email.value !== "" && this.props.changeMessage('user', 'email', this.settings.refs.email.value);
-    this.settings.refs.twUsername.value !== "" && this.props.changeMessage('user', 'twUsername', this.settings.refs.twUsername.value);
+    this.props.changeMessage('user', 'twUsername', this.settings.refs.twUsername.value);
     let obj = {
       "firstname": this.props.data.user.firstname,
       "lastname": this.props.data.user.lastname,
@@ -94,7 +94,13 @@ export class Settings extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getData("auth/settings", "get", {}, true);
+    this.props.getData("auth/bot", "get", {}, true);
+    
+    var param = this.props.data.settingsCurrentTab == 'myDetails' ? 'auth/settings':
+          (this.props.data.settingsCurrentTab == 'twitterSettings' ? 'auth/tw-api-details' :
+          (this.props.data.settingsCurrentTab == 'twitterCriteria' ? 'auth/tw-tip-criteria' : '') );
+
+    this.props.getData(param, "get", {}, true);
   }
 
   render() {

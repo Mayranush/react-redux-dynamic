@@ -113,6 +113,12 @@ export function getDataResponse(data, param, method) {
         newState.user.twUsername = data.twUsername;
       }
       newState.user.dataReceived = true;
+    }else if (param === "auth/settings" && method === "post") {
+      if (data) {
+        newState.popup.show = true;
+        newState.popup.text = "Successfully updated";
+      }
+      newState.twitter.dataReceived = true;
     } else if (param === "auth/tw-api-details" && method === "get") {
       if (data) {
         newState.twitter.consumerKey = data.consumerKey;
@@ -121,13 +127,13 @@ export function getDataResponse(data, param, method) {
         newState.twitter.accessTokenSecret = data.accessTokenSecret;
       }
       newState.twitter.dataReceivedApiDetails = true;
-    } else if (param === "auth/settings" && method === "post") {
+    } else if (param === "auth/tw-api-details" && method === "post") {
       if (data) {
         newState.popup.show = true;
         newState.popup.text = "Successfully updated";
       }
       newState.twitter.dataReceivedApiDetails = true;
-    } else if (param === "auth/tw-tip-criteria" && method === "get") {
+    }  else if (param === "auth/tw-tip-criteria" && method === "get") {
       if (data) {
         newState.twitter.minFollowers = data.minFollowers;
         newState.twitter.tipsPerDay = data.tipsPerDay;
@@ -139,6 +145,12 @@ export function getDataResponse(data, param, method) {
         newState.twitter.tipsTweet = data.tipsTweet;
         newState.twitter.tipsReTweet = data.tipsReTweet;
         newState.twitter.tipsFollowers = data.tipsFollowers;
+      }
+      newState.twitter.dataReceivedTipCriteria = true;
+    } else if (param === "auth/tw-tip-criteria" && method === "post") {
+      if (data) {
+        newState.popup.show = true;
+        newState.popup.text = "Successfully updated";
       }
       newState.twitter.dataReceivedTipCriteria = true;
     } else if (param === "auth/bot" && method === "get") {
@@ -178,7 +190,7 @@ export function getDataResponseError(error, param) {
       newState.login.errorText = "Not correct email or password!";
     } else if (param === "auth/settings" && method === "post") {
       newState.popup.show = true;
-      newState.popup.text = "ggggggggggggg";
+      newState.popup.text = "Something got wrong, please contact us";
     }      
     return dispatch(errorResponse(newState));
   };

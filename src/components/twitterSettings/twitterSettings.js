@@ -35,6 +35,7 @@ export class TwitterSettings extends React.Component {
                 <label htmlFor="consumerKey" className="col-lg-3 control-label tw-set">Consumer Key</label>
                 <div className="col-lg-3 form-group-values tw-set">
                   <input id="consumerKey" ref="consumerKey" className="form-control" type="text"
+                         disabled={ this.props.twitter.botStatus == 'RUNNING' ? true : false }
                          defaultValue={ this.props.twitter.consumerKey }/>
                 </div>
               </div>
@@ -42,6 +43,7 @@ export class TwitterSettings extends React.Component {
                 <label htmlFor="consumerSecret" className="col-lg-3 control-label tw-set">Consumer Secret</label>
                 <div className="col-lg-3 form-group-values tw-set">
                   <input id="consumerSecret" ref="consumerSecret" className="form-control" type="text"
+                         disabled={ this.props.twitter.botStatus == 'RUNNING' ? true : false }
                          defaultValue={this.props.twitter.consumerSecret }/>
                 </div>
               </div>
@@ -49,6 +51,7 @@ export class TwitterSettings extends React.Component {
                 <label htmlFor="accessToken" className="col-lg-3 control-label tw-set">Access Token</label>
                 <div className="col-lg-3 form-group-values tw-set">
                   <input id="accessToken" ref="accessToken" className="form-control" type="text"
+                         disabled={ this.props.twitter.botStatus == 'RUNNING' ? true : false }
                          defaultValue={ this.props.twitter.accessToken }/>
                 </div>
               </div>
@@ -57,6 +60,7 @@ export class TwitterSettings extends React.Component {
                   Secret</label>
                 <div className="col-lg-3 form-group-values tw-set">
                   <input id="accessTokenSecret" ref="accessTokenSecret" className="form-control" type="text"
+                         disabled={ this.props.twitter.botStatus == 'RUNNING' ? true : false }
                          defaultValue={this.props.twitter.accessTokenSecret}/>
                 </div>
               </div>
