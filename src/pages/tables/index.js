@@ -1,7 +1,6 @@
-
 import React from "react";
 import {connect} from "react-redux";
-import {projectDataActions} from "../../actions/index";
+import {projectDataActions, tablesActions} from "../../actions/index";
 import "./tables.scss";
 
 export class Tables extends React.Component {
@@ -10,7 +9,7 @@ export class Tables extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getData("auth/tw-tip-logs", "get", {}, true);
+    this.props.twTipLogs();
   }
 
   render() {
@@ -51,6 +50,8 @@ export class Tables extends React.Component {
 
 export default connect(
   state => ({data: state.projectDataReducer.data}),
-  {...projectDataActions}
-
+    {
+        ...projectDataActions,
+        ...tablesActions
+    }
 )(Tables);

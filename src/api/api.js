@@ -7,29 +7,81 @@ if (window && !window.api) {
   window.api = api;
 }
 
-const getData = (param, method, obj, token) => {
-
+let addHeaders= (token) => {
     const tokenFromStore = "Token " + (store.getState().projectDataReducer.data.user.token  || window.sessionStorage.getItem("token"));
-
+    
     if (token) {
         api = axios.create({
-          baseURL: "http://104.237.3.213:8888",
-          headers: {"Authorization": tokenFromStore}
+            baseURL: "http://104.237.3.213:8888",
+            headers: {"Authorization": tokenFromStore}
         });
     } else {
         api = axios.create({
-          baseURL: "http://104.237.3.213:8888"
+            baseURL: "http://104.237.3.213:8888"
         });
     }
 
+    return api;
+}
 
-    if (method === "post"){
-        return api.post("/" + param, obj);
-    } else if (method === "get") {
-        return api.get("/" + param);
-    }  else if (method === "put") {
-      return api.put("/" + param);
-    }
-};
+const signIn = (obj) => {
+    addHeaders(false);
+    return api.post("/api/sign-in", obj);
+}
 
-export default { getData };
+const signUp = (obj) => {
+    addHeaders(false);
+    return api.post("/api/sign-up", obj);
+}
+
+const myDetails = () => {
+    addHeaders(true);
+    return api.get("/auth/settings");
+}
+
+const twitterSettings = () => {
+    addHeaders(true);
+    return api.get("/auth/tw-api-details");
+}
+
+const twitterCriteria = () => {
+    addHeaders(true);
+    return api.get("/auth/tw-tip-criteria");
+}
+
+const myDetailsUpdate = (obj) => {
+    addHeaders(true);
+    return api.post("/auth/settings", obj);
+}
+
+const twitterSettingsUpdate = (obj) => {
+    addHeaders(true);
+    return api.post("/auth/tw-api-details", obj);
+}
+
+const twitterCriteriaUpdate = (obj) => {
+    addHeaders(true);
+    return api.post("/auth/tw-tip-criteria", obj);
+}
+
+const botGet = () => {
+    addHeaders(true);
+    return api.get("/auth/bot");
+}
+
+const botPost = () => {
+    addHeaders(true);
+    return api.post("/auth/bot");
+}
+
+const botPut = () => {
+    addHeaders(true);
+    return api.put("/auth/bot");
+}
+
+const twTipLogs = () => {
+    addHeaders(true);
+    return api.get("/auth/tw-tip-logs");
+}
+
+export default { signIn, signUp, myDetails, twitterSettings, twitterCriteria, myDetailsUpdate,  twitterSettingsUpdate, twitterCriteriaUpdate, botGet, botPost, botPut, twTipLogs };

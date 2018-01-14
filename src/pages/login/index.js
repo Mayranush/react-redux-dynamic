@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {projectDataActions} from "../../actions/index";
+import {projectDataActions, signInActions} from "../../actions/index";
 import {Link} from "react-router/es6";
 import "./login.scss";
 
@@ -14,8 +14,6 @@ export class Login extends React.Component {
       store.dispatch(push('/dashboard'));
     }
   }
-
-
 
   emailChange(e) {
     let email = e.target.value;
@@ -54,7 +52,7 @@ export class Login extends React.Component {
       password: this.props.data.login.password,
     };
     if (this.props.data.login.emailErrorText.length == 0 && this.props.data.login.passwordErrorText.length == 0 && this.props.data.login.email.length != 0) {
-      this.props.getData("api/sign-in", "post", obj);
+      this.props.signIn(obj);
     }
   }
 
@@ -64,9 +62,7 @@ export class Login extends React.Component {
         <div className="card card-login mx-auto mt-5">
           <div className="card-header">
             <h4 className="register">Login</h4>
-
           </div>
-
           <div className="card-body">
             <form>
               <div className="form-group">
@@ -111,7 +107,6 @@ export class Login extends React.Component {
             <hr/>
             <a href="#" className="fa fa-twitter tw-login fa-login">
               <span className=""> Twitter</span>
-
             </a>
             <a href="#" className="fa fa-facebook fb-login fa-login">
               <span className=""> Facebook</span>
@@ -130,6 +125,8 @@ export class Login extends React.Component {
 
 export default connect(
   state => ({data: state.projectDataReducer.data}),
-  {...projectDataActions}
-
+    {
+        ...projectDataActions,
+        ...signInActions
+    }
 )(Login);

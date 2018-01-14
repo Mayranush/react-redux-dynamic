@@ -1,7 +1,6 @@
-
 import React from "react";
 import {connect} from "react-redux";
-import {projectDataActions} from "../../actions/index";
+import {projectDataActions, signUpActions} from "../../actions/index";
 import {Link} from "react-router/es6";
 import "./register.scss";
 import axios from "axios";
@@ -88,10 +87,8 @@ export class Register extends React.Component {
       && this.props.data.register.passwordErrorText.length == 0
       && this.props.data.register.email.length != 0
       && this.props.data.register.twitterAccount.length != 0
-      && this.props.data.register.password.length != 0) {
-    
-      this.props.getData("api/sign-up", "post", obj);
-
+      && this.props.data.register.password.length != 0) {    
+      this.props.signUp(obj);
     }
 
   }
@@ -189,6 +186,8 @@ export class Register extends React.Component {
 
 export default connect(
   state => ({data: state.projectDataReducer.data}),
-  {...projectDataActions}
-
+    {
+        ...projectDataActions,
+        ...signUpActions
+    }
 )(Register);
