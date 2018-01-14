@@ -77,5 +77,3 @@ export class TwitterSettings extends React.Component {
       </div>)
   }
 }
-
-

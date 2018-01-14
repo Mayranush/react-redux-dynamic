@@ -156,4 +156,3 @@ export class TwitterCriteria extends React.Component {
   }
 }
 
-
