@@ -29,6 +29,7 @@ export class TwitterSettings extends React.Component {
         <form className="form-horizontal" role="form">
           <div className="cube">
             <div className="cube1">
+              <h6 className={this.props.twitter.botStatus == 'RUNNING' ?"warning-stop-bot-active":"warning-stop-bot"}>Please disable the bot from running to update these details<br/></h6>
 
 
               <div className="form-group tw-set">

@@ -42,7 +42,7 @@ export class TwitterCriteria extends React.Component {
           <div className="cube">
 
             <div className="cube2">
-
+              <h6 className={this.props.twitter.botStatus == 'RUNNING' ?"warning-stop-bot-active":"warning-stop-bot"}>Please disable the bot from running to update these details<br/></h6>
               <div>
 
                 <div className="form-group tw-crit ">
