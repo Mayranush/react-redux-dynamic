@@ -43,6 +43,7 @@ export function cleanData() {
     newState.register.password = '';
     // newState.register.passwordErrorText = '';
     newState.register.password = '';
+    newState.register.confirmPassword = '';
 
 
     newState.twitter.dataReceivedApiDetails = false;

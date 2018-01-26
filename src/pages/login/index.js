@@ -9,7 +9,7 @@ export class Login extends React.Component {
     super(props);
     this.handleEmailChange = this.emailChange.bind(this);
     this.handlePasswordChange = this.passwordChange.bind(this);
-    this.handleLoginUser = this.loginUser.bind(this);
+    this.handlePasswordForget = this.loginUser.bind(this);
     if (this.props.data.user.token !== null) {
       store.dispatch(push('/dashboard'));
     }
@@ -101,7 +101,7 @@ export class Login extends React.Component {
               <button className={this.props.data.login.emailErrorText.length != 0 ||
               this.props.data.login.passwordErrorText.length != 0 ||
               this.props.data.login.email.length == 0 ? "disabled-button btn btn-primary btn-block" : "btn btn-primary btn-block"}
-                      onClick={(e) => this.handleLoginUser(e)}>Login
+                      onClick={(e) => this.handlePasswordForget(e)}>Login
               </button>
             </form>
             <hr/>

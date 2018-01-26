@@ -22,22 +22,27 @@ let addHeaders= (token) => {
     }
 
     return api;
-}
+};
 
 const signIn = (obj) => {
     addHeaders(false);
     return api.post("/api/sign-in", obj);
-}
+};
 
 const signUp = (obj) => {
     addHeaders(false);
     return api.post("/api/sign-up", obj);
-}
+};
+
+const passwordForget = (obj) => {
+  addHeaders(false);
+  return api.post("/api/forget", obj);
+};
 
 const myDetails = () => {
     addHeaders(true);
     return api.get("/auth/settings");
-}
+};
 
 const twitterSettings = () => {
     addHeaders(true);
@@ -84,4 +89,4 @@ const twTipLogs = () => {
     return api.get("/auth/tw-tip-logs");
 }
 
-export default { signIn, signUp, myDetails, twitterSettings, twitterCriteria, myDetailsUpdate,  twitterSettingsUpdate, twitterCriteriaUpdate, botGet, botPost, botPut, twTipLogs };
+export default { signIn, signUp, passwordForget, myDetails, twitterSettings, twitterCriteria, myDetailsUpdate,  twitterSettingsUpdate, twitterCriteriaUpdate, botGet, botPost, botPut, twTipLogs };

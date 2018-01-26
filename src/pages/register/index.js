@@ -13,6 +13,7 @@ export class Register extends React.Component {
     this.handleREmailChange = this.emailChange.bind(this);
     this.handleTwitterChange = this.twitterChange.bind(this);
     this.handleRPasswordChange = this.passwordChange.bind(this);
+    this.handleRConfirmPasswordChange = this.confirmChange.bind(this);
     this.handleRegisterUser = this.registerUser.bind(this);
   }
 
@@ -56,15 +57,31 @@ export class Register extends React.Component {
   }
 
   passwordChange(e) {
+
+    let password = e.target.value;
+    if (password == '' ) {
+      this.props.changeMessage('register','passwordErrorText', 'password is empty');
+    } else  if (password == this.props.data.register.confirmPassword){
+      this.props.changeMessage('register','passwordErrorText', '');
+      this.props.changeMessage('register','password', password);
+    }
+    else {
+      this.props.changeMessage('register','passwordErrorText', 'password not matching');
+      this.props.changeMessage('register','password', password);
+    }
+
+  }
+  confirmChange(e) {
+
     let password = e.target.value;
     if (password == '') {
       this.props.changeMessage('register','passwordErrorText', 'password is empty');
-    } else if (this.props.data.register.password == '') {
-      this.props.changeMessage('register','password', password);
     } else if (password == this.props.data.register.password) {
       this.props.changeMessage('register','passwordErrorText', '');
+      this.props.changeMessage('register','confirmPassword', password);
     } else {
       this.props.changeMessage('register','passwordErrorText', 'password not matching');
+      this.props.changeMessage('register','confirmPassword', password);
     }
 
   }
@@ -87,7 +104,9 @@ export class Register extends React.Component {
       && this.props.data.register.passwordErrorText.length == 0
       && this.props.data.register.email.length != 0
       && this.props.data.register.twitterAccount.length != 0
-      && this.props.data.register.password.length != 0) {    
+      && this.props.data.register.password.length != 0
+
+    && this.props.data.register.password == this.props.data.register.confirmPassword) {
       this.props.signUp(obj);
     }
 
@@ -156,21 +175,22 @@ export class Register extends React.Component {
                     <input className={this.props.data.register.passwordErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
                            id="exampleInputPassword1" type="password" placeholder="Password"
                            onBlur={(e) => this.handleRPasswordChange(e)}/>
-                    <p
-                      className="error-for-input">{this.props.data.register.passwordErrorText.length != 0 ? '*' + this.props.data.register.passwordErrorText : ''}</p>
+                    {/*<p*/}
+                      {/*className="error-for-input">{this.props.data.register.passwordErrorText.length != 0 ? '*' + this.props.data.register.passwordErrorText : ''}</p>*/}
 
                   </div>
                   <div className="col-md-6">
                     <label htmlFor="password">Confirm password</label>
                     <input className={this.props.data.register.passwordErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
                            id="exampleConfirmPassword" type="password" placeholder="Confirm password"
-                           onBlur={(e) => this.handleRPasswordChange(e)}/>
-                    <p
-                      className="error-for-input">{this.props.data.register.passwordErrorText.length != 0 ? '*' + this.props.data.register.passwordErrorText : ''}</p>
-
+                           onBlur={(e) => this.handleRConfirmPasswordChange(e)}/>
+                   
                   </div>
                 </div>
               </div>
+              <p
+              className="error-for-input">{this.props.data.register.passwordErrorText.length != 0 ? '*' + this.props.data.register.passwordErrorText : ''}</p>
+
               <button className="btn btn-primary btn-block register" onClick={(e) => this.handleRegisterUser(e)}>Register</button>
             </form>
             <div className="text-center">

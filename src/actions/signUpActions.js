@@ -21,6 +21,7 @@ const responseResponseSignUp = createAction(ActionTypes.getDataResponseSignUp);
 export function getDataResponseSignUp(data) {
     return (dispatch) => {
         let newState = tools.cloneState(store.getState().projectDataReducer.data);
+        newState.success.message = 'You have been successfully registered. To activate your account please check your mail.';
         store.dispatch(push('/success'));  
         return dispatch(responseResponseSignUp(newState));
     };

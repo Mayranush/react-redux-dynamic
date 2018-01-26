@@ -27,7 +27,11 @@ const mockData = {
     firstName: '',
     lastName: '',
     password: '',
+    confirmPassword: '',
     passwordErrorText: ''
+  },
+  success: {
+    message: '',
   },
   twitter: {
     dataReceivedApiDetails: false,
