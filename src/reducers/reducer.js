@@ -32,6 +32,7 @@ const mockData = {
   },
   success: {
     message: '',
+    hrefToSignIn: false
   },
   twitter: {
     dataReceivedApiDetails: false,
@@ -113,5 +114,8 @@ export default handleActions({
     [ActionTypes.getDataResponseErrorBotPut]: (state, {payload}) => ({...state, data: payload}),
     [ActionTypes.getDataRequestTwTipLogs]: (state, {payload}) => ({...state, data: payload}),
     [ActionTypes.getDataResponseTwTipLogs]: (state, {payload}) => ({...state, data: payload}),
-    [ActionTypes.getDataResponseErrorTwTipLogs]: (state, {payload}) => ({...state, data: payload})
+    [ActionTypes.getDataResponseErrorTwTipLogs]: (state, {payload}) => ({...state, data: payload}),
+    [ActionTypes.getDataRequestCheck]: (state, {payload}) => ({...state, data: payload}),
+    [ActionTypes.getDataResponseCheck]: (state, {payload}) => ({...state, data: payload}),
+    [ActionTypes.getDataResponseErrorCheck]: (state, {payload}) => ({...state, data: payload})
 }, defaultState);

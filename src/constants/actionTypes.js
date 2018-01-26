@@ -40,7 +40,10 @@ const ActionTypes = {
   getDataResponseErrorBotPut: "GET_DATA_RESPONSE_ERROR_TWITTER_BOT_PUT",
   getDataRequestTwTipLogs: "GET_DATA_REQUEST_TW_TIP_LOGS",
   getDataResponseTwTipLogs: "GET_DATA_RESPONSE_TW_TIP_LOGS",
-  getDataResponseErrorTwTipLogs: "GET_DATA_RESPONSE_ERROR_TW_TIP_LOGS"
+  getDataResponseErrorTwTipLogs: "GET_DATA_RESPONSE_ERROR_TW_TIP_LOGS",
+  getDataRequestCheck: "GET_DATA_REQUEST_CHECK",
+  getDataResponseCheck: "GET_DATA_RESPONSE_CHECK",
+  getDataResponseErrorCheck: "GET_DATA_RESPONSE_CHECK"
 };
 
 export default ActionTypes;

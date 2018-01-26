@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {projectDataActions} from "../../actions/index";
+import {Link} from "react-router/es6";
 import "./successPage.scss";
 
 
@@ -12,7 +13,10 @@ export class Register extends React.Component {
 
   render() {
     return (
-      <div className="success">{this.props.data.success.message}</div>
+      <div className="success">
+        <span>{this.props.data.success.message}</span>
+        {this.props.data.success.hrefToSignIn && <Link to="login">here</Link>}
+      </div>
     )
   }
 }

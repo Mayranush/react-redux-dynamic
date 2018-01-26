@@ -70,7 +70,7 @@ export class Login extends React.Component {
             </form>
             <div className="text-center">
               <Link className="d-block small mt-3 register-link" to="/register">Register an Account</Link>
-              <Link className="d-block small" to="/login">Back to login page</Link>
+              <Link className="d-block small" to="login">Back to login page</Link>
             </div>
           </div>
         </div>

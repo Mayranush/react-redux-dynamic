@@ -89,4 +89,9 @@ const twTipLogs = () => {
     return api.get("/auth/tw-tip-logs");
 }
 
-export default { signIn, signUp, passwordForget, myDetails, twitterSettings, twitterCriteria, myDetailsUpdate,  twitterSettingsUpdate, twitterCriteriaUpdate, botGet, botPost, botPut, twTipLogs };
+const check = (obj) => {
+    addHeaders(false);
+    return api.post("/api/active", obj);
+}
+
+export default { signIn, signUp, passwordForget, myDetails, twitterSettings, twitterCriteria, myDetailsUpdate,  twitterSettingsUpdate, twitterCriteriaUpdate, botGet, botPost, botPut, twTipLogs, check };

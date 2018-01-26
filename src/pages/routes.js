@@ -122,6 +122,14 @@ const routes = {
           .then(loadRoute(cb))
           .catch(errorLoading);
       }
+    },
+    {
+      path: 'check',
+      getComponent(location, cb) {
+        System.import('pages/check')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      }
     }
   ]
 };
