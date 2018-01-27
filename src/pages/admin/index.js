@@ -1,15 +1,25 @@
 import React from "react";
 import {connect} from "react-redux";
 import {adminActions, projectDataActions} from "../../actions/index";
+import { Pagination } from "../../components/pagination/pagination";
 import "./admin.scss";
 
 export class Admin extends React.Component {
   constructor(props) {
     super(props);
+    this.currentPage = {
+      value: 1
+    };
+    this.clickFunction = this.clickFunction.bind(this);
   }
 
   componentDidMount() {
     this.props.getUsersList(1, 10);
+  }
+
+  clickFunction(item) {
+    console.log(item,"item1111111111111110000000000000000")
+    this.props.getUsersList(item, 10);
   }
 
   render() {
@@ -48,6 +58,8 @@ export class Admin extends React.Component {
               </tbody>
             </table>
             <p className="log-message">{this.props.data.logMessage}</p>
+            {this.props.data.userListPageCount &&
+               <Pagination maxPageCount={(this.props.data.userListPageCount / 10).toFixed(0)} currentPage={this.currentPage} clickFunction={this.clickFunction}/>}
           </div>
 
         </div>

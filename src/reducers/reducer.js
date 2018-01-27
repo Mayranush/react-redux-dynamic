@@ -77,6 +77,7 @@ const mockData = {
       lastname: ''
     }
   ],
+  userListPageCount: 0,
   logMessage: '',
   popup: {
     show: false,

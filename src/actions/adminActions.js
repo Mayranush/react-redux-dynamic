@@ -24,6 +24,7 @@ export function getDataResponseGetUsersList(data) {
             newState.logMessage = "There is no data to show";
         } else {
             newState.usersList = data.data;
+            newState.userListPageCount = data.count;
             newState.logMessage = "";
         }
         return dispatch(responseResponseGetUsersList(newState));

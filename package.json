@@ -35,6 +35,7 @@
     "axios": "^0.17.1",
     "babel-runtime": "6.22.0",
     "bootstrap": "^3.3.7",
+    "classnames": "^2.2.5",
     "loadjs": "^3.5.1",
     "normalize.css": "^7.0.0",
     "prop-types": "^15.6.0",
