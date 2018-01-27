@@ -1,5 +1,5 @@
 import axios from "axios";
-import store from 'store';
+import store from "store";
 let api;
 
 
@@ -7,31 +7,31 @@ if (window && !window.api) {
   window.api = api;
 }
 
-let addHeaders= (token) => {
-    const tokenFromStore = "Token " + (store.getState().projectDataReducer.data.user.token  || window.sessionStorage.getItem("token"));
-    
-    if (token) {
-        api = axios.create({
-            baseURL: "http://104.237.3.213:8888",
-            headers: {"Authorization": tokenFromStore}
-        });
-    } else {
-        api = axios.create({
-            baseURL: "http://104.237.3.213:8888"
-        });
-    }
+let addHeaders = (token) => {
+  const tokenFromStore = "Token " + (store.getState().projectDataReducer.data.user.token || window.sessionStorage.getItem("token"));
 
-    return api;
+  if (token) {
+    api = axios.create({
+      baseURL: "http://104.237.3.213:8888",
+      headers: {"Authorization": tokenFromStore}
+    });
+  } else {
+    api = axios.create({
+      baseURL: "http://104.237.3.213:8888"
+    });
+  }
+
+  return api;
 };
 
 const signIn = (obj) => {
-    addHeaders(false);
-    return api.post("/api/sign-in", obj);
+  addHeaders(false);
+  return api.post("/api/sign-in", obj);
 };
 
 const signUp = (obj) => {
-    addHeaders(false);
-    return api.post("/api/sign-up", obj);
+  addHeaders(false);
+  return api.post("/api/sign-up", obj);
 };
 
 const passwordForget = (obj) => {
@@ -40,58 +40,82 @@ const passwordForget = (obj) => {
 };
 
 const myDetails = () => {
-    addHeaders(true);
-    return api.get("/auth/settings");
+  addHeaders(true);
+  return api.get("/auth/settings");
 };
 
 const twitterSettings = () => {
-    addHeaders(true);
-    return api.get("/auth/tw-api-details");
-}
+  addHeaders(true);
+  return api.get("/auth/tw-api-details");
+};
 
 const twitterCriteria = () => {
-    addHeaders(true);
-    return api.get("/auth/tw-tip-criteria");
-}
+  addHeaders(true);
+  return api.get("/auth/tw-tip-criteria");
+};
 
 const myDetailsUpdate = (obj) => {
-    addHeaders(true);
-    return api.post("/auth/settings", obj);
-}
+  addHeaders(true);
+  return api.post("/auth/settings", obj);
+};
 
 const twitterSettingsUpdate = (obj) => {
-    addHeaders(true);
-    return api.post("/auth/tw-api-details", obj);
-}
+  addHeaders(true);
+  return api.post("/auth/tw-api-details", obj);
+};
 
 const twitterCriteriaUpdate = (obj) => {
-    addHeaders(true);
-    return api.post("/auth/tw-tip-criteria", obj);
-}
+  addHeaders(true);
+  return api.post("/auth/tw-tip-criteria", obj);
+};
 
 const botGet = () => {
-    addHeaders(true);
-    return api.get("/auth/bot");
-}
+  addHeaders(true);
+  return api.get("/auth/bot");
+};
 
 const botPost = () => {
-    addHeaders(true);
-    return api.post("/auth/bot");
-}
+  addHeaders(true);
+  return api.post("/auth/bot");
+};
 
 const botPut = () => {
-    addHeaders(true);
-    return api.put("/auth/bot");
-}
+  addHeaders(true);
+  return api.put("/auth/bot");
+};
 
 const twTipLogs = () => {
-    addHeaders(true);
-    return api.get("/auth/tw-tip-logs");
-}
+  addHeaders(true);
+  return api.get("/auth/tw-tip-logs");
+};
+
+const getUsersList = (page, size) => {
+  addHeaders(true);
+  return api.get("/auth/users?page=" + page + "&size=" + size);
+};
+
 
 const check = (obj) => {
-    addHeaders(false);
-    return api.post("/api/active", obj);
-}
+  addHeaders(false);
+  return api.post("/api/active", obj);
+};
 
-export default { signIn, signUp, passwordForget, myDetails, twitterSettings, twitterCriteria, myDetailsUpdate,  twitterSettingsUpdate, twitterCriteriaUpdate, botGet, botPost, botPut, twTipLogs, check };
+
+export default {
+  signIn,
+  signUp,
+  passwordForget,
+  myDetails,
+  twitterSettings,
+  twitterCriteria,
+  myDetailsUpdate,
+  twitterSettingsUpdate,
+  twitterCriteriaUpdate,
+  botGet,
+  botPost,
+  botPut,
+  twTipLogs,
+  check,
+  getUsersList
+};
+

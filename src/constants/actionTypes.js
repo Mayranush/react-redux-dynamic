@@ -43,7 +43,10 @@ const ActionTypes = {
   getDataResponseErrorTwTipLogs: "GET_DATA_RESPONSE_ERROR_TW_TIP_LOGS",
   getDataRequestCheck: "GET_DATA_REQUEST_CHECK",
   getDataResponseCheck: "GET_DATA_RESPONSE_CHECK",
-  getDataResponseErrorCheck: "GET_DATA_RESPONSE_CHECK"
+  getDataResponseErrorCheck: "GET_DATA_RESPONSE_CHECK",
+  getDataRequestGetUsersList: "GET_DATA_REQUEST_GET_USERS_LIST",
+  getDataResponseGetUsersList: "GET_DATA_RESPONSE_GET_USERS_LIST",
+  getDataResponseErrorGetUsersList: "GET_DATA_RESPONSE_ERROR_GET_USERS_LIST"
 };
 
 export default ActionTypes;
