@@ -133,6 +133,11 @@ export default handleActions({
   [ActionTypes.getDataResponseErrorCheck]: (state, {payload}) => ({...state, data: payload}),
   [ActionTypes.getDataRequestGetUsersList]: (state, {payload}) => ({...state, data: payload}),
   [ActionTypes.getDataResponseGetUsersList]: (state, {payload}) => ({...state, data: payload}),
-  [ActionTypes.getDataResponseErrorGetUsersList]: (state, {payload}) => ({...state, data: payload})
-
+  [ActionTypes.getDataResponseErrorGetUsersList]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataRequestDisableUser]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponseDisableUser]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponseErrorDisableUser]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataRequestEnableUser]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponseEnableUser]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponseErrorEnableUser]: (state, {payload}) => ({...state, data: payload}),
 }, defaultState);

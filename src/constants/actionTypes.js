@@ -46,7 +46,13 @@ const ActionTypes = {
   getDataResponseErrorCheck: "GET_DATA_RESPONSE_CHECK",
   getDataRequestGetUsersList: "GET_DATA_REQUEST_GET_USERS_LIST",
   getDataResponseGetUsersList: "GET_DATA_RESPONSE_GET_USERS_LIST",
-  getDataResponseErrorGetUsersList: "GET_DATA_RESPONSE_ERROR_GET_USERS_LIST"
+  getDataResponseErrorGetUsersList: "GET_DATA_RESPONSE_ERROR_GET_USERS_LIST",
+  getDataRequestDisableUser: "GET_DATA_REQUEST_DISABLE_USER",
+  getDataResponseDisableUser: "GET_DATA_RESPONSE_DISABLE_USER",
+  getDataResponseErrorDisableUser: "GET_DATA_RESPONSE_ERROR_DISABLE_USER",
+  getDataRequestEnableUser: "GET_DATA_REQUEST_ENABLE_USER",
+  getDataResponseEnableUser: "GET_DATA_RESPONSE_ENABLE_USER",
+  getDataResponseErrorEnableUser: "GET_DATA_RESPONSE_ERROR_ENABLE_USER"
 };
 
 export default ActionTypes;

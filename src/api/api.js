@@ -39,6 +39,11 @@ const passwordForget = (obj) => {
   return api.post("/api/forget", obj);
 };
 
+const check = (obj) => {
+  addHeaders(false);
+  return api.post("/api/active", obj);
+};
+
 const myDetails = () => {
   addHeaders(true);
   return api.get("/auth/settings");
@@ -95,11 +100,15 @@ const getUsersList = (page, size) => {
 };
 
 
-const check = (obj) => {
-  addHeaders(false);
-  return api.post("/api/active", obj);
+const disableUser = (id) => {
+  addHeaders(true);
+  return api.post("/auth/disable?id="+id);
 };
 
+const enableUser = (id) => {
+  addHeaders(true);
+  return api.post("/auth/enable?id="+id);
+};
 
 export default {
   signIn,
@@ -116,6 +125,8 @@ export default {
   botPut,
   twTipLogs,
   check,
-  getUsersList
+  getUsersList,
+  disableUser,
+  enableUser
 };
 
