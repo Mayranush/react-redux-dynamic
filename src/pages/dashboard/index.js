@@ -1,5 +1,4 @@
 import React from "react";
-import {Menu} from "../../components/menu/menu";
 import {connect} from "react-redux";
 import {projectDataActions, dashboardActions} from "../../actions/index";
 import PropTypes from "prop-types";

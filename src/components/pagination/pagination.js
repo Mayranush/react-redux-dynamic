@@ -32,7 +32,6 @@ export class Pagination extends React.Component {
 	};
 
     componentDidMount() {
-        console.log(this.props,"props");
         this.choosedPageFromTable(this.props.currentPage);
     }
 
@@ -124,7 +123,6 @@ export class Pagination extends React.Component {
     }
                
     choosedPageFromTable = (item) => {
-        console.log(item,"item----------------")
         if (item.value == '>') {
             this.nextPage();
             this.props.clickFunction(this.currentPage);

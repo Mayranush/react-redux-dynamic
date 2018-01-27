@@ -11,6 +11,15 @@ export class Admin extends React.Component {
       value: 1
     };
     this.clickFunction = this.clickFunction.bind(this);
+    this.handleChangeActive = this.changeActive.bind(this);
+  }
+
+  changeActive(item) {
+    if (item.isActive) {
+      this.props.disableUser(item.id);
+    } else {
+      this.props.enableUser(item.id);
+    }
   }
 
   componentDidMount() {
@@ -18,7 +27,6 @@ export class Admin extends React.Component {
   }
 
   clickFunction(item) {
-    console.log(item,"item1111111111111110000000000000000")
     this.props.getUsersList(item, 10);
   }
 
@@ -37,8 +45,7 @@ export class Admin extends React.Component {
                 <th>Is Active</th>
                 <th>Email</th>
                 <th>Created At</th>
-                <th>Disable</th>
-                <th>Enable</th>
+                <th>Disable/Enable</th>
               </tr>
               </thead>
               <tbody>
@@ -48,9 +55,13 @@ export class Admin extends React.Component {
                   <th scope="row">{item.firstname}</th>
                   <td>{item.lastname}</td>
                   <td>{item.twUsername}</td>
-                  <td>{item.isActive && <i className="fa fa-check" aria-hidden="true"></i>}</td>
+                  <td>{item.isActive && <i className="fa fa-check fa_custom fa-2x" aria-hidden="true"></i>}</td>
                   <td>{item.email}</td>
                   <td>{item.createdAt}</td>
+                  <td className="disable-enable" onClick={() => this.handleChangeActive(item) }>
+                    {item.isActive && <i className="fa fa-toggle-on fa_custom fa-3x" aria-hidden="true"></i>}
+                    {!item.isActive && <i className="fa fa-toggle-off fa_custom fa-3x" aria-hidden="true"></i>}
+                  </td>
                 </tr>)
               })
               }
