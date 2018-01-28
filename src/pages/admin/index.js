@@ -12,6 +12,7 @@ export class Admin extends React.Component {
     };
     this.clickFunction = this.clickFunction.bind(this);
     this.handleChangeActive = this.changeActive.bind(this);
+    this.itemsInEachPage = 5;
   }
 
   changeActive(item) {
@@ -23,11 +24,11 @@ export class Admin extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getUsersList(1, 10);
+    this.props.getUsersList(0, this.itemsInEachPage);
   }
 
   clickFunction(item) {
-    this.props.getUsersList(item, 10);
+    this.props.getUsersList(item-1, this.itemsInEachPage);
   }
 
   render() {
@@ -69,8 +70,8 @@ export class Admin extends React.Component {
               </tbody>
             </table>
             <p className="log-message">{this.props.data.logMessage}</p>
-            {this.props.data.userListPageCount &&
-               <Pagination maxPageCount={(this.props.data.userListPageCount / 10).toFixed(0)} currentPage={this.currentPage} clickFunction={this.clickFunction}/>}
+            {this.props.data.userListPageCount > 1 &&
+               <Pagination maxPageCount={Math.ceil(this.props.data.userListPageCount / this.itemsInEachPage)} currentPage={this.currentPage} clickFunction={this.clickFunction}/>}
           </div>
 
         </div>

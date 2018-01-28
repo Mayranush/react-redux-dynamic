@@ -22,8 +22,6 @@ console.log("mi baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaan")
     newState.popup.resetPassword = true;
     newState.popup.show = true;
     newState.popup.text = '';
-
-    newState.settingsCurrentTab = tab;
     return dispatch(changePasswordActionResponse(newState));
   };
 }

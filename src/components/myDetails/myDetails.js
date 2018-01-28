@@ -14,6 +14,7 @@ export class MyDetails extends React.Component {
   }
 
   showPopup() {
+    
     this.props.changePasswordAction();
   }
 

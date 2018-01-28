@@ -19,7 +19,7 @@ export class Pagination extends React.Component {
         this.previousPage = this.previousPage.bind(this);
         this.firstPage = this.firstPage.bind(this);
 		this.lastPage = this.lastPage.bind(this);
-
+        this.floatToRight = false;
         this.state = {
             pages: []
         }
@@ -42,11 +42,13 @@ export class Pagination extends React.Component {
 		    for (var j = 1; j <= this.props.maxPageCount; j++) {
 		        pageArr.push(j);
 		    }
+            this.floatToRight = true;
 		    return this.makingArrOfPagesForView(pageArr);
 		}
 		if (this.currentState == this.states[1]) {
 		    pageArr = [1, 2, 3, '...', '>', '>>'];
-		    return this.makingArrOfPagesForView(pageArr);
+		    this.floatToRight = true;
+            return this.makingArrOfPagesForView(pageArr);
 		}
 		if (this.currentState == this.states[2]) {
 		    pageArr = ['<<', '<', '...'];
@@ -54,6 +56,7 @@ export class Pagination extends React.Component {
 		        pageArr.push(k);
 		    }
 		    pageArr.push('...', '>', '>>');
+            this.floatToRight = false;
 		    return this.makingArrOfPagesForView(pageArr);
 		}
 		if (this.currentState = this.states[3]) {
@@ -61,6 +64,7 @@ export class Pagination extends React.Component {
 		    for (var l = this.props.maxPageCount - 2; l <= this.props.maxPageCount; l++) {
 		        pageArr.push(l);
 		    }
+            this.floatToRight = false;
 		    return this.makingArrOfPagesForView(pageArr);
 		}
 	}
@@ -147,7 +151,7 @@ export class Pagination extends React.Component {
 
   render() {
     return (
-	<div className="pagination-block">
+	<div className={this.floatToRight ? "pagination-block pagination-to-right" : "pagination-block"}>
 	{
 		this.state.pages && this.state.pages.map((item, i) => {
             let className = classNames('each-page', {
