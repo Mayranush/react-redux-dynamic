@@ -13,6 +13,20 @@ export function changeMessage(page, field, message) {
     return dispatch(changeMessageResponse(newState));
   };
 }
+const changePasswordActionResponse = createAction(ActionTypes.changePasswordAction);
+
+export function changePasswordAction(tab) {
+  return (dispatch) => {
+console.log("mi baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaan")
+    let newState = tools.cloneState(store.getState().projectDataReducer.data);
+    newState.popup.resetPassword = true;
+    newState.popup.show = true;
+    newState.popup.text = '';
+
+    newState.settingsCurrentTab = tab;
+    return dispatch(changePasswordActionResponse(newState));
+  };
+}
 
 const cleanDataResponse = createAction(ActionTypes.cleanData);
 
@@ -69,4 +83,6 @@ export function cleanData() {
 
     return dispatch(cleanDataResponse(newState));
   };
+
+
 }

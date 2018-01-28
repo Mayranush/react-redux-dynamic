@@ -35,7 +35,6 @@ export class Login extends React.Component {
     };
 
     if (this.props.data.login.emailErrorText.length == 0 && this.props.data.login.email.length != 0) {
-      console.log(obj,"loooooooooooooooooooooooooooooooooooooooooog");
       this.props.passwordForget(obj);
     }
   }

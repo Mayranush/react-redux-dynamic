@@ -14,11 +14,10 @@ export class TwitterSettings extends React.Component {
   }
 
   static propTypes = {
-    consumerKey: PropTypes.string,
-    consumerSecret: PropTypes.string,
-    accessToken: PropTypes.string,
-    accessTokenSecret: PropTypes.string,
-
+    twitter: PropTypes.object,
+    updateSettings: PropTypes.func,
+    changeMessage: PropTypes.func,
+    cleanData: PropTypes.func
   };
 
   render() {

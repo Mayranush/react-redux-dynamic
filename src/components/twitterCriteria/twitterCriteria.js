@@ -20,16 +20,10 @@ export class TwitterCriteria extends React.Component {
   // }
 
   static propTypes = {
-    minFollowers: PropTypes.number,
-    tipsPerDay: PropTypes.number,
-    tipsPerDayPerUser: PropTypes.number,
-    coinAmount: PropTypes.number,
-    coinType: PropTypes.string,
-    hashtags: PropTypes.string,
-    // tipsLike: PropTypes.bool,
-    tipsTweet: PropTypes.bool,
-    tipsReTweet: PropTypes.bool,
-    tipsFollowers: PropTypes.bool
+    twitter: PropTypes.object,
+    updateSettings: PropTypes.func,
+    changeMessage: PropTypes.func,
+    cleanData: PropTypes.func
   };
 
 

@@ -14,6 +14,8 @@ export function changeTabInSettings(tab) {
     };
 }
 
+
+
 ////////////////////////////////////    myDetails     ///////////////////////////////////////////////
 
 const requestResponseMyDetails = createAction(ActionTypes.getDataRequestMyDetails);

@@ -46,3 +46,49 @@ export function passwordForget(obj) {
   };
 }
 
+
+/////////////////////////////////////////////           Change Password     ////////////////////////////////////////////////
+
+const requestResponseChangePassword = createAction(ActionTypes.getDataRequestChangePassword);
+
+export function getDataRequestChangePassword() {
+  return (dispatch) => {
+    let newState = tools.cloneState(store.getState().projectDataReducer.data);
+    return dispatch(requestResponseChangePassword(newState));
+  };
+}
+
+const responseResponseChangePassword = createAction(ActionTypes.getDataResponseChangePassword);
+
+export function getDataResponseChangePassword(data) {
+  return (dispatch) => {
+    let newState = tools.cloneState(store.getState().projectDataReducer.data);
+    newState.popup.show = true;
+    newState.popup.resetPassword = false;
+    newState.popup.text = "Successfully updated";
+
+    store.dispatch(push('/settings'));
+    return dispatch(responseResponseChangePassword(newState));
+  };
+}
+
+const errorResponseChangePassword = createAction(ActionTypes.getDataResponseErrorChangePassword);
+
+export function getDataResponseErrorChangePassword(error) {
+  return (dispatch) => {
+    let newState = tools.cloneState(store.getState().projectDataReducer.data);
+    return dispatch(errorResponseChangePassword(newState));
+  };
+}
+
+export function changePassword(obj) {
+  return (dispatch) => {
+    console.log("+===================================================+",obj);
+    dispatch(getDataRequestChangePassword());
+    return api.changePassword(obj)
+      .then(data => dispatch(getDataResponseChangePassword(data.data)))
+      .catch(error => dispatch(getDataResponseErrorChangePassword(error)));
+  };
+}
+
+

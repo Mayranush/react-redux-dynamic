@@ -38,10 +38,10 @@ export class Settings extends React.Component {
   }
 
   updateTwSettings() {
-   this.props.changeMessage('twitter', 'consumerKey', this.twSettings.refs.consumerKey.value);
-   this.props.changeMessage('twitter', 'consumerSecret', this.twSettings.refs.consumerSecret.value);
-   this.props.changeMessage('twitter', 'accessToken', this.twSettings.refs.accessToken.value);
-   this.props.changeMessage('twitter', 'accessTokenSecret', this.twSettings.refs.accessTokenSecret.value);
+    this.props.changeMessage('twitter', 'consumerKey', this.twSettings.refs.consumerKey.value);
+    this.props.changeMessage('twitter', 'consumerSecret', this.twSettings.refs.consumerSecret.value);
+    this.props.changeMessage('twitter', 'accessToken', this.twSettings.refs.accessToken.value);
+    this.props.changeMessage('twitter', 'accessTokenSecret', this.twSettings.refs.accessTokenSecret.value);
     let objDetails = {
       "consumerKey": this.props.data.twitter.consumerKey,
       "consumerSecret": this.props.data.twitter.consumerSecret,
@@ -93,10 +93,10 @@ export class Settings extends React.Component {
   }
 
   componentDidMount() {
-    this.props.botGet();    
+    this.props.botGet();
     this.props.data.settingsCurrentTab == 'myDetails' && this.props.myDetails();
     this.props.data.settingsCurrentTab == 'twitterSettings' && this.props.twitterSettings();
-    this.props.data.settingsCurrentTab == 'twitterCriteria' &&  this.props.twitterCriteria();
+    this.props.data.settingsCurrentTab == 'twitterCriteria' && this.props.twitterCriteria();
   }
 
   render() {
@@ -122,10 +122,11 @@ export class Settings extends React.Component {
         </ul>
         <div className="settings-tab">
           {this.props.data.settingsCurrentTab == 'myDetails' && this.props.data.user.dataReceived
-          && <MyDetails
-            user={this.props.data.user}
-            updateSettings={this.handleUpdateSettings}
-            ref={(input) => this.settings = input}/>}
+          && <MyDetails user={this.props.data.user}
+                        updateSettings={this.handleUpdateSettings}
+                        changeMessage={this.props.changeMessage}
+                        changePasswordAction={this.props.changePasswordAction}
+                        ref={(input) => this.settings = input}/>}
           {this.props.data.settingsCurrentTab == 'twitterSettings' && this.props.data.twitter.dataReceivedApiDetails
           && <TwitterSettings twitter={this.props.data.twitter}
                               updateSettings={this.handleUpdateTwSettings}
@@ -147,9 +148,9 @@ export class Settings extends React.Component {
 }
 
 export default connect(
-    state => ({data: state.projectDataReducer.data}),
-        { 
-           ...projectDataActions,
-           ...settingsActions
-        }
+  state => ({data: state.projectDataReducer.data}),
+  {
+    ...projectDataActions,
+    ...settingsActions
+  }
 )(Settings);

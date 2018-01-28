@@ -74,6 +74,11 @@ const myDetailsUpdate = (obj) => {
   return api.post("/auth/settings", obj);
 };
 
+const changePassword = (obj) => {
+  addHeaders(true);
+  return api.post("/auth/reset", obj);
+};
+
 const twitterSettingsUpdate = (obj) => {
   addHeaders(true);
   return api.post("/auth/tw-api-details", obj);
@@ -139,6 +144,7 @@ export default {
   resetPassword,
   getUsersList,
   disableUser,
-  enableUser
+  enableUser,
+  changePassword
 };
 

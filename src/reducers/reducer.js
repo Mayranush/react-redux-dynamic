@@ -81,6 +81,10 @@ const mockData = {
   userListPageCount: 0,
   logMessage: '',
   popup: {
+    resetPassword:false,
+    password:'',
+    confirmPassword:'',
+    passwordErrorText:'',
     show: false,
     text: ''
   }
@@ -90,10 +94,11 @@ const defaultState = {
 };
 
 export default handleActions({
-
   [ActionTypes.changeMessage]: (state, {payload}) => ({...state, data: payload}),
+
   [ActionTypes.cleanData]: (state, {payload}) => ({...state, data: payload}),
   [ActionTypes.changeTabInSettings]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.changePasswordAction]: (state, {payload}) => ({...state, data: payload}),
   [ActionTypes.getDataRequestSignIn]: (state, {payload}) => ({...state, data: payload}),
   [ActionTypes.getDataResponseSignIn]: (state, {payload}) => ({...state, data: payload}),
   [ActionTypes.getDataResponseErrorSignIn]: (state, {payload}) => ({...state, data: payload}),
@@ -148,4 +153,10 @@ export default handleActions({
   [ActionTypes.getDataRequestEnableUser]: (state, {payload}) => ({...state, data: payload}),
   [ActionTypes.getDataResponseEnableUser]: (state, {payload}) => ({...state, data: payload}),
   [ActionTypes.getDataResponseErrorEnableUser]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataRequestPasswordForget]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponsePasswordForget]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponseErrorPasswordForget]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataRequestChangePassword]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponseChangePassword]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponseErrorChangePassword]: (state, {payload}) => ({...state, data: payload})
 }, defaultState);
