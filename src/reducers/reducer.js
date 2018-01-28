@@ -9,7 +9,8 @@ const mockData = {
     firstname: '',
     lastname: '',
     email: '',
-    twUsername: ''
+    twUsername: '',
+    vid:''
   },
   login: {
     email: '',
@@ -132,6 +133,12 @@ export default handleActions({
   [ActionTypes.getDataRequestCheck]: (state, {payload}) => ({...state, data: payload}),
   [ActionTypes.getDataResponseCheck]: (state, {payload}) => ({...state, data: payload}),
   [ActionTypes.getDataResponseErrorCheck]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataRequestReset]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponseReset]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponseErrorReset]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataRequestActivateAccount]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponseActivateAccount]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponseErrorActivateAccount]: (state, {payload}) => ({...state, data: payload}),
   [ActionTypes.getDataRequestGetUsersList]: (state, {payload}) => ({...state, data: payload}),
   [ActionTypes.getDataResponseGetUsersList]: (state, {payload}) => ({...state, data: payload}),
   [ActionTypes.getDataResponseErrorGetUsersList]: (state, {payload}) => ({...state, data: payload}),

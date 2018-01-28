@@ -65,7 +65,6 @@ const responseResponseDisableUser = createAction(ActionTypes.getDataResponseDisa
 export function getDataResponseDisableUser(data,id) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    console.log(id,"ididiididididiididididididi");
     newState.usersList.map((item) => {
       if (item.id === id){
         item.isActive = false;
@@ -109,7 +108,6 @@ const responseResponseEnableUser = createAction(ActionTypes.getDataResponseEnabl
 export function getDataResponseEnableUser(data,id) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    console.log(id,"ididiididididiididididididi");
     newState.usersList.map((item) => {
       if (item.id === id){
         item.isActive = true;

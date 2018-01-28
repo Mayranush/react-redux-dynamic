@@ -23,8 +23,6 @@
   user-select: none;
 }
 
-
-
 .btn-twitter {
   background-color: #32CCFE;
   border-radius: 50%;
@@ -37,9 +35,17 @@
   color: #fff;
 }
 
-.register{
+.register {
   margin-right: 152px;
 }
-.withSocial{
+
+.withSocial {
   margin-right: 12px;
+}
+
+.error-for-input {
+  height: 10px;
+}
+.form-group{
+  margin-top: 10px;
 }

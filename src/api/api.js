@@ -39,9 +39,19 @@ const passwordForget = (obj) => {
   return api.post("/api/forget", obj);
 };
 
-const check = (obj) => {
+const activateAccount = (obj) => {
   addHeaders(false);
   return api.post("/api/active", obj);
+};
+
+const check = (vid) => {
+  addHeaders(false);
+  return api.get("/api/check?vid="+ vid);
+};
+
+const resetPassword = (obj) => {
+  addHeaders(false);
+  return api.post("/api/reset", obj);
 };
 
 const myDetails = () => {
@@ -124,7 +134,9 @@ export default {
   botPost,
   botPut,
   twTipLogs,
+  activateAccount,
   check,
+  resetPassword,
   getUsersList,
   disableUser,
   enableUser

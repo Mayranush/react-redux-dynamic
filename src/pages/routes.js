@@ -118,15 +118,31 @@ const routes = {
     {
       path: 'password/recovery',
       getComponent(location, cb) {
-        System.import('pages/password')
+        System.import('pages/password/recovery')
           .then(loadRoute(cb))
           .catch(errorLoading);
       }
     },
     {
-      path: 'check',
+      path: 'password/reset',
       getComponent(location, cb) {
-        System.import('pages/check')
+        System.import('pages/password/reset')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      }
+    },
+    {
+      path: 'activate',
+      getComponent(location, cb) {
+        System.import('pages/activate')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      }
+    },
+    {
+      path: 'reset',
+      getComponent(location, cb) {
+        System.import('pages/reset')
           .then(loadRoute(cb))
           .catch(errorLoading);
       }
