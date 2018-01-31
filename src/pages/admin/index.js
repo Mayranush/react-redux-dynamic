@@ -4,6 +4,7 @@ import {adminActions, projectDataActions} from "../../actions/index";
 import { Pagination } from "../../components/pagination/pagination";
 import "./admin.scss";
 
+
 export class Admin extends React.Component {
   constructor(props) {
     super(props);
@@ -12,9 +13,13 @@ export class Admin extends React.Component {
     };
     this.clickFunction = this.clickFunction.bind(this);
     this.handleChangeActive = this.changeActive.bind(this);
+    this.handleAddAsAdmin = this.addAdmin.bind(this);
     this.itemsInEachPage = 5;
   }
 
+  addAdmin(item) {
+      this.props.addAdmin(item.id);
+  }
   changeActive(item) {
     if (item.isActive) {
       this.props.disableUser(item.id);
@@ -46,7 +51,8 @@ export class Admin extends React.Component {
                 <th>Is Active</th>
                 <th>Email</th>
                 <th>Created At</th>
-                <th>Disable/Enable</th>
+                <th>Enable/Disable</th>
+                <th>Add to Admin List</th>
               </tr>
               </thead>
               <tbody>
@@ -63,6 +69,7 @@ export class Admin extends React.Component {
                     {item.isActive && <i className="fa fa-toggle-on fa_custom fa-3x" aria-hidden="true"></i>}
                     {!item.isActive && <i className="fa fa-toggle-off fa_custom fa-3x" aria-hidden="true"></i>}
                   </td>
+                  <td className="disable-enable" onClick={() => this.handleAddAsAdmin(item) }> <i className="fa fa-user-plus fa_custom fa-2x" aria-hidden="true"></i></td>
                 </tr>)
               })
               }

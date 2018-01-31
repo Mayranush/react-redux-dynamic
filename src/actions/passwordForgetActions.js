@@ -23,7 +23,7 @@ export function getDataResponsePasswordForget(data) {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
     newState.success.message = 'We have sent you an email with a link to reset your password.';
 
-    store.dispatch(push('/success'));
+    store.dispatch(push('/message'));
     return dispatch(responseResponsePasswordForget(newState));
   };
 }
@@ -66,6 +66,10 @@ export function getDataResponseChangePassword(data) {
     newState.popup.show = true;
     newState.popup.resetPassword = false;
     newState.popup.text = "Successfully updated";
+    newState.popup.password = '';
+    newState.popup.passwordErrorText = '';
+    newState.popup.confirmPassword = '';
+
 
     store.dispatch(push('/settings'));
     return dispatch(responseResponseChangePassword(newState));
@@ -83,7 +87,6 @@ export function getDataResponseErrorChangePassword(error) {
 
 export function changePassword(obj) {
   return (dispatch) => {
-    console.log("+===================================================+",obj);
     dispatch(getDataRequestChangePassword());
     return api.changePassword(obj)
       .then(data => dispatch(getDataResponseChangePassword(data.data)))

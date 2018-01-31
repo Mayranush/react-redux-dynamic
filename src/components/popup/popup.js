@@ -63,24 +63,24 @@ export class Popup extends React.Component {
 
   render() {
     return (
-      <div className="general-div klor">
+      <div className="general-div">
         {this.props.popup.text && <div className="text-block">
           <p>{this.props.popup.text}</p>
-          <div className="close-button" onClick={() => this.props.closePopup()}>ok</div>
+          <div className="close-button close-ok" onClick={() => this.props.closePopup()}>ok</div>
         </div>}
-        {this.props.popup.resetPassword && <div>
+        {this.props.popup.resetPassword && <div className="pop-pass-change">
           <form>
             <div className="form-group">
               <div className="form-row">
                 <div className="col-md-6">
-                  <label htmlFor="password">Password</label>
+
                   <input
                     className={this.props.popup.passwordErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
                     id="exampleInputPassword1" type="password" placeholder="Password"
                     onKeyUp={(e) => this.handlePasswordChange(e)}/>
                 </div>
                 <div className="col-md-6">
-                  <label htmlFor="password">Confirm password</label>
+
                   <input
                     className={this.props.popup.passwordErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
                     id="exampleConfirmPassword" type="password" placeholder="Confirm password"
@@ -89,14 +89,16 @@ export class Popup extends React.Component {
                 </div>
               </div>
             </div>
-            <p
-              className="error-for-input">{this.props.popup.passwordErrorText.length != 0 ? '*' + this.props.popup.passwordErrorText : ''}</p>
 
           </form>
-          <button className={this.props.popup.passwordErrorText.length != 0 ||
-          this.props.popup.password.length == 0 ? "disabled-button btn btn-primary btn-block" : "btn btn-primary btn-block"}
-                  onClick={() => this.handleChangePassword()}>Reset password
-          </button>
+          <div>
+            <button className="close-button"
+                    onClick={() => this.handleChangePassword()}>Reset password
+            </button>
+            <button className="close-button" onClick={() => this.props.closePopup()}>Cancel
+            </button>
+          </div>
+
         </div>}
 
       </div>

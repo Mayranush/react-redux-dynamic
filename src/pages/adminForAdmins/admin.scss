@@ -1,0 +1,33 @@
+.table-body {
+  margin: 15px;
+}
+
+.thead-inverse {
+  background-color: #4d4d4d;
+  color: white;
+  font-size: larger;
+}
+
+thead:last-child {
+  margin-bottom: 15px;
+}
+
+.fa_custom {
+  color: #027041
+}
+
+.disable-enable {
+  cursor: pointer;
+}
+
+.fa_custom_red {
+  color: #dc3545;
+}
+
+.delete-admin {
+  cursor: pointer;
+}
+
+.add-new-admin :hover{
+  cursor: pointer;
+}

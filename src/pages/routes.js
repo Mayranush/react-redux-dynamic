@@ -63,7 +63,7 @@ const routes = {
       }
     },
     {
-      path: 'success',
+      path: 'message',
       getComponent(location, cb) {
         System.import('pages/successPage')
           .then(loadRoute(cb))
@@ -107,10 +107,19 @@ const routes = {
       }
     },
     {
-      path: 'admin',
+      path: 'users',
       onEnter: requireAuth,
       getComponent(location, cb) {
         System.import('pages/admin')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      }
+    },
+    {
+      path: 'admins',
+      onEnter: requireAuth,
+      getComponent(location, cb) {
+        System.import('pages/adminForAdmins')
           .then(loadRoute(cb))
           .catch(errorLoading);
       }

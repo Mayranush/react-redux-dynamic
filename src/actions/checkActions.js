@@ -23,7 +23,7 @@ export function getDataResponseActivateAccount(data) {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
     newState.success.message = 'You are successfully registered! Sign in ';
     newState.success.hrefToSignIn = true;
-    store.dispatch(push('/success'));
+    store.dispatch(push('/message'));
     return dispatch(responseResponseActivateAccount(newState));
   };
 }
@@ -105,7 +105,7 @@ export function getDataResponseReset(data) {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
     newState.success.message = 'You successfully reset your password! Sign in ';
     newState.success.hrefToSignIn = true;
-    store.dispatch(push('/success'));
+    store.dispatch(push('/message'));
     return dispatch(responseResponseReset(newState));
   };
 }

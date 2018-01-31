@@ -12,7 +12,8 @@ export class Menu extends React.Component {
 
   static propTypes = {
     changeMessage: PropTypes.func.isRequired,
-    cleanData: PropTypes.func.isRequired
+    cleanData: PropTypes.func.isRequired,
+    role: PropTypes.string.isRequired
   };
 
 
@@ -34,6 +35,7 @@ export class Menu extends React.Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
+              {this.props.role === 'USER' &&
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                 <div className="nav-link">
                   <Link className="nav-link-text" to="/dashboard">
@@ -41,6 +43,7 @@ export class Menu extends React.Component {
                   </Link>
                 </div>
               </li>
+              }
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
                 <div className="nav-link">
                   <Link className="nav-link-text" to="/charts">
@@ -48,6 +51,7 @@ export class Menu extends React.Component {
                   </Link>
                 </div>
               </li>
+              {this.props.role === 'USER' &&
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
                 <div className="nav-link">
                   <Link className="nav-link-text" to="/tables">
@@ -55,6 +59,7 @@ export class Menu extends React.Component {
                   </Link>
                 </div>
               </li>
+              }
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Settings">
                 <div className="nav-link">
                   <Link className="nav-link-text" to="/settings">
@@ -62,13 +67,24 @@ export class Menu extends React.Component {
                   </Link>
                 </div>
               </li>
+              {this.props.role === 'ADMIN' &&
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Adminarea">
                 <div className="nav-link">
-                  <Link className="nav-link-text" to="/admin">
-                    <i className="fa fa-fw fa-wrench fa-menu"/>Admin Area
+                  <Link className="nav-link-text" to="/users">
+                    <i className="fa fa-fw fa-wrench fa-menu"/>Users list
                   </Link>
                 </div>
               </li>
+              }
+              {this.props.role === 'ADMIN' &&
+              <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Adminarea">
+                <div className="nav-link">
+                  <Link className="nav-link-text" to="/admins">
+                    <i className="fa fa-fw fa-wrench fa-menu"/>Admin list
+                  </Link>
+                </div>
+              </li>
+              }
             </ul>
             {/*<ul className="navbar-nav sidenav-toggler">*/}
             {/*<li className="nav-item">*/}

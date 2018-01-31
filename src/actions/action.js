@@ -17,11 +17,11 @@ const changePasswordActionResponse = createAction(ActionTypes.changePasswordActi
 
 export function changePasswordAction(tab) {
   return (dispatch) => {
-console.log("mi baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaan")
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
     newState.popup.resetPassword = true;
     newState.popup.show = true;
     newState.popup.text = '';
+
     return dispatch(changePasswordActionResponse(newState));
   };
 }
@@ -38,6 +38,7 @@ export function cleanData() {
     newState.user.lastname = '';
     newState.user.email = '';
     newState.user.twUsername = '';
+    newState.user.role = '';
 
     newState.login.email = '';
     newState.login.password = '';

@@ -20,6 +20,7 @@ class MainLayout extends React.Component {
 
   closePopup() {
     this.props.changeMessage('popup', 'show', false);
+    this.props.changeMessage('popup', 'resetPassword', false);
     this.props.changeMessage('popup', 'text', '');
   }
 
@@ -35,7 +36,9 @@ class MainLayout extends React.Component {
                changePassword={this.props.changePassword}/>}
         {((this.props.data.user && this.props.data.user.token) || window.sessionStorage.getItem("token")) &&
         <Menu changeMessage={this.props.changeMessage}
-              cleanData={this.props.cleanData}/>}
+              cleanData={this.props.cleanData}
+              role={this.props.data.user.role}
+        />}
         {this.props.children}
         {((this.props.data.user && this.props.data.user.token) || window.sessionStorage.getItem("token")) &&
         <Footer />}

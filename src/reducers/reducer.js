@@ -10,7 +10,8 @@ const mockData = {
     lastname: '',
     email: '',
     twUsername: '',
-    vid:''
+    vid: '',
+    role:''
   },
   login: {
     email: '',
@@ -78,13 +79,26 @@ const mockData = {
       lastname: ''
     }
   ],
+  adminsList: [
+    {
+      createdAt: '',
+      updatedAt: '',
+      firstname: '',
+      twUsername: '',
+      role: '',
+      id: '',
+      isActive: false,
+      email: '',
+      lastname: ''
+    }
+  ],
   userListPageCount: 0,
   logMessage: '',
   popup: {
-    resetPassword:false,
-    password:'',
-    confirmPassword:'',
-    passwordErrorText:'',
+    resetPassword: false,
+    password: '',
+    confirmPassword: '',
+    passwordErrorText: '',
     show: false,
     text: ''
   }
@@ -158,5 +172,14 @@ export default handleActions({
   [ActionTypes.getDataResponseErrorPasswordForget]: (state, {payload}) => ({...state, data: payload}),
   [ActionTypes.getDataRequestChangePassword]: (state, {payload}) => ({...state, data: payload}),
   [ActionTypes.getDataResponseChangePassword]: (state, {payload}) => ({...state, data: payload}),
-  [ActionTypes.getDataResponseErrorChangePassword]: (state, {payload}) => ({...state, data: payload})
+  [ActionTypes.getDataResponseErrorChangePassword]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataRequestGetAdminsList]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponseGetAdminsList]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponseErrorGetAdminsList]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataRequestDeleteAdmin]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponseDeleteAdmin]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponseErrorDeleteAdmin]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataRequestAddAdmin]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponseAddAdmin]: (state, {payload}) => ({...state, data: payload}),
+  [ActionTypes.getDataResponseErrorAddAdmin]: (state, {payload}) => ({...state, data: payload})
 }, defaultState);

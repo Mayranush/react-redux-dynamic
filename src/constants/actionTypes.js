@@ -62,7 +62,16 @@ const ActionTypes = {
   getDataResponseErrorDisableUser: "GET_DATA_RESPONSE_ERROR_DISABLE_USER",
   getDataRequestEnableUser: "GET_DATA_REQUEST_ENABLE_USER",
   getDataResponseEnableUser: "GET_DATA_RESPONSE_ENABLE_USER",
-  getDataResponseErrorEnableUser: "GET_DATA_RESPONSE_ERROR_ENABLE_USER"
+  getDataResponseErrorEnableUser: "GET_DATA_RESPONSE_ERROR_ENABLE_USER",
+  getDataRequestGetAdminsList: "GET_DATA_REQUEST_GET_ADMIN_LIST",
+  getDataResponseGetAdminsList: "GET_DATA_RESPONSE_GET_ADMIN_LIST",
+  getDataResponseErrorGetAdminsList: "GET_DATA_RESPONSE_ERROR_GET_ADMIN_LIST",
+  getDataRequestDeleteAdmin: "GET_DATA_REQUEST_DELETE_ADMIN",
+  getDataResponseDeleteAdmin: "GET_DATA_RESPONSE_DELETE_ADMIN",
+  getDataResponseErrorDeleteAdmin: "GET_DATA_RESPONSE_ERROR_DELETE_ADMIN",
+  getDataRequestAddAdmin: "GET_DATA_REQUEST_ADD_ADMIN",
+  getDataResponseAddAdmin: "GET_DATA_RESPONSE_ADD_ADMIN",
+  getDataResponseErrorAddAdmin: "GET_DATA_RESPONSE_ERROR_ADD_ADMIN"
 };
 
 export default ActionTypes;

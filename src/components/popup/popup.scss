@@ -22,18 +22,28 @@
     .close-button {
 	    float: right;
 	    cursor: pointer;
-	    width: 60px;
+
 	    background-color: white;
 	    color: gray;
 	    padding: 5px;
+		margin: 5px;
+		font-size: 16px;
 	    text-align: center;
 	    border-radius: 8px;
 	}
+	.close-ok{
+		width: 60px;
+	}
 }
 
-//.klor{
-//	background-color: #868e96;
-///* height: 160px; */
-//	padding: 3%;
-//	border-radius: 25px;
-//}
+.pop-pass-change{
+	background-color: gray;
+	padding: 3%;
+	border-radius: 25px;
+
+
+}
+
+.input-error{
+	border-color: red;
+}

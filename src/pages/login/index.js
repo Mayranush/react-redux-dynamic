@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {projectDataActions, signInActions} from "../../actions/index";
 import {Link} from "react-router/es6";
 import "./login.scss";
+import {push} from "react-router-redux";
 
 export class Login extends React.Component {
   constructor(props) {

@@ -22,7 +22,7 @@ export function getDataResponseSignUp(data) {
     return (dispatch) => {
         let newState = tools.cloneState(store.getState().projectDataReducer.data);
         newState.success.message = 'You have been successfully registered. To activate your account please activate your mail.';
-        store.dispatch(push('/success'));  
+        store.dispatch(push('/message'));
         return dispatch(responseResponseSignUp(newState));
     };
 }

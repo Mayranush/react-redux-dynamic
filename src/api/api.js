@@ -115,6 +115,21 @@ const getUsersList = (page, size) => {
 };
 
 
+const getAdminsList = () => {
+  addHeaders(true);
+  return api.get("/auth/admin");
+};
+
+const deleteAdmin = (id) => {
+  addHeaders(true);
+  return api.delete("/auth/admin?id="+id);
+};
+
+const addAdmin = (id) => {
+  addHeaders(true);
+  return api.post("/auth/admin?id="+id);
+};
+
 const disableUser = (id) => {
   addHeaders(true);
   return api.post("/auth/disable?id="+id);
@@ -145,6 +160,9 @@ export default {
   getUsersList,
   disableUser,
   enableUser,
-  changePassword
+  changePassword,
+  getAdminsList,
+  deleteAdmin,
+  addAdmin
 };
 
