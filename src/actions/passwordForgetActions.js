@@ -4,7 +4,7 @@ import store from "store";
 import {tools} from "../resources";
 import api from "../api/api";
 import {push} from "react-router-redux";
-
+import   {errorPopup} from "./action";
 /////////////////////////////////////////////           password Forget      ////////////////////////////////////////////////
 
 const requestResponsePasswordForget = createAction(ActionTypes.getDataRequestPasswordForget);
@@ -22,7 +22,7 @@ export function getDataResponsePasswordForget(data) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
     newState.success.message = 'We have sent you an email with a link to reset your password.';
-
+    newState.success.hrefToSignIn = false;
     store.dispatch(push('/message'));
     return dispatch(responseResponsePasswordForget(newState));
   };
@@ -33,6 +33,9 @@ const errorResponsePasswordForget = createAction(ActionTypes.getDataResponseErro
 export function getDataResponseErrorPasswordForget(error) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
+    newState.success.message = 'Error has occurred. Please try again!';
+    newState.success.hrefToSignIn = false;
+    store.dispatch(push('/message'));
     return dispatch(errorResponsePasswordForget(newState));
   };
 }
@@ -76,21 +79,13 @@ export function getDataResponseChangePassword(data) {
   };
 }
 
-const errorResponseChangePassword = createAction(ActionTypes.getDataResponseErrorChangePassword);
-
-export function getDataResponseErrorChangePassword(error) {
-  return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    return dispatch(errorResponseChangePassword(newState));
-  };
-}
 
 export function changePassword(obj) {
   return (dispatch) => {
     dispatch(getDataRequestChangePassword());
     return api.changePassword(obj)
       .then(data => dispatch(getDataResponseChangePassword(data.data)))
-      .catch(error => dispatch(getDataResponseErrorChangePassword(error)));
+      .catch(error => dispatch(errorPopup(error)));
   };
 }
 

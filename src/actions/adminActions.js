@@ -3,7 +3,7 @@ import ActionTypes from "../constants/actionTypes";
 import store from "store";
 import {tools} from "../resources";
 import api from "../api/api";
-
+import   {errorPopup} from "./action";
 /////////////////////////////////////////////           Users list     ////////////////////////////////////////////////
 
 const requestResponseGetUsersList = createAction(ActionTypes.getDataRequestGetUsersList);
@@ -31,21 +31,13 @@ export function getDataResponseGetUsersList(data) {
   };
 }
 
-const errorResponseGetUsersList = createAction(ActionTypes.getDataResponseErrorGetUsersList);
-
-export function getDataResponseErrorGetUsersList(error) {
-  return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    return dispatch(errorResponseGetUsersList(newState));
-  };
-}
 
 export function getUsersList(page, size) {
   return (dispatch) => {
     dispatch(getDataRequesGetUsersList());
     return api.getUsersList(page, size)
       .then(data => dispatch(getDataResponseGetUsersList(data.data)))
-      .catch(error => dispatch(getDataResponseErrorGetUsersList(error)));
+      .catch(error => dispatch(errorPopup(error)));
   };
 }
 
@@ -79,21 +71,14 @@ export function getDataResponseDisableUser(data, id) {
   };
 }
 
-const errorResponseDisableUser = createAction(ActionTypes.getDataResponseErrorDisableUser);
 
-export function getDataResponseErrorDisableUser(error) {
-  return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    return dispatch(errorResponseDisableUser(newState));
-  };
-}
 
 export function disableUser(id) {
   return (dispatch) => {
     dispatch(getDataRequestDisableUser());
     return api.disableUser(id)
       .then(data => dispatch(getDataResponseDisableUser(data.data, id)))
-      .catch(error => dispatch(getDataResponseErrorDisableUser(error)));
+      .catch(error => dispatch(errorPopup(error)));
   };
 }
 
@@ -127,21 +112,14 @@ export function getDataResponseEnableUser(data, id) {
   };
 }
 
-const errorResponseEnableUser = createAction(ActionTypes.getDataResponseErrorEnableUser);
 
-export function getDataResponseErrorEnableUser(error) {
-  return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    return dispatch(errorResponseEnableUser(newState));
-  };
-}
 
 export function enableUser(id) {
   return (dispatch) => {
     dispatch(getDataRequestEnableUser());
     return api.enableUser(id)
       .then(data => dispatch(getDataResponseEnableUser(data.data, id)))
-      .catch(error => dispatch(getDataResponseErrorEnableUser(error)));
+      .catch(error => dispatch(errorPopup(error)));
   };
 }
 /////////////////////////////////////////////           Delete Admin     ////////////////////////////////////////////////
@@ -162,7 +140,7 @@ export function getDataResponseDeleteAdmin(data, id) {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
     newState.adminsList.map((item) => {
 
-      if (item.id === id) {
+      if (item.id === id && item.id !== '1') {
         var index = newState.adminsList.indexOf(item);
         newState.adminsList.splice(index, 1);
       }
@@ -171,21 +149,13 @@ export function getDataResponseDeleteAdmin(data, id) {
   };
 }
 
-const errorResponseDeleteAdmin = createAction(ActionTypes.getDataResponseErrorDeleteAdmin);
-
-export function getDataResponseErrorDeleteAdmin(error) {
-  return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    return dispatch(errorResponseDeleteAdmin(newState));
-  };
-}
 
 export function deleteAdmin(id) {
   return (dispatch) => {
     dispatch(getDataRequesDeleteAdmin());
     return api.deleteAdmin(id)
       .then(data => dispatch(getDataResponseDeleteAdmin(data.data, id)))
-      .catch(error => dispatch(getDataResponseErrorDeleteAdmin(error)));
+      .catch(error => dispatch(errorPopup(error)));
   };
 }
 /////////////////////////////////////////////           Add Admin     ////////////////////////////////////////////////
@@ -217,21 +187,14 @@ export function getDataResponseAddAdmin(data, id) {
   };
 }
 
-const errorResponseAddAdmin = createAction(ActionTypes.getDataResponseErrorAddAdmin);
-
-export function getDataResponseErrorAddAdmin(error) {
-  return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    return dispatch(errorResponseAddAdmin(newState));
-  };
-}
-
 export function addAdmin(id) {
   return (dispatch) => {
     dispatch(getDataRequesAddAdmin());
+    // console.log(errorPopup(),"undefinersdl,fsd;lvdslvm");
     return api.addAdmin(id)
+
       .then(data => dispatch(getDataResponseAddAdmin(data.data, id)))
-      .catch(error => dispatch(getDataResponseErrorAddAdmin(error)));
+      .catch(error => dispatch(errorPopup(error)));
   };
 }
 
@@ -261,21 +224,12 @@ export function getDataResponseGetAdminsList(data) {
   };
 }
 
-const errorResponseGetAdminsList = createAction(ActionTypes.getDataResponseErrorGetAdminsList);
-
-export function getDataResponseErrorGetAdminsList(error) {
-  return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    return dispatch(errorResponseGetAdminsList(newState));
-  };
-}
-
 export function getAdminsList() {
   return (dispatch) => {
     dispatch(getDataRequesGetAdminsList());
     return api.getAdminsList()
       .then(data => dispatch(getDataResponseGetAdminsList(data.data)))
-      .catch(error => dispatch(getDataResponseErrorGetAdminsList(error)));
+      .catch(error => dispatch(errorPopup(error)));
   };
 }
 

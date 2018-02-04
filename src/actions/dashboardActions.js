@@ -3,7 +3,7 @@ import ActionTypes from "../constants/actionTypes";
 import store from "store";
 import {tools} from "../resources";
 import api from "../api/api";
-
+import   {errorPopup} from "./action";
 /////////////////////////////////////////////          bot get       ////////////////////////////////////////////////
 
 const requestResponseBotGet = createAction(ActionTypes.getDataRequestBotGet);
@@ -27,21 +27,14 @@ export function getDataResponseBotGet(data) {
     };
 }
 
-const errorResponseBotGet = createAction(ActionTypes.getDataResponseErrorBotGet);
 
-export function getDataResponseErrorBotGet(error) {
-    return (dispatch) => {
-        let newState = tools.cloneState(store.getState().projectDataReducer.data);     
-        return dispatch(errorResponseBotGet(newState));
-    };
-}
 
 export function botGet() {    
     return (dispatch) => {
     dispatch(getDataRequesBotGet());
     return api.botGet()
         .then(data => dispatch(getDataResponseBotGet(data.data)))
-        .catch(error => dispatch(getDataResponseErrorBotGet(error)));
+        .catch(error => dispatch(errorPopup(error)));
     };
 }
 
@@ -71,21 +64,14 @@ export function getDataResponseBotPost(data) {
     };
 }
 
-const errorResponseBotPost = createAction(ActionTypes.getDataResponseErrorBotPost);
 
-export function getDataResponseErrorBotPost(error) {
-    return (dispatch) => {
-        let newState = tools.cloneState(store.getState().projectDataReducer.data);     
-        return dispatch(errorResponseBotPost(newState));
-    };
-}
 
 export function botPost() {    
     return (dispatch) => {
     dispatch(getDataRequestBotPost());
     return api.botPost()
         .then(data => dispatch(getDataResponseBotPost(data.data)))
-        .catch(error => dispatch(getDataResponseErrorBotPost(error)));
+        .catch(error => dispatch(errorPopup(error)));
     };
 }
 
@@ -112,20 +98,11 @@ export function getDataResponseBotPut(data) {
     };
 }
 
-const errorResponseBotPut = createAction(ActionTypes.getDataResponseErrorBotPut);
-
-export function getDataResponseErrorBotPut(error) {
-    return (dispatch) => {
-        let newState = tools.cloneState(store.getState().projectDataReducer.data);     
-        return dispatch(errorResponseBotPut(newState));
-    };
-}
-
 export function botPut() {    
     return (dispatch) => {
     dispatch(getDataRequestBotPut());
     return api.botPut()
         .then(data => dispatch(getDataResponseBotPut(data.data)))
-        .catch(error => dispatch(getDataResponseErrorBotPut(error)));
+        .catch(error => dispatch(errorPopup(error)));
     };
 }

@@ -22,7 +22,7 @@ export function getDataResponseSignIn(data) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
     if(data.message === 'Your account is not an active.'){
-      newState.success.message = 'Your account is not an active. Please check your mail to activate your account.' ;
+      newState.success.message = 'Your account is not active.' ;
       store.dispatch(push('/message'));
     }else {
       newState.user.token = data.token;
@@ -30,7 +30,9 @@ export function getDataResponseSignIn(data) {
       window.sessionStorage.setItem("token", data.token);
       setTimeout(
         () => {
-          newState.user.token = '';
+          console.log(newState.user,"in sign in oooooooooooo");
+          newState.user.token = null;
+          newState.user.role = '';
           window.sessionStorage.setItem("token", '');
         }, 3590000);
       store.dispatch(push('/dashboard'));

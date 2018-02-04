@@ -1,5 +1,6 @@
 const ActionTypes = {
   changeMessage: "CHANGE_MESSAGE",
+  errorPopup: "ERROR_POPUP",
   cleanData: "CLEAN_DATA",
   changeTabInSettings: "CHANGE_TAB_IN_SETTINGS",
   changePasswordAction: "CHANGE_PASSWORD_ACTION",

@@ -33,6 +33,11 @@ const errorResponseActivateAccount = createAction(ActionTypes.getDataResponseErr
 export function getDataResponseErrorActivateAccount(error) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
+
+    newState.success.message = 'Something get wrong. Please try again';
+    newState.success.hrefToSignIn = false;
+    store.dispatch(push('/message'));
+
     return dispatch(errorResponseActivateAccount(newState));
   };
 }
@@ -74,6 +79,12 @@ const errorResponseCheck = createAction(ActionTypes.getDataResponseErrorCheck);
 export function getDataResponseErrorCheck(error) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
+
+    newState.success.message = 'Something get wrong. Please try again';
+    newState.success.hrefToSignIn = false;
+    store.dispatch(push('/message'));
+
+
     return dispatch(errorResponseCheck(newState));
   };
 }
@@ -115,6 +126,9 @@ const errorResponseReset = createAction(ActionTypes.getDataResponseErrorReset);
 export function getDataResponseErrorReset(error) {
   return (dispatch) => {
     let newState = tools.cloneState(store.getState().projectDataReducer.data);
+    newState.success.message = 'Something get wrong. Please try again';
+    newState.success.hrefToSignIn = false;
+    store.dispatch(push('/message'));
     return dispatch(errorResponseReset(newState));
   };
 }

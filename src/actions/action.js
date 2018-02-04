@@ -2,7 +2,36 @@ import {createAction} from "redux-actions";
 import ActionTypes from "../constants/actionTypes";
 import store from "store";
 import {tools} from "../resources";
-import api from "../api/api";
+import {push} from "react-router-redux";
+
+const errorPopupResponse = createAction(ActionTypes.errorPopup);
+
+export function errorPopup(error) {
+  return (dispatch) => {
+
+    let newState = tools.cloneState(store.getState().projectDataReducer.data);
+    if (error.response.data.message === 'Token is incorrect !') {
+      console.log(newState,"oooooooooooooooooooooooooo");
+      newState.user.token = null;
+      newState.user.role = '';
+      store.dispatch(push('/login'));
+    } else {
+      newState.popup.show = true;
+      newState.popup.resetPassword = false;
+      newState.popup.password = '';
+      newState.popup.passwordErrorText = '';
+      newState.popup.confirmPassword = '';
+      if (error.response.data.message.length != 0) {
+        newState.popup.text = error.response.data.message;
+      } else {
+        newState.popup.text = "Error has occurred. Please try again!";
+      }
+
+    }
+
+    return dispatch(errorPopupResponse(newState));
+  };
+}
 
 const changeMessageResponse = createAction(ActionTypes.changeMessage);
 

@@ -3,7 +3,7 @@ import ActionTypes from "../constants/actionTypes";
 import store from "store";
 import {tools} from "../resources";
 import api from "../api/api";
-
+import   {errorPopup} from "./action";
 /////////////////////////////////////////////           twTipLogs       ////////////////////////////////////////////////
 
 const requestResponseTwTipLogs = createAction(ActionTypes.getDataRequestTwTipLogs);
@@ -30,21 +30,14 @@ export function getDataResponseTwTipLogs(data) {
     };
 }
 
-const errorResponseTwTipLogs = createAction(ActionTypes.getDataResponseErrorTwTipLogs);
 
-export function getDataResponseErrorTwTipLogs(error) {
-    return (dispatch) => {
-        let newState = tools.cloneState(store.getState().projectDataReducer.data);     
-        return dispatch(errorResponseTwTipLogs(newState));
-    };
-}
 
 export function twTipLogs() {    
     return (dispatch) => {
     dispatch(getDataRequesTwTipLogs());
     return api.twTipLogs()
         .then(data => dispatch(getDataResponseTwTipLogs(data.data)))
-        .catch(error => dispatch(getDataResponseErrorTwTipLogs(error)));
+        .catch(error => dispatch(errorPopup(error)));
     };
 }
 

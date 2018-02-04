@@ -100,7 +100,6 @@ export class Settings extends React.Component {
   }
 
   render() {
-    console.log(this.props,"propss")
     return (
       <div className="main-content">
         <div className="header-section">Settings</div>
