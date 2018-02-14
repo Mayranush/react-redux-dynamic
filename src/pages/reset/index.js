@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {projectDataActions, checkActions} from "../../actions/index";
+import {generalActions, checkActions} from "../../actions/index";
 import {Link} from "react-router/es6";
 import "./reset.scss";
 
@@ -16,6 +16,7 @@ export class Check extends React.Component {
  			vid = vid.split("=");
  			vid1 = vid[1];
 		}
+		console.log("jjjjjjjjjjjjjjjjjj")
 		this.props.check(vid1);
 	}
 
@@ -27,9 +28,9 @@ export class Check extends React.Component {
 }
 
 export default connect(
-  state => ({data: state.projectDataReducer.data}),
+  state => ({data: state.general}),
     {
-        ...projectDataActions,
+        ...generalActions,
         ...checkActions
     }
 )(Check);

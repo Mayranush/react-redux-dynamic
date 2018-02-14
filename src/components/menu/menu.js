@@ -8,10 +8,10 @@ export class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.logout.bind(this);
+    this.role = window.sessionStorage.getItem("role");  
   }
 
   static propTypes = {
-    changeMessage: PropTypes.func.isRequired,
     cleanData: PropTypes.func.isRequired,
     role: PropTypes.string.isRequired
   };
@@ -19,9 +19,9 @@ export class Menu extends React.Component {
 
   logout() {
     window.sessionStorage.removeItem("token");
+    window.sessionStorage.removeItem("role");
     this.props.cleanData();
   }
-
 
   render() {
     return (
@@ -35,10 +35,10 @@ export class Menu extends React.Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
-              {this.props.role === 'USER' &&
+              {this.role === 'USER' &&
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                 <div className="nav-link">
-                  <Link className="nav-link-text" to="/dashboard">
+                  <Link className="nav-link-text" to="dashboard">
                     <i className="fa fa-fw fa-dashboard fa-menu"/>Dashboard
                   </Link>
                 </div>
@@ -46,15 +46,15 @@ export class Menu extends React.Component {
               }
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
                 <div className="nav-link">
-                  <Link className="nav-link-text" to="/charts">
+                  <Link className="nav-link-text" to="charts">
                     <i className="fa fa-fw fa-area-chart fa-menu"/>Charts
                   </Link>
                 </div>
               </li>
-              {this.props.role === 'USER' &&
+              {this.role === 'USER' &&
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
                 <div className="nav-link">
-                  <Link className="nav-link-text" to="/tables">
+                  <Link className="nav-link-text" to="tables">
                     <i className="fa fa-fw fa-table fa-menu"/>Tables
                   </Link>
                 </div>
@@ -62,24 +62,24 @@ export class Menu extends React.Component {
               }
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Settings">
                 <div className="nav-link">
-                  <Link className="nav-link-text" to="/settings">
+                  <Link className="nav-link-text" to="settings">
                     <i className="fa fa-fw fa-wrench fa-menu"/>Settings
                   </Link>
                 </div>
               </li>
-              {this.props.role === 'ADMIN' &&
+              {this.role === 'ADMIN' &&
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Adminarea">
                 <div className="nav-link">
-                  <Link className="nav-link-text" to="/users">
+                  <Link className="nav-link-text" to="users">
                     <i className="fa fa-fw fa-wrench fa-menu"/>Users list
                   </Link>
                 </div>
               </li>
               }
-              {this.props.role === 'ADMIN' &&
+              {this.role === 'ADMIN' &&
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Adminarea">
                 <div className="nav-link">
-                  <Link className="nav-link-text" to="/admins">
+                  <Link className="nav-link-text" to="admins">
                     <i className="fa fa-fw fa-wrench fa-menu"/>Admin list
                   </Link>
                 </div>
@@ -135,7 +135,7 @@ export class Menu extends React.Component {
                 </div>
               </li>
               <li className="nav-item">
-                <Link to="/" onClick={this.handleLogout} className="nav-link">
+                <Link to="" onClick={this.handleLogout} className="nav-link">
                   <i className="fa fa-fw fa-sign-out fa-menu"/>Sign out</Link>
                 {/*data-toggle="modal" data-target="#exampleModal"*/}
               </li>

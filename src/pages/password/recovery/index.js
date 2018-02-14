@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {passwordForgetActions, projectDataActions} from "../../../actions/index";
+import {passwordForgetActions, signInActions} from "../../../actions/index";
 import {Link} from "react-router/es6";
 import "../login.scss";
 
@@ -15,15 +15,7 @@ export class Login extends React.Component {
 
   emailChange(e) {
     let email = e.target.value;
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (email == '') {
-      this.props.changeMessage('login', 'emailErrorText', 'email is empty');
-    } else if (re.test(email)) {
-      this.props.changeMessage('login', 'emailErrorText', '');
-    } else {
-      this.props.changeMessage('login', 'emailErrorText', 'not correct email');
-    }
-    this.props.changeMessage('login', 'email', email);
+    this.props.emailChange(email);
   }
 
   passwordForget(e) {
@@ -31,10 +23,10 @@ export class Login extends React.Component {
     e.preventDefault();
 
     let obj = {
-      email: this.props.data.login.email,
+      email: this.props.data.email,
     };
 
-    if (this.props.data.login.emailErrorText.length == 0 && this.props.data.login.email.length != 0) {
+    if (this.props.data.emailErrorText.length == 0 && this.props.data.email.length != 0) {
       this.props.passwordForget(obj);
     }
   }
@@ -52,18 +44,18 @@ export class Login extends React.Component {
               <div className="form-group">
                 <label htmlFor="inputEmail">Email address</label>
                 <input
-                  className={this.props.data.login.emailErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
+                  className={this.props.data.emailErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
                   id="inputEmail" type="email"
                   placeholder="Enter email"
                   onBlur={(e) => this.handleEmailChange(e)}
-                  defaultValue={this.props.data.login.email}/>
+                  defaultValue={this.props.data.email}/>
                 <p
-                  className="error-for-input">{this.props.data.login.emailErrorText.length != 0 ? '*' + this.props.data.login.emailErrorText : ''}</p>
+                  className="error-for-input">{this.props.data.emailErrorText.length != 0 ? '*' + this.props.data.emailErrorText : ''}</p>
               </div>
 
 
-              <button className={this.props.data.login.emailErrorText.length != 0 ||
-              this.props.data.login.email.length == 0 ? "disabled-button btn btn-primary btn-block" : "btn btn-primary btn-block"}
+              <button className={this.props.data.emailErrorText.length != 0 ||
+              this.props.data.email.length == 0 ? "disabled-button btn btn-primary btn-block" : "btn btn-primary btn-block"}
                       onClick={this.handlePasswordForget}>Recover password
               </button>
             </form>
@@ -79,9 +71,9 @@ export class Login extends React.Component {
 }
 
 export default connect(
-  state => ({data: state.projectDataReducer.data}),
+  state => ({data: state.signIn}),
   {
-    ...projectDataActions,
+    ...signInActions,
     ...passwordForgetActions
   }
 )(Login);

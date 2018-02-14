@@ -7,41 +7,20 @@ export class Popup extends React.Component {
     super(props);
     this.handlePasswordChange = this.passwordChange.bind(this);
     this.handleConfirmPasswordChange = this.confirmChange.bind(this);
-    this.handleChangePassword = this.changePassword.bind(this);
+    this.handleResetPassword = this.handleResetPassword.bind(this);
   }
 
   passwordChange(e) {
-
     let password = e.target.value;
-    if (password == '') {
-      this.props.changeMessage('popup', 'passwordErrorText', 'password is empty');
-    } else if (password == this.props.popup.confirmPassword) {
-      this.props.changeMessage('popup', 'passwordErrorText', '');
-      this.props.changeMessage('popup', 'password', password);
-    }
-    else {
-      this.props.changeMessage('popup', 'passwordErrorText', 'password not matching');
-      this.props.changeMessage('popup', 'password', password);
-    }
-
+    this.props.passwordChangeInPopup(password, this.props.popup.confirmPassword);
   }
 
   confirmChange(e) {
-
     let password = e.target.value;
-    if (password == '') {
-      this.props.changeMessage('popup', 'passwordErrorText', 'password is empty');
-    } else if (password == this.props.popup.password) {
-      this.props.changeMessage('popup', 'passwordErrorText', '');
-      this.props.changeMessage('popup', 'confirmPassword', password);
-    } else {
-      this.props.changeMessage('popup', 'passwordErrorText', 'password not matching');
-      this.props.changeMessage('popup', 'confirmPassword', password);
-    }
-
+    this.props.confirmChangeInPopup(password, this.props.popup.password);
   }
 
-  changePassword() {
+  handleResetPassword() {
     let obj = {
       password: this.props.popup.password
     };
@@ -49,19 +28,20 @@ export class Popup extends React.Component {
       && this.props.popup.password.length != 0
       && this.props.popup.password == this.props.popup.confirmPassword) {
 
-      this.props.changePassword(obj);
+      this.props.changeAndResetPassword(obj);
     }
   }
 
   static propTypes = {
     popup: PropTypes.object,
     closePopup: PropTypes.func,
-    changeMessage: PropTypes.func,
-    changePassword: PropTypes.func
-
+    confirmChangeInPopup: PropTypes.func,
+    passwordChangeInPopup: PropTypes.func,
+    changeAndResetPassword: PropTypes.func
   };
 
   render() {
+    console.log(this.props,"props in popup")
     return (
       <div className="general-div">
         {this.props.popup.text && <div className="text-block">
@@ -73,19 +53,19 @@ export class Popup extends React.Component {
             <div className="form-group">
               <div className="form-row">
                 <div className="col-md-6">
-
                   <input
                     className={this.props.popup.passwordErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
                     id="exampleInputPassword1" type="password" placeholder="Password"
                     onKeyUp={(e) => this.handlePasswordChange(e)}/>
+                     <p
+                      className="error-for-input-popup">{this.props.popup.passwordErrorText.length != 0 ? '*' + this.props.popup.passwordErrorText : ''}</p>
+
                 </div>
                 <div className="col-md-6">
-
                   <input
                     className={this.props.popup.passwordErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
                     id="exampleConfirmPassword" type="password" placeholder="Confirm password"
                     onKeyUp={(e) => this.handleConfirmPasswordChange(e)}/>
-
                 </div>
               </div>
             </div>
@@ -93,7 +73,7 @@ export class Popup extends React.Component {
           </form>
           <div>
             <button className="close-button"
-                    onClick={() => this.handleChangePassword()}>Reset password
+                    onClick={() => this.handleResetPassword()}>Reset password
             </button>
             <button className="close-button" onClick={() => this.props.closePopup()}>Cancel
             </button>

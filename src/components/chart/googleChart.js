@@ -12,6 +12,7 @@ export class GoogleChart extends React.Component {
     }
     if (this.props.loadCharts) {
         GoogleChartLoader.init().then(() => {
+          console.log("here in did mount")
             this.drawChart();
         });
     } else {

@@ -16,7 +16,6 @@ export class TwitterSettings extends React.Component {
   static propTypes = {
     twitter: PropTypes.object,
     updateSettings: PropTypes.func,
-    changeMessage: PropTypes.func,
     cleanData: PropTypes.func
   };
 

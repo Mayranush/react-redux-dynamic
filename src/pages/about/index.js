@@ -20,6 +20,6 @@ export class About extends React.Component {
 }
   
 export default connect(
-  state => ({ data:  state.projectDataReducer.data }),
+  state => ({ data:  state.projectDataReducer }),
   { ...projectDataActions }
 )(About);

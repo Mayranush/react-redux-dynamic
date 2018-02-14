@@ -22,29 +22,22 @@ export class TwitterCriteria extends React.Component {
   static propTypes = {
     twitter: PropTypes.object,
     updateSettings: PropTypes.func,
-    changeMessage: PropTypes.func,
     cleanData: PropTypes.func
   };
-
-
 
   render() {
     return (
       <div>
-
         <form className="form-horizontal" role="form">
           <div className="cube">
-
             <div className="cube2">
               <h6 className={this.props.twitter.botStatus == 'RUNNING' ?"warning-stop-bot-active":"warning-stop-bot"}>Please disable the bot from running to update these details<br/></h6>
               <div>
-
                 <div className="form-group tw-crit ">
                   <label htmlFor="minFollowers" className="col-lg-3 control-label tw-crit">Minimum number of
                     followers
                     <div className="description">(will tip only those who has more than input value)</div>
                   </label>
-
                   <div className="col-lg-3 form-group-values tw-crit">
                     <input type="number" id="minFollowers" ref="minFollowers" className="form-control"
                            disabled={ this.props.twitter.botStatus == 'RUNNING' ? true : false }

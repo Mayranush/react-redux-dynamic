@@ -4,6 +4,7 @@ import store from "store";
 import {tools} from "../resources";
 import api from "../api/api";
 import {push} from "react-router-redux";
+import {changeSuccessMessage} from "./successActions";
 
 /////////////////////////////////////////////           Activate Account      ////////////////////////////////////////////////
 
@@ -11,8 +12,7 @@ const requestResponseActivateAccount = createAction(ActionTypes.getDataRequestAc
 
 export function getDataRequestActivateAccount() {
   return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    return dispatch(requestResponseActivateAccount(newState));
+    return dispatch(requestResponseActivateAccount());
   };
 }
 
@@ -20,11 +20,10 @@ const responseResponseActivateAccount = createAction(ActionTypes.getDataResponse
 
 export function getDataResponseActivateAccount(data) {
   return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    newState.success.message = 'You are successfully registered! Sign in ';
-    newState.success.hrefToSignIn = true;
+    let message = 'You are successfully registered! Sign in ';
+    let hrefToSignIn = true;
     store.dispatch(push('/message'));
-    return dispatch(responseResponseActivateAccount(newState));
+    dispatch(changeSuccessMessage(message, hrefToSignIn));
   };
 }
 
@@ -32,13 +31,7 @@ const errorResponseActivateAccount = createAction(ActionTypes.getDataResponseErr
 
 export function getDataResponseErrorActivateAccount(error) {
   return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-
-    newState.success.message = 'Something get wrong. Please try again';
-    newState.success.hrefToSignIn = false;
-    store.dispatch(push('/message'));
-
-    return dispatch(errorResponseActivateAccount(newState));
+    return dispatch(errorResponseActivateAccount());
   };
 }
 
@@ -58,8 +51,7 @@ const requestResponseCheck = createAction(ActionTypes.getDataRequestCheck);
 
 export function getDataRequestCheck() {
   return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    return dispatch(requestResponseCheck(newState));
+    return dispatch(requestResponseCheck());
   };
 }
 
@@ -67,10 +59,9 @@ const responseResponseCheck = createAction(ActionTypes.getDataResponseCheck);
 
 export function getDataResponseCheck(data,vid) {
   return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    newState.user.vid = vid;
+    console.log("PPPPPPPPPPPPPPPPP")
     store.dispatch(push('/password/reset'));
-    return dispatch(responseResponseCheck(newState));
+    return dispatch(responseResponseCheck(vid));
   };
 }
 
@@ -78,14 +69,7 @@ const errorResponseCheck = createAction(ActionTypes.getDataResponseErrorCheck);
 
 export function getDataResponseErrorCheck(error) {
   return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-
-    newState.success.message = 'Something get wrong. Please try again';
-    newState.success.hrefToSignIn = false;
-    store.dispatch(push('/message'));
-
-
-    return dispatch(errorResponseCheck(newState));
+    return dispatch(errorResponseCheck());
   };
 }
 
@@ -104,8 +88,7 @@ const requestResponseReset = createAction(ActionTypes.getDataRequestReset);
 
 export function getDataRequestReset() {
   return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    return dispatch(requestResponseReset(newState));
+    return dispatch(requestResponseReset());
   };
 }
 
@@ -113,11 +96,10 @@ const responseResponseReset = createAction(ActionTypes.getDataResponseReset);
 
 export function getDataResponseReset(data) {
   return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    newState.success.message = 'You successfully reset your password! Sign in ';
-    newState.success.hrefToSignIn = true;
+    let message = 'You successfully reset your password! Sign in ';
+    let hrefToSignIn = true;
     store.dispatch(push('/message'));
-    return dispatch(responseResponseReset(newState));
+    dispatch(changeSuccessMessage(message, hrefToSignIn));
   };
 }
 
@@ -125,11 +107,7 @@ const errorResponseReset = createAction(ActionTypes.getDataResponseErrorReset);
 
 export function getDataResponseErrorReset(error) {
   return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    newState.success.message = 'Something get wrong. Please try again';
-    newState.success.hrefToSignIn = false;
-    store.dispatch(push('/message'));
-    return dispatch(errorResponseReset(newState));
+    return dispatch(errorResponseReset());
   };
 }
 

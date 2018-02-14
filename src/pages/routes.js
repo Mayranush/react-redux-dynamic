@@ -12,13 +12,13 @@ function loadRoute(cb) {
 }
 
 function requireAuth (nextState, replace, callback) {
-  const token = store.getState().projectDataReducer.data.user.token || window.sessionStorage.getItem("token");
+  const token = store.getState().general.token || window.sessionStorage.getItem("token");
   if (!token) replace('/login');
   return callback()
 }
 
 function dontRequireAuth(nextState, replace, callback) {
-  const token = store.getState().projectDataReducer.data.user.token || window.sessionStorage.getItem("token");
+  const token = store.getState().general.token || window.sessionStorage.getItem("token");
   if (token) replace('/dashboard');
   return callback()
 }

@@ -49,7 +49,7 @@ export class Tables extends React.Component {
 }
 
 export default connect(
-  state => ({data: state.projectDataReducer.data}),
+  state => ({data: state.table}),
     {
         ...projectDataActions,
         ...tablesActions

@@ -4,15 +4,16 @@ import store from "store";
 import {tools} from "../resources";
 import api from "../api/api";
 import {push} from "react-router-redux";
-import   {errorPopup} from "./action";
+import {changeSuccessMessage} from "./successActions";
+import {errorHandler} from "./generalActions";
+
 /////////////////////////////////////////////           password Forget      ////////////////////////////////////////////////
 
 const requestResponsePasswordForget = createAction(ActionTypes.getDataRequestPasswordForget);
 
 export function getDataRequestPasswordForget() {
   return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    return dispatch(requestResponsePasswordForget(newState));
+    return dispatch(requestResponsePasswordForget());
   };
 }
 
@@ -20,11 +21,9 @@ const responseResponsePasswordForget = createAction(ActionTypes.getDataResponseP
 
 export function getDataResponsePasswordForget(data) {
   return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    newState.success.message = 'We have sent you an email with a link to reset your password.';
-    newState.success.hrefToSignIn = false;
+    let message = 'We have sent you an email with a link to reset your password.';
+    dispatch(changeSuccessMessage(message));
     store.dispatch(push('/message'));
-    return dispatch(responseResponsePasswordForget(newState));
   };
 }
 
@@ -32,11 +31,7 @@ const errorResponsePasswordForget = createAction(ActionTypes.getDataResponseErro
 
 export function getDataResponseErrorPasswordForget(error) {
   return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    newState.success.message = 'Error has occurred. Please try again!';
-    newState.success.hrefToSignIn = false;
-    store.dispatch(push('/message'));
-    return dispatch(errorResponsePasswordForget(newState));
+    return dispatch(errorResponsePasswordForget(error));
   };
 }
 
@@ -45,7 +40,7 @@ export function passwordForget(obj) {
     dispatch(getDataRequestPasswordForget());
     return api.passwordForget(obj)
       .then(data => dispatch(getDataResponsePasswordForget(data.data)))
-      .catch(error => dispatch(getDataResponseErrorPasswordForget(error)));
+      .catch(error => dispatch(getDataResponseErrorPasswordForget(error.response.data.message)));
   };
 }
 
@@ -56,8 +51,7 @@ const requestResponseChangePassword = createAction(ActionTypes.getDataRequestCha
 
 export function getDataRequestChangePassword() {
   return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    return dispatch(requestResponseChangePassword(newState));
+    return dispatch(requestResponseChangePassword());
   };
 }
 
@@ -65,27 +59,23 @@ const responseResponseChangePassword = createAction(ActionTypes.getDataResponseC
 
 export function getDataResponseChangePassword(data) {
   return (dispatch) => {
-    let newState = tools.cloneState(store.getState().projectDataReducer.data);
-    newState.popup.show = true;
-    newState.popup.resetPassword = false;
-    newState.popup.text = "Successfully updated";
-    newState.popup.password = '';
-    newState.popup.passwordErrorText = '';
-    newState.popup.confirmPassword = '';
-
-
+    let show = true;
+    let resetPassword = false;
+    let text = "Successfully updated";
+    let password = '';
+    let passwordErrorText = '';
+    let confirmPassword = '';
     store.dispatch(push('/settings'));
-    return dispatch(responseResponseChangePassword(newState));
+    return dispatch(responseResponseChangePassword({show, resetPassword, text, password, passwordErrorText, confirmPassword}));
   };
 }
 
-
-export function changePassword(obj) {
+export function changeAndResetPassword(obj) {
   return (dispatch) => {
     dispatch(getDataRequestChangePassword());
     return api.changePassword(obj)
       .then(data => dispatch(getDataResponseChangePassword(data.data)))
-      .catch(error => dispatch(errorPopup(error)));
+      .catch(error => dispatch(errorHandler(error)));
   };
 }
 

@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {projectDataActions, signUpActions} from "../../actions/index";
 import {Link} from "react-router/es6";
 import "./register.scss";
+import axios from "axios";
 
 export class Register extends React.Component {
   constructor(props) {
@@ -18,106 +19,63 @@ export class Register extends React.Component {
 
   twitterChange(e) {
     let twitterAccount = e.target.value;
-    this.props.changeMessage('register', 'signUpErrorText', '');
-    if (twitterAccount == '') {
-      this.props.changeMessage('register', 'twitterAccountErrorText', 'Twitter account is empty');
-    } else {
-      this.props.changeMessage('register', 'twitterAccountErrorText', '');
-    }
-    this.props.changeMessage('register', 'twitterAccount', twitterAccount);
+    this.props.twitterAccountChange(twitterAccount);
   }
 
   firstnameChange(e) {
-    this.props.changeMessage('register', 'signUpErrorText', '');
     let firstname = e.target.value;
     if (firstname != '') {
-      this.props.changeMessage('register', 'firstname', firstname);
+      this.props.firstnameChange(firstname);
     }
-
   }
 
   lastnameChange(e) {
-    this.props.changeMessage('register', 'signUpErrorText', '');
     let lastname = e.target.value;
     if (lastname != '') {
-      this.props.changeMessage('register', 'lastname', lastname);
+      this.props.lastnameChange(lastname);
     }
-
   }
 
   emailChange(e) {
-    this.props.changeMessage('register', 'signUpErrorText', '');
     let email = e.target.value;
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (email == '') {
-      this.props.changeMessage('register', 'emailErrorText', 'email is empty');
-    } else if (re.test(email)) {
-      this.props.changeMessage('register', 'emailErrorText', '');
-    } else {
-      this.props.changeMessage('register', 'emailErrorText', 'not correct email');
-    }
-    this.props.changeMessage('register', 'email', email);
+    this.props.emailChangeInSignUp(email);
   }
 
   passwordChange(e) {
-    this.props.changeMessage('register', 'signUpErrorText', '');
     let password = e.target.value;
-    if (password == '') {
-      this.props.changeMessage('register', 'passwordErrorText', 'password is empty');
-    } else if (password == this.props.data.register.confirmPassword) {
-      this.props.changeMessage('register', 'passwordErrorText', '');
-      this.props.changeMessage('register', 'password', password);
-    }
-    else {
-      this.props.changeMessage('register', 'passwordErrorText', 'password not matching');
-      this.props.changeMessage('register', 'password', password);
-    }
-
+    this.props.passwordChangeInSignUp(password, this.props.data.confirmPassword);
   }
 
   confirmChange(e) {
-    this.props.changeMessage('register', 'signUpErrorText', '');
     let password = e.target.value;
-    if (password == '') {
-      this.props.changeMessage('register', 'passwordErrorText', 'password is empty');
-    } else if (password == this.props.data.register.password) {
-      this.props.changeMessage('register', 'passwordErrorText', '');
-      this.props.changeMessage('register', 'confirmPassword', password);
-    } else {
-      this.props.changeMessage('register', 'passwordErrorText', 'password not matching');
-      this.props.changeMessage('register', 'confirmPassword', password);
-    }
-
+    this.props.confirmChange(password, this.props.data.password);
   }
 
   registerUser(e) {
     e.stopPropagation();
     e.preventDefault();
-
+console.log("here 111111111111111111")
     let obj = {
-      email: this.props.data.register.email,
-      password: this.props.data.register.password,
-      firstname: this.props.data.register.firstname,
-      lastname: this.props.data.register.lastname,
-      twUsername: this.props.data.register.twitterAccount,
-
+      email: this.props.data.email,
+      password: this.props.data.password,
+      firstname: this.props.data.firstname,
+      lastname: this.props.data.lastname,
+      twUsername: this.props.data.twitterAccount
     };
+console.log(obj, "obj 111111111111111111")
+console.log(this.props.data, "this.props.data 111111111111111111")
 
-    if (this.props.data.register.emailErrorText.length == 0
-      && this.props.data.register.twitterAccountErrorText.length == 0
-      && this.props.data.register.passwordErrorText.length == 0
-      && this.props.data.register.email.length != 0
-      && this.props.data.register.twitterAccount.length != 0
-      && this.props.data.register.password.length != 0
+    if (this.props.data.emailErrorText.length == 0
+      && this.props.data.twitterAccountErrorText.length == 0
+      && this.props.data.passwordErrorText.length == 0
+      && this.props.data.email.length != 0
+      && this.props.data.twitterAccount.length != 0
+      && this.props.data.password.length != 0
 
-      && this.props.data.register.password == this.props.data.register.confirmPassword) {
+    && this.props.data.password == this.props.data.confirmPassword) {
+      console.log("here 222222222222222222")
+
       this.props.signUp(obj);
-    } else {
-      this.props.changeMessage('register', 'signUpErrorText', 'Please fill data correctly');
-      // this.props.data.register.email.length == 0 && this.props.changeMessage('register','emailErrorText', ' ');
-      // this.props.data.register.twitterAccount.length == 0 && this.props.changeMessage('register','twitterAccountErrorText', ' ');
-      // this.props.data.register.email.length == 0 && this.props.changeMessage('register','emailErrorText', ' ');
-      // this.props.data.register.email.length == 0 && this.props.changeMessage('register','emailErrorText', ' ');
     }
 
   }
@@ -159,24 +117,22 @@ export class Register extends React.Component {
                 <div className="form-row">
                   <div className="col-md-6">
                     <label htmlFor="email">Email address</label>
-                    <input
-                      className={this.props.data.register.emailErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
-                      id="exampleInputEmail1" type="email" aria-describedby="emailHelp"
-                      onBlur={(e) => this.handleREmailChange(e)}
-                      placeholder="Enter email"/>
-                    {this.props.data.register.emailErrorText.length != 0 ? <p
-                      className="error-for-input">*{this.props.data.register.emailErrorText}</p> : ''}
-
+                    <input className={this.props.data.emailErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
+                           id="exampleInputEmail1" type="email" aria-describedby="emailHelp"
+                           onBlur={(e) => this.handleREmailChange(e)}
+                           placeholder="Enter email"/>
+                    <p
+                      className="error-for-input">{this.props.data.emailErrorText.length != 0 ? '*' + this.props.data.emailErrorText : ''}</p>
                   </div>
                   <div className="col-md-6">
                     <label htmlFor="twitterAccount">Twitter Username</label>
-                    <input
-                      className={this.props.data.register.twitterAccountErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
-                      id="twitterUsername" type="text" aria-describedby="twitterUsernameHelp"
-                      onBlur={(e) => this.handleTwitterChange(e)}
-                      placeholder="Enter Twitter username"/>
-                    {this.props.data.register.twitterAccountErrorText.length != 0 ? <p
-                      className="error-for-input">*{this.props.data.register.twitterAccountErrorText}</p> : ''}
+                    <input className={this.props.data.twitterAccountErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
+                           id="twitterUsername" type="text" aria-describedby="twitterUsernameHelp"
+                           onBlur={(e) => this.handleTwitterChange(e)}
+                           placeholder="Enter Twitter username"/>
+                    <p
+                      className="error-for-input">{this.props.data.twitterAccountErrorText.length != 0 ? '*' + this.props.data.twitterAccountErrorText : ''}</p>
+
                   </div>
                 </div>
               </div>
@@ -184,29 +140,26 @@ export class Register extends React.Component {
                 <div className="form-row">
                   <div className="col-md-6">
                     <label htmlFor="password">Password</label>
-                    <input
-                      className={this.props.data.register.passwordErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
-                      id="exampleInputPassword1" type="password" placeholder="Password"
-                      onBlur={(e) => this.handleRPasswordChange(e)}/>
+                    <input className={this.props.data.passwordErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
+                           id="exampleInputPassword1" type="password" placeholder="Password"
+                           onBlur={(e) => this.handleRPasswordChange(e)}/>
+                    {/*<p*/}
+                      {/*className="error-for-input">{this.props.data.passwordErrorText.length != 0 ? '*' + this.props.data.passwordErrorText : ''}</p>*/}
+
                   </div>
                   <div className="col-md-6">
                     <label htmlFor="password">Confirm password</label>
-                    <input
-                      className={this.props.data.register.passwordErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
-                      id="exampleConfirmPassword" type="password" placeholder="Confirm password"
-                      onBlur={(e) => this.handleRConfirmPasswordChange(e)}/>
-
+                    <input className={this.props.data.passwordErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
+                           id="exampleConfirmPassword" type="password" placeholder="Confirm password"
+                           onBlur={(e) => this.handleRConfirmPasswordChange(e)}/>
+                   
                   </div>
                 </div>
               </div>
               <p
-                className="error-for-input">{this.props.data.register.passwordErrorText.length != 0 ? '*' + this.props.data.register.passwordErrorText : ''}</p>
-              <p
-                className="error-for-input">{this.props.data.register.signUpErrorText.length != 0 ? '*' + this.props.data.register.signUpErrorText : ''}</p>
+              className="error-for-input">{this.props.data.passwordErrorText.length != 0 ? '*' + this.props.data.passwordErrorText : ''}</p>
 
-              <button className="btn btn-primary btn-block register" onClick={(e) => this.handleRegisterUser(e)}>Sign
-                Up
-              </button>
+              <button className="btn btn-primary btn-block register" onClick={(e) => this.handleRegisterUser(e)}>Register</button>
             </form>
             <div className="text-center">
               <Link className="d-block small mt-3 login-link" to="/login"> Already have an account? Go to Login
@@ -220,9 +173,9 @@ export class Register extends React.Component {
 }
 
 export default connect(
-  state => ({data: state.projectDataReducer.data}),
-  {
-    ...projectDataActions,
-    ...signUpActions
-  }
+  state => ({data: state.register}),
+    {
+        ...projectDataActions,
+        ...signUpActions
+    }
 )(Register);

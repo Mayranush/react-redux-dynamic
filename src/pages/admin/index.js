@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {adminActions, projectDataActions} from "../../actions/index";
+import {adminActions, generalActions} from "../../actions/index";
 import { Pagination } from "../../components/pagination/pagination";
 import "./admin.scss";
 
@@ -18,13 +18,14 @@ export class Admin extends React.Component {
   }
 
   addAdmin(item) {
-      this.props.addAdmin(item.id);
+      this.props.addAdmin(item.id, this.props.data.usersList);
   }
+
   changeActive(item) {
     if (item.isActive) {
-      this.props.disableUser(item.id);
+      this.props.disableUser(item.id, this.props.data.usersList, "user");
     } else {
-      this.props.enableUser(item.id);
+      this.props.enableUser(item.id, this.props.data.usersList, "user");
     }
   }
 
@@ -37,6 +38,7 @@ export class Admin extends React.Component {
   }
 
   render() {
+    console.log(this.props,"-----------------------------")
     return (
       <div>
         <div className="main-content">
@@ -57,7 +59,7 @@ export class Admin extends React.Component {
               </thead>
               <tbody>
 
-              { this.props.data.usersList.map((item) => {
+              {this.props.data.usersList.length != 0 && this.props.data.usersList.map((item) => {
                 return ( <tr key={item.id}>
                   <th scope="row">{item.firstname}</th>
                   <td>{item.lastname}</td>
@@ -87,9 +89,9 @@ export class Admin extends React.Component {
 }
 
 export default connect(
-  state => ({data: state.projectDataReducer.data}),
+  state => ({data: state.admin}),
   {
-    ...projectDataActions,
+    ...generalActions,
     ...adminActions
   }
 )(Admin);

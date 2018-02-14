@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {projectDataActions, checkActions} from "../../actions/index";
+import {generalActions, checkActions} from "../../actions/index";
 import {Link} from "react-router/es6";
 import "./activate.scss";
 
@@ -27,9 +27,9 @@ export class Check extends React.Component {
 }
 
 export default connect(
-  state => ({data: state.projectDataReducer.data}),
+  state => ({data: state.success}),
     {
-        ...projectDataActions,
+        ...generalActions,
         ...checkActions
     }
 )(Check);

@@ -12,16 +12,17 @@ export class Register extends React.Component {
   }
 
   render() {
+    console.log(this.props,"this.propsthis.propsthis.propsthis.propsthis.props")
     return (
       <div className="success">
-        <span>{this.props.data.success.message}</span>
-        {this.props.data.success.hrefToSignIn && <Link to="login">here</Link>}
+        <span>{this.props.data.message}</span>
+        {this.props.data.hrefToSignIn && <Link to="login">here</Link>}
       </div>
     )
   }
 }
 
 export default connect(
-  state => ({data: state.projectDataReducer.data}),
+  state => ({data: state.success}),
   {...projectDataActions}
 )(Register);

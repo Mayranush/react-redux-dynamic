@@ -5,8 +5,8 @@ import './header.scss';
 const Header = (...props) => {
   return(
     <nav className="navbar" role="navigation">
-      <Link to="/about">About</Link>
-      <Link to="/login">Login</Link>
+      <Link to="about">About</Link>
+      <Link to="login">Login</Link>
     </nav>
   )  
 };

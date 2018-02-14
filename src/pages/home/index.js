@@ -12,10 +12,8 @@ export class Home extends React.Component {
   }
 
   render() {
-
     return (
       <div>
-
         <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
           <div className="container">
             <Link className="navbar-brand" to="#">LOGO HERE</Link>
@@ -28,17 +26,15 @@ export class Home extends React.Component {
                   <a className="nav-link" href="#about">About</a>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/login">Sign in</Link>
+                  <Link className="nav-link" to="login">Sign in</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/register">Sign up</Link>
+                  <Link className="nav-link" to="register">Sign up</Link>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
-
-
         <header className="intro-header">
           <div className="container">
             <div className="intro-message">
@@ -119,7 +115,7 @@ export class Home extends React.Component {
 }
 
 export default connect(
-  state => ({ data:  state.projectDataReducer.data }),
+  state => ({ data:  state.projectDataReducer }),
   { ...projectDataActions }
 
 )(Home);

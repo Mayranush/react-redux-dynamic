@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import "./style.scss";
 import {Menu} from "../../components/menu/menu";
 import {Footer} from "../../components/menu/footer";
-import {passwordForgetActions, projectDataActions} from "../../actions/index";
+import {passwordForgetActions, generalActions, signUpActions, popupActions} from "../../actions/index";
 import {Popup} from "../../components/popup/popup";
 
 class MainLayout extends React.Component {
@@ -19,28 +19,24 @@ class MainLayout extends React.Component {
   }
 
   closePopup() {
-    this.props.changeMessage('popup', 'show', false);
-    this.props.changeMessage('popup', 'resetPassword', false);
-    this.props.changeMessage('popup', 'text', '');
+    this.props.changePopup('', false, false, '');
   }
-
 
   render() {
     return (
       <main className="viewport">
-        {this.props.data.popup.show &&
-        <Popup popup={this.props.data.popup}
-               closePopup={this.handleClosePopup}
-               changeMessage={this.props.changeMessage}
-               changePasswordAction={this.props.changePasswordAction}
-               changePassword={this.props.changePassword}/>}
-        {((this.props.data.user && this.props.data.user.token) || window.sessionStorage.getItem("token")) &&
-        <Menu changeMessage={this.props.changeMessage}
-              cleanData={this.props.cleanData}
-              role={this.props.data.user.role}
-        />}
+        {this.props.popup.show &&
+          <Popup popup={this.props.popup}
+            closePopup={this.handleClosePopup}
+            changePopup={this.props.changePopup} 
+            confirmChangeInPopup={this.props.confirmChangeInPopup}
+            passwordChangeInPopup={this.props.passwordChangeInPopup}
+            changeAndResetPassword={this.props.changeAndResetPassword} />}
+        {(this.props.data.token || window.sessionStorage.getItem("token")) &&
+          <Menu cleanData={this.props.cleanData}
+                role={this.props.data.role} />}
         {this.props.children}
-        {((this.props.data.user && this.props.data.user.token) || window.sessionStorage.getItem("token")) &&
+        {(this.props.data.token || window.sessionStorage.getItem("token")) &&
         <Footer />}
       </main>
     )
@@ -48,9 +44,11 @@ class MainLayout extends React.Component {
 }
 
 export default connect(
-  state => ({data: state.projectDataReducer.data}),
+  state => ({data: state.general, popup: state.popup}),
   {
-    ...projectDataActions,
-    ...passwordForgetActions
+    ...generalActions,
+    ...passwordForgetActions,
+    ...signUpActions,
+    ...popupActions
   }
 )(MainLayout);

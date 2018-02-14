@@ -8,7 +8,7 @@ if (window && !window.api) {
 }
 
 let addHeaders = (token) => {
-  const tokenFromStore = "Token " + (store.getState().projectDataReducer.data.user.token || window.sessionStorage.getItem("token"));
+  const tokenFromStore = "Token " + (store.getState().general.token || window.sessionStorage.getItem("token"));
 
   if (token) {
     api = axios.create({

@@ -13,16 +13,14 @@ export class MyDetails extends React.Component {
     this.handleShowPopup = this.showPopup.bind(this);
   }
 
-  showPopup() {
-    
-    this.props.changePasswordAction();
+  showPopup() {    
+    this.props.changePopup("", true, true, "");
   }
 
   static propTypes = {
     user: PropTypes.object,
     updateSettings: PropTypes.func,
-    changeMessage: PropTypes.func,
-    changePasswordAction: PropTypes.func
+    changePopup: PropTypes.func
   };
 
   render() {

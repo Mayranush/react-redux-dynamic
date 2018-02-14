@@ -3,15 +3,32 @@ import ActionTypes from "../constants/actionTypes";
 import store from "store";
 import {tools} from "../resources";
 import api from "../api/api";
-import   {errorPopup} from "./action";
+import {errorHandler} from "./generalActions";
+
+const changeBotStatusResponse = createAction(ActionTypes.changeBotStatus);
+
+export function changeBotStatus(string) {
+  return (dispatch) => {
+    return dispatch(changeBotStatusResponse(string));
+  };
+}
+
+const changeBotStartResponse = createAction(ActionTypes.changeBotStart);
+
+export function changeBotStart(string) {
+  return (dispatch) => {
+    return dispatch(changeBotStartResponse(string));
+  };
+}
+
+
 /////////////////////////////////////////////          bot get       ////////////////////////////////////////////////
 
 const requestResponseBotGet = createAction(ActionTypes.getDataRequestBotGet);
 
 export function getDataRequesBotGet() {
     return (dispatch) => {
-        let newState = tools.cloneState(store.getState().projectDataReducer.data);
-        return dispatch(requestResponseBotGet(newState));
+        return dispatch(requestResponseBotGet());
     };
 }
 
@@ -19,22 +36,17 @@ const responseResponseBotGet = createAction(ActionTypes.getDataResponseBotGet);
 
 export function getDataResponseBotGet(data) {
     return (dispatch) => {
-        let newState = tools.cloneState(store.getState().projectDataReducer.data);
-        if (data) {
-            newState.twitter.botStatus = data.message;
-        }
-        return dispatch(responseResponseBotGet(newState));
+        let message = data.message;
+        return dispatch(responseResponseBotGet(message));
     };
 }
-
-
 
 export function botGet() {    
     return (dispatch) => {
     dispatch(getDataRequesBotGet());
     return api.botGet()
         .then(data => dispatch(getDataResponseBotGet(data.data)))
-        .catch(error => dispatch(errorPopup(error)));
+        .catch(error => dispatch(errorHandler(error)));
     };
 }
 
@@ -44,8 +56,7 @@ const requestResponseBotPost = createAction(ActionTypes.getDataRequestBotPost);
 
 export function getDataRequestBotPost() {
     return (dispatch) => {
-        let newState = tools.cloneState(store.getState().projectDataReducer.data);
-        return dispatch(requestResponseBotPost(newState));
+        return dispatch(requestResponseBotPost());
     };
 }
 
@@ -53,25 +64,22 @@ const responseResponseBotPost = createAction(ActionTypes.getDataResponseBotPost)
 
 export function getDataResponseBotPost(data) {
     return (dispatch) => {
-        let newState = tools.cloneState(store.getState().projectDataReducer.data);
+        let botStatus;
+        let botStart;
         if (data) {
-            if(data.message ==="STARTED."){
-            newState.twitter.botStatus = "RUNNING";
-            }
-            newState.twitter.botStart = data.message;
+            botStatus = "RUNNING";
+            botStart = data.message;         
         }
-        return dispatch(responseResponseBotPost(newState));
+        return dispatch(responseResponseBotPost({botStatus, botStart}));
     };
 }
-
-
 
 export function botPost() {    
     return (dispatch) => {
     dispatch(getDataRequestBotPost());
     return api.botPost()
         .then(data => dispatch(getDataResponseBotPost(data.data)))
-        .catch(error => dispatch(errorPopup(error)));
+        .catch(error => dispatch(errorHandler(error)));
     };
 }
 
@@ -81,8 +89,7 @@ const requestResponseBotPut = createAction(ActionTypes.getDataRequestBotPut);
 
 export function getDataRequestBotPut() {
     return (dispatch) => {
-        let newState = tools.cloneState(store.getState().projectDataReducer.data);
-        return dispatch(requestResponseBotPut(newState));
+        return dispatch(requestResponseBotPut());
     };
 }
 
@@ -90,11 +97,8 @@ const responseResponseBotPut = createAction(ActionTypes.getDataResponseBotPut);
 
 export function getDataResponseBotPut(data) {
     return (dispatch) => {
-        let newState = tools.cloneState(store.getState().projectDataReducer.data);
-        if (data) {
-            newState.twitter.botStatus = data.message;
-        }
-        return dispatch(responseResponseBotPut(newState));
+        let message = data.message;
+        return dispatch(responseResponseBotPut(message));
     };
 }
 
@@ -103,6 +107,6 @@ export function botPut() {
     dispatch(getDataRequestBotPut());
     return api.botPut()
         .then(data => dispatch(getDataResponseBotPut(data.data)))
-        .catch(error => dispatch(errorPopup(error)));
+        .catch(error => dispatch(errorHandler(error)));
     };
 }
