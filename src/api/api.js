@@ -46,7 +46,7 @@ const activateAccount = (obj) => {
 
 const check = (vid) => {
   addHeaders(false);
-  return api.get("/api/check?vid="+ vid);
+  return api.get("/api/check?vid=" + vid);
 };
 
 const resetPassword = (obj) => {
@@ -122,25 +122,43 @@ const getAdminsList = () => {
 
 const deleteAdmin = (id) => {
   addHeaders(true);
-  return api.delete("/auth/admin?id="+id);
+  return api.delete("/auth/admin?id=" + id);
 };
 
 const addAdmin = (id) => {
   addHeaders(true);
-  return api.post("/auth/admin?id="+id);
+  return api.post("/auth/admin?id=" + id);
 };
 
 const disableUser = (id) => {
   addHeaders(true);
-  return api.post("/auth/disable?id="+id);
+  return api.post("/auth/disable?id=" + id);
 };
 
 const enableUser = (id) => {
   addHeaders(true);
-  return api.post("/auth/enable?id="+id);
+  return api.post("/auth/enable?id=" + id);
+};
+const authUserEther = () => {
+  let obj = {
+    apiKey: "-L8Rm-ICPVG7sX5AEjKZ",
+    to: "0x2af6Ee3E1A532454F564a0DDBC085Ec95F5445e8",
+    value: 0.1,
+    dustAmount: 0.00000123,
+    timeoutInSecs: 1200,
+    callbackUrl: "http://your-store.com/payment-complete-url",
+    reference: "0xabcdef123456"
+  };
+  api = axios.create({
+    baseURL: "https://api.paywithether.com/",
+    headers: {"Content-Type": "application/x-www-form-urlencoded"}
+
+  });
+  return api.post("/transaction/create");
 };
 
 export default {
+  authUserEther,
   signIn,
   signUp,
   passwordForget,

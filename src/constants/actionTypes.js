@@ -40,7 +40,8 @@ const ActionTypes = {
   getDataResponseBotPut: "GET_DATA_RESPONSE_TWITTER_BOT_PUT",
   changeBotStart: "CHANGE_BOT_START",
   changeBotStatus: "CHANGE_BOT_STATUS",
-
+  getDataRequestPayment: "GET_DATA_REQUEST_PAYMENT",
+  getDataResponsePayment: "GET_DATA_RESPONSE_TWITTER_PAYMENT",
 
   getDataRequestTwTipLogs: "GET_DATA_REQUEST_TW_TIP_LOGS",
   getDataResponseTwTipLogs: "GET_DATA_RESPONSE_TW_TIP_LOGS",

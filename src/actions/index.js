@@ -9,4 +9,5 @@ export * as checkActions from "./checkActions";
 export * as adminActions from "./adminActions";
 export * as popupActions from "./popupActions";
 export * as successActions from "./successActions";
+export * as paymentActions from "./paymentActions";
 

@@ -1,21 +1,28 @@
 import React from "react";
 import {connect} from "react-redux";
-import {generalActions, dashboardActions} from "../../actions/index";
+import {dashboardActions, generalActions, paymentActions, settingsActions} from "../../actions/index";
 import PropTypes from "prop-types";
 import "./dashboard.scss";
-import { Link } from 'react-router/es6';
+import {Link} from "react-router/es6";
 
 export class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.handleActivateBot = this.activateBot.bind(this);
     this.handleDeactivateBot = this.deactivateBot.bind(this);
+    this.handlePayment = this.hpayment.bind(this);
   }
 
   activateBot(e) {
     e.stopPropagation();
     e.preventDefault();
     this.props.botPost();
+  }
+
+  hpayment(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.props.payment();
   }
 
   deactivateBot(e) {
@@ -32,44 +39,56 @@ export class Dashboard extends React.Component {
 
   componentDidMount() {
     this.props.botGet();
+
   }
-  
+
   render() {
+    console.log(this.props,"puuuuuuuuuuuuuuuf");
     return (
       <div className="main-content">
         <div className="header-section">Dashboard</div>
         <div>
           <div className="bot">
             <div className="bot-info">
-              <p className={this.props.data.botStart == 'STARTED.' ? "bot-status active" : "bot-status"}><span className="dot dotGreen"/>You started Tipping bot</p>
-              <p className={this.props.data.botStart == 'STARTED.' || this.props.data.botStart == 'The bot is running.' ? "bot-status" : "bot-status active"}>
+              <p className={this.props.data.botStart == 'STARTED.' ? "bot-status active" : "bot-status"}><span
+                className="dot dotGreen"/>You started Tipping bot</p>
+              <p
+                className={this.props.data.botStart == 'STARTED.' || this.props.data.botStart == 'The bot is running.' ? "bot-status" : "bot-status active"}>
                 <span className="yellow">
-                  {this.props.data.botStart.indexOf('criteria') > -1  ? 
-                  <Link to="settings" onClick={() => this.props.changeTabInSettings('twitterCriteria')}>
-                    {this.props.data.botStart}
-                  </Link> : this.props.data.botStart}
+                  {this.props.data.botStart.indexOf('criteria') > -1 ?
+                    <Link to="settings" onClick={() => this.props.changeTabInSettings('twitterCriteria')}>
+                      {this.props.data.botStart}
+                    </Link> : this.props.data.botStart}
                 </span>
               </p>
-              <p className={this.props.data.botStatus == 'RUNNING' ? "bot-status" : "bot-status active"}><span className="dot dotRed"/>Your Tipping bot is not running </p>
-              <p className={this.props.data.botStatus == 'RUNNING' && this.props.data.botStart != 'STARTED.' ? "bot-status active" : "bot-status"}><span className="dot dotGreen"/>Your Tipping bot is running </p>
+              <p className={this.props.data.botStatus == 'RUNNING' ? "bot-status" : "bot-status active"}><span
+                className="dot dotRed"/>Your Tipping bot is not running </p>
+              <p
+                className={this.props.data.botStatus == 'RUNNING' && this.props.data.botStart != 'STARTED.' ? "bot-status active" : "bot-status"}>
+                <span className="dot dotGreen"/>Your Tipping bot is running </p>
             </div>
             <br/>
             <div className="bot-btn">
-              <button className="btn btn-success dashboard bot-btn-sub" onClick={(e) => this.handleActivateBot(e)}>Activate tipping</button>
+              <button className="btn btn-success dashboard bot-btn-sub" onClick={(e) => this.handleActivateBot(e)}>
+                Activate tipping
+              </button>
 
-              <button className="btn bg-danger dashboard  bot-btn-sub" onClick={(e) => this.handleDeactivateBot(e) }>Stop tipping</button>
+              <button className="btn bg-danger dashboard  bot-btn-sub" onClick={(e) => this.handleDeactivateBot(e) }>
+                Stop tipping
+              </button>
             </div>
           </div>
+
           <div className="wallet">
-            <div className="bot-info">
-              <p className="bot-status active"><span className="dot dotRed"/>You have 0 Coins in your wallet </p>
-              <p className="bot-status"><span className="dot dotGreen"/>You have 356 Coins in your wallet  </p>
+            <div className="bot-info">0
+              <p className="bot-status active"><span />You have <br/><br/><i> 0 <i className="fab fa-ethereum"></i> </i><br/> <br/>in your wallet, to fill
+                your account go to <Link to="settings"
+                                         onClick={() => this.props.changeTabInSettings('paymentSettings')}>Setting ->
+                  Payment details</Link></p>
             </div>
-            <br/>
-            <div className="bot-btn">
-              <button className="btn btn-success dashboard  bot-btn-sub">Recharge wallet</button>
-            </div>
+
           </div>
+
         </div>
       </div>
     )
@@ -78,8 +97,10 @@ export class Dashboard extends React.Component {
 
 export default connect(
   state => ({data: state.twitter}),
-    {
-        ...generalActions,
-        ...dashboardActions
-    }
+  {
+    ...generalActions,
+    ...dashboardActions,
+    ...paymentActions,
+    ...settingsActions
+  }
 )(Dashboard);

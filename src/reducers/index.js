@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+import {combineReducers} from "redux";
 
 import general from "./generalReducer";
 import user from "./userReducer";
@@ -12,19 +12,19 @@ import popup from "./popupReducer";
 import projectDataReducer from "./reducer";
 
 const appReducer = combineReducers({
-    general,
-	user,
-	signIn,
-	register,
-    success,
-    twitter,
-    table,
-    admin,
-    popup,
-	projectDataReducer
+  general,
+  user,
+  signIn,
+  register,
+  success,
+  twitter,
+  table,
+  admin,
+  popup,
+  projectDataReducer
 })
 
-const  rootReducer = (state, action) => {
+const rootReducer = (state, action) => {
   if (action.type === 'CLEAN_DATA') {
     state = undefined
   }
