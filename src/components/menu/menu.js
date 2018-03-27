@@ -44,6 +44,15 @@ export class Menu extends React.Component {
                 </div>
               </li>
               }
+              {this.role === 'USER' &&
+              <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Wallet">
+                <div className="nav-link">
+                  <Link className="nav-link-text" to="wallet">
+                    <i className="fa fa-fw fa-dashboard fa-menu"/>My Wallet
+                  </Link>
+                </div>
+              </li>
+              }
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
                 <div className="nav-link">
                   <Link className="nav-link-text" to="charts">

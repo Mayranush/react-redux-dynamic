@@ -10,7 +10,6 @@ export class Dashboard extends React.Component {
     super(props);
     this.handleActivateBot = this.activateBot.bind(this);
     this.handleDeactivateBot = this.deactivateBot.bind(this);
-    this.handlePayment = this.hpayment.bind(this);
   }
 
   activateBot(e) {
@@ -19,11 +18,7 @@ export class Dashboard extends React.Component {
     this.props.botPost();
   }
 
-  hpayment(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    this.props.payment();
-  }
+
 
   deactivateBot(e) {
     e.stopPropagation();
@@ -43,7 +38,6 @@ export class Dashboard extends React.Component {
   }
 
   render() {
-    console.log(this.props,"puuuuuuuuuuuuuuuf");
     return (
       <div className="main-content">
         <div className="header-section">Dashboard</div>
@@ -77,16 +71,6 @@ export class Dashboard extends React.Component {
                 Stop tipping
               </button>
             </div>
-          </div>
-
-          <div className="wallet">
-            <div className="bot-info">0
-              <p className="bot-status active"><span />You have <br/><br/><i> 0 <i className="fab fa-ethereum"></i> </i><br/> <br/>in your wallet, to fill
-                your account go to <Link to="settings"
-                                         onClick={() => this.props.changeTabInSettings('paymentSettings')}>Setting ->
-                  Payment details</Link></p>
-            </div>
-
           </div>
 
         </div>

@@ -5,7 +5,6 @@ import "./settings.scss";
 import {MyDetails} from "../../components/myDetails/myDetails";
 import {TwitterSettings} from "../../components/twitterSettings/twitterSettings";
 import {TwitterCriteria} from "../../components/twitterCriteria/twitterCriteria";
-import {PaymentSettings} from "../../components/paymentSettings/paymentSettings";
 
 export class Settings extends React.Component {
   constructor(props) {
@@ -94,9 +93,6 @@ export class Settings extends React.Component {
             <span> <p onClick={(e) => this.handleGetTwitterSettings(e, 'twitterCriteria')}
             >Twitter Criteria</p></span>
           </li>
-          <li className={this.props.data.settingsCurrentTab === 'paymentSettings' ? "four active tab" : "four tab"}>
-            <span><p onClick={(e) => this.handleGetTwitterSettings(e, 'paymentSettings')}>Payment details</p></span>
-          </li>
           <hr className="hr"/>
         </ul>
         <div className="settings-tab">
@@ -116,7 +112,7 @@ export class Settings extends React.Component {
                               updateSettings={this.handleUpdateTwCriteria}
                               cleanData={this.props.cleanData}
                               ref={(input) => this.twSettings = input}/>}
-          {this.props.data.settingsCurrentTab == 'paymentSettings' && <PaymentSettings />}
+
         </div>
       </div>
     )

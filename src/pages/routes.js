@@ -80,6 +80,15 @@ const routes = {
       }
     },
     {
+      path: 'wallet',
+      onEnter: requireAuth,
+      getComponent(location, cb) {
+        System.import('pages/wallet')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      }
+    },
+    {
       path: 'charts',
       onEnter: requireAuth,
       getComponent(location, cb) {
