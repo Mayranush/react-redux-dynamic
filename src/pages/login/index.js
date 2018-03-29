@@ -77,15 +77,6 @@ export class Login extends React.Component {
                 <p
                   className="error-for-input">{this.props.data.errorText.length != 0 ? '*' + this.props.data.errorText : ''}</p>
               </div>
-              <div className="form-group">
-                <div className="form-check">
-                  <label className="form-check-label">
-                    <input className="form-check-input"
-                           type="checkbox"
-                           onChange={(e) => this.handleCheckRememberPassword(e)}/> Remember Password
-                  </label>
-                </div>
-              </div>
               <button className={this.props.data.emailErrorText.length != 0 ||
               this.props.data.passwordErrorText.length != 0 ||
               this.props.data.email.length == 0 ? "disabled-button btn btn-primary btn-block" : "btn btn-primary btn-block"}
