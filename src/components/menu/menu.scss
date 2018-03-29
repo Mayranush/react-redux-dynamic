@@ -1,3 +1,5 @@
+@import "../../styles/global.scss";
+
 .bg-dark {
   background-color: #343a40;
   background-image: none;
@@ -32,4 +34,12 @@
 .navbar-nav.navbar-sidenav {
   height: 100vh !important;
   background-color: #4d4d4d;
+}
+
+.ethereum-logo {
+  fill: white;
+}
+
+#mainNav .navbar-collapse .navbar-nav > .nav-item.dropdown > .nav-link:after {
+  content: '' !important;
 }

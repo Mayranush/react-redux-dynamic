@@ -93,10 +93,10 @@ export class Login extends React.Component {
               </button>
             </form>
             <hr/>
-            <a href="#" className="fa fa-twitter tw-login fa-login">
+            <a href="#" className="fab fa-twitter tw-login fa-login">
               <span className=""> Twitter</span>
             </a>
-            <a href="#" className="fa fa-facebook fb-login fa-login">
+            <a href="#" className="fab fa-facebook-f fb-login fa-login">
               <span className=""> Facebook</span>
             </a>
             <div className="text-center">
