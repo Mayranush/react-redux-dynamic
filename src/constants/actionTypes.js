@@ -54,6 +54,9 @@ const ActionTypes = {
   getDataResponseReset: "GET_DATA_RESPONSE_RESET",
   getDataResponseErrorReset: "GET_DATA_RESPONSE_ERROR_RESET", 
 
+  getDataRequestTransactions: "GET_DATA_REQUEST_TRANSACTIONS",
+  getDataResponseTransactions: "GET_DATA_RESPONSE_TRANSACTIONS",
+
   getDataRequestActivateAccount: "GET_DATA_REQUEST_ACTIVATE_ACCOUNT",
   getDataResponseActivateAccount: "GET_DATA_RESPONSE_ACTIVATE_ACCOUNT",
   getDataResponseErrorActivateAccount: "GET_DATA_RESPONSE_ERROR_ACTIVATE_ACCOUNT",

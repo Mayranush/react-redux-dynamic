@@ -31,3 +31,34 @@ export function addNewTransaction(transaction) {
   };
 }
 
+/////////////////////////////////////////////         get transactions    ////////////////////////////////////////////////
+
+const getDataRequestTransactionsFunc = createAction(ActionTypes.getDataRequestTransactions);
+
+export function getDataRequestTransactions() {
+  return (dispatch) => {
+    return dispatch(getDataRequestTransactionsFunc());
+  };
+}
+
+const getDataResponseTransactionsFunc = createAction(ActionTypes.getDataResponseTransactions);
+
+export function getDataResponseTransactions(data) {
+  return (dispatch) => {
+    console.log(data,"data ==============")
+    let list = data.data;
+    let count = data.count;
+    return dispatch(getDataResponseTransactionsFunc({list, count}));
+  };
+}
+
+export function getTransactionsList(page, size) {
+  return (dispatch) => {
+    dispatch(getDataRequestTransactions());
+    return api.getTransactions(page, size)
+      .then(data => dispatch(getDataResponseTransactions(data.data)))
+      .catch(error => dispatch(errorHandler(error)));
+  };
+}
+
+

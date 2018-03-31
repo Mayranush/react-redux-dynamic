@@ -22,7 +22,8 @@ const appReducer = combineReducers({
   table,
   admin,
   popup,
-  projectDataReducer
+  projectDataReducer,
+  wallet
 })
 
 const rootReducer = (state, action) => {
