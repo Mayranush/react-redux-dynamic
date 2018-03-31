@@ -95,11 +95,6 @@ export class Wallet extends React.Component {
       console.log(transactionReceipt, "trrrrr");
     });
 
-    //TODO api function post transaction, pending.count = 1
-    setTimeout(() => {
-      // ToDo request tables ,,,,,,if pending.count>0
-    }, 120000);
-
   }
 
   showPopup(message) {
