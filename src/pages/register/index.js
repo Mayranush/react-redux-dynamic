@@ -54,7 +54,6 @@ export class Register extends React.Component {
   registerUser(e) {
     e.stopPropagation();
     e.preventDefault();
-console.log("here 111111111111111111")
     let obj = {
       email: this.props.data.email,
       password: this.props.data.password,
@@ -62,8 +61,6 @@ console.log("here 111111111111111111")
       lastname: this.props.data.lastname,
       twUsername: this.props.data.twitterAccount
     };
-console.log(obj, "obj 111111111111111111")
-console.log(this.props.data, "this.props.data 111111111111111111")
 
     if (this.props.data.emailErrorText.length == 0
       && this.props.data.twitterAccountErrorText.length == 0
@@ -73,7 +70,6 @@ console.log(this.props.data, "this.props.data 111111111111111111")
       && this.props.data.password.length != 0
 
     && this.props.data.password == this.props.data.confirmPassword) {
-      console.log("here 222222222222222222")
 
       this.props.signUp(obj);
     }

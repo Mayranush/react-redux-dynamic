@@ -4,7 +4,7 @@ import api from "../api/api";
 import {errorHandler} from "./generalActions";
 
 
-/////////////////////////////////////////////          bot post      ////////////////////////////////////////////////
+/////////////////////////////////////////////         add transaction to our db    ////////////////////////////////////////////////
 
 const requestResponsePayment = createAction(ActionTypes.getDataRequestPayment);
 
@@ -18,15 +18,14 @@ const responseResponsePayment = createAction(ActionTypes.getDataResponsePayment)
 
 export function getDataResponsePayment(data) {
   return (dispatch) => {
-    console.log(data, "dsgsdgsg");
     //   return dispatch(responseResponseBotPost({botStatus, botStart}));
   };
 }
 
-export function payment() {
+export function addNewTransaction(transaction) {
   return (dispatch) => {
     dispatch(getDataRequestPayment());
-    return api.authUserEther()
+    return api.addTransaction(transaction)
       .then(data => dispatch(getDataResponsePayment(data.data)))
       .catch(error => dispatch(errorHandler(error)));
   };

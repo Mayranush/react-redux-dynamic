@@ -9,6 +9,7 @@ import twitter from "./twitterReducer";
 import table from "./tableReducer";
 import admin from "./adminReducer";
 import popup from "./popupReducer";
+import wallet from "./walletReducer";
 import projectDataReducer from "./reducer";
 
 const appReducer = combineReducers({

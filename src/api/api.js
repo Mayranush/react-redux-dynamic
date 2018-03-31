@@ -139,26 +139,13 @@ const enableUser = (id) => {
   addHeaders(true);
   return api.post("/auth/enable?id=" + id);
 };
-const authUserEther = () => {
-  let obj = {
-    apiKey: "-L8Rm-ICPVG7sX5AEjKZ",
-    to: "0x2af6Ee3E1A532454F564a0DDBC085Ec95F5445e8",
-    value: 0.1,
-    dustAmount: 0.00000123,
-    timeoutInSecs: 1200,
-    callbackUrl: "http://your-store.com/payment-complete-url",
-    reference: "0xabcdef123456"
-  };
-  api = axios.create({
-    baseURL: "https://api.paywithether.com/",
-    headers: {"Content-Type": "application/x-www-form-urlencoded"}
-
-  });
-  return api.post("/transaction/create");
+const addTransaction = (transaction) => {
+  addHeaders(true);
+  return api.post("/auth/transaction",transaction);
 };
 
 export default {
-  authUserEther,
+  addTransaction,
   signIn,
   signUp,
   passwordForget,

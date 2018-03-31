@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {dashboardActions, generalActions, paymentActions, settingsActions} from "../../actions/index";
+import {dashboardActions, generalActions, settingsActions} from "../../actions/index";
 import PropTypes from "prop-types";
 import "./dashboard.scss";
 import {Link} from "react-router/es6";
@@ -84,7 +84,6 @@ export default connect(
   {
     ...generalActions,
     ...dashboardActions,
-    ...paymentActions,
     ...settingsActions
   }
 )(Dashboard);

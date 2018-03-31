@@ -12,7 +12,6 @@ export class Register extends React.Component {
   }
 
   render() {
-    console.log(this.props,"this.propsthis.propsthis.propsthis.propsthis.props")
     return (
       <div className="success">
         <span>{this.props.data.message}</span>

@@ -13,12 +13,6 @@ export class TwitterCriteria extends React.Component {
     super(props);
   }
 
-  // componentDidMount() {
-  //   this.refs.minFollowers.value.addEventListener("change",function () {
-  //     console.log(value,"value")
-  //   })
-  // }
-
   static propTypes = {
     twitter: PropTypes.object,
     updateSettings: PropTypes.func,

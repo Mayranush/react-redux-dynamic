@@ -8,7 +8,6 @@ import {changePopup} from "./popupActions";
 
 export function errorHandler(error) {
     return (dispatch) => {
-    	console.log(error.response)
     	let show = true;
 			let resetPassword = false;
 			let passwordErrorText = '';

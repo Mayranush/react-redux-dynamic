@@ -5,31 +5,16 @@ import "./wallet.scss";
 import PropTypes from "prop-types";
 import {Web3Provider} from "react-web3";
 
+
+let isTransationInProgress = true;
+
 export class Wallet extends React.Component {
   constructor(props) {
     super(props);
     this.handlePay = this.pay.bind(this);
     this.handleShowpopup = this.showPopup.bind(this);
-    this.handleTransactionCompleted = this.transactionCompleted.bind(this);
+    this.handleTransactionSubmited = this.transactionSubmited.bind(this);
   }
-
-  showPopup(message) {
-    this.props.changePopup(message, true, false, "");
-  }
-
-  // web3.eth.getTransaction(hash,
-  // function (error, hash) {
-  //   console.log(error, "error");
-  //   console.log(hash, "hashhhhhh");
-  // })
-  transactionCompleted(hash) {
-    this.showPopup("You have submitted this transaction, result will be updated soon");
-    this.textInput.value = "";
-  }
-
-  static propTypes = {
-    changePopup: PropTypes.func
-  };
 
   pay(e) {
     e.stopPropagation();
@@ -50,15 +35,89 @@ export class Wallet extends React.Component {
         gasPrice: gasHex
       },
       function (error, hash) {
+        console.log(hash);
         if (error) {
           self.handleShowpopup(error)
         }
         if (hash) {
-          self.handleTransactionCompleted(hash)
+          console.log(hash);
+          self.getReceipt(hash);
         }
       });
+  }
+
+  getReceipt(hash) {
+    self = this;
+    let test = setInterval(() => {
+      console.log("sss")
+      web3.eth.getTransactionReceipt(hash, function (error, receipt) {
+        if (receipt) {
+          self.addTransaction(hash, receipt);
+          clearInterval(test);
+        }
+      });
+    }, 5000);
+  }
+//   "hashE": "0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c6c445836d8b",
+//   "nonce": 2,
+//   "blockHash": "0xef95f2f1ed3ca60b048b4bf67cde2195961e0bba6f70bcbea9a2c4e133e34b46",
+//   "blockNumber": 3,
+//   "transactionIndex": 0,
+//   "fromE": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+//   "toE": "0x6295ee1b4f6dd65047762f924ecd367c17eabf8f",
+//   "valueE": "123450000000000000",
+//   "gas": 314159,
+//   "gasPrice": "2000000000000",
+//   "input": "0x57cb2fc4",
+//   "txReceiptStatus":"Success"
+// }
+
+  addTransaction(hash, receipt) {
+    console.log(this,"before");
+
+    web3.eth.getTransaction(hash, function (error, transaction) {
+      console.log(web3,"sssssssssssssssssss");
+      let transactionReceipt = {};
+      transactionReceipt.blockHash = transaction.blockHash;
+      transactionReceipt.blockNumber = transaction.blockNumber;
+      transactionReceipt.fromE = transaction.from;
+      transactionReceipt.gas = transaction.gas;
+      transactionReceipt.nonce = transaction.nonce;
+      transactionReceipt.transactionIndex = transaction.transactionIndex;
+      transactionReceipt.valueE = transaction.v;
+      transactionReceipt.input = transaction.input;
+      transactionReceipt.toE = transaction.to;
+      transactionReceipt.hashE = hash;
+      transactionReceipt.gasUsed = receipt.gasUsed;
+      transactionReceipt.txReceiptStatus = receipt.status;
+      console.log(transaction, "transaction");
+      console.log(receipt, "receipt");
+      console.log(transactionReceipt, "trrrrr");
+    });
+
+    //TODO api function post transaction, pending.count = 1
+    setTimeout(() => {
+      // ToDo request tables ,,,,,,if pending.count>0
+    }, 120000);
 
   }
+
+  showPopup(message) {
+    this.props.changePopup(message, true, false, "");
+  }
+
+
+  transactionSubmited(hash) {
+    this.showPopup("You have submitted this transaction!");
+    this.textInput.value = "";
+    isTransationInProgress = true;
+  }
+
+
+  static propTypes = {
+    changePopup: PropTypes.func
+  };
+
 
   componentDidMount() {
   }

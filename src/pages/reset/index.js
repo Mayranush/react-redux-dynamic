@@ -16,7 +16,6 @@ export class Check extends React.Component {
  			vid = vid.split("=");
  			vid1 = vid[1];
 		}
-		console.log("jjjjjjjjjjjjjjjjjj")
 		this.props.check(vid1);
 	}
 

@@ -27,7 +27,6 @@ export default handleActions({
 
     [ActionTypes.getDataRequestTwitterSettings]: (state) => ({...state}),
     [ActionTypes.getDataResponseTwitterSettings]: (state, {payload}) => {
-      console.log(payload,"payload in twitter");
     return ({...state,
       consumerKey: payload && payload.consumerKey ? payload.consumerKey : '',
       consumerSecret: payload && payload.consumerSecret ? payload.consumerSecret : '',

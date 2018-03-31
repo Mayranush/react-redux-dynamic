@@ -1,3 +1,4 @@
+
 import {createAction} from "redux-actions";
 import ActionTypes from "../constants/actionTypes";
 import store from "store";
@@ -59,7 +60,6 @@ const responseResponseCheck = createAction(ActionTypes.getDataResponseCheck);
 
 export function getDataResponseCheck(data,vid) {
   return (dispatch) => {
-    console.log("PPPPPPPPPPPPPPPPP")
     store.dispatch(push('/password/reset'));
     return dispatch(responseResponseCheck(vid));
   };
