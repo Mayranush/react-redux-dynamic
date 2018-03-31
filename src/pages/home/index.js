@@ -78,19 +78,19 @@ export class Home extends React.Component {
                 <ul className="list-inline banner-social-buttons">
                   <li className="list-inline-item">
                     <a href="#" className="btn btn-secondary btn-lg">
-                      <i className="fa fa-twitter fa-fw"/>
+                      <i className="fab fa-twitter fa-fw"/>
                       <span className="network-name">Twitter</span>
                     </a>
                   </li>
                   <li className="list-inline-item">
                     <a href="#" className="btn btn-secondary btn-lg">
-                      <i className="fa fa-facebook fa-fw"/>
+                      <i className="fab fa-facebook-f fa-fw"/>
                       <span className="network-name">Facebook</span>
                     </a>
                   </li>
                   <li className="list-inline-item">
                     <a href="#" className="btn btn-secondary btn-lg">
-                      <i className="fa fa-linkedin fa-fw"/>
+                      <i className="fab fa-linkedin fa-fw"/>
                       <span className="network-name">Linkedin</span>
                     </a>
                   </li>

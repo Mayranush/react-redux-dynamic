@@ -81,10 +81,9 @@ export class Register extends React.Component {
       <div className="bg-dark bg-dark-register">
         <div className="card card-register mx-auto mt-5">
           <div className="card-header">
-            <span className="register">Register an Account</span>
-            <span className="withTwitter">with</span>
-            <a href="#" className="btn btn-primary btn-lg">
-              <i className="fa fa-twitter fa-fw"/>
+            <span className="register">Register an Account with</span>
+            <a href="#" className="btn btn-primary btn-lg btn-twitter-reg">
+              <i className="fab fa-twitter fa-fw"/>
               <span className="network-name">Twitter</span>
             </a>
           </div>

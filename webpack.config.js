@@ -8,6 +8,7 @@ const isProd = nodeEnv === 'production';
 
 const sourcePath = path.join(__dirname, './src');
 const staticsPath = path.join(__dirname, './static');
+const assetsPath = path.join(__dirname, './assets');
 
 const extractCSS = new ExtractTextPlugin({ filename: 'style.css', disable: false, allChunks: true });
 
@@ -102,7 +103,7 @@ module.exports = {
             fallbackLoader: 'style-loader',
             loader: ['css-loader', 'sass-loader'],
           }) :
-          ['style-loader', 'css-loader', 'sass-loader']
+          ['style-loader', 'css-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
       },
       {
         test: /\.(js|jsx)$/,
@@ -118,7 +119,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(gif|png|jpg|jpeg\ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        test: /\.(gif|png|jpg|jpeg|ttf|eot|otf|svg|woff(2)?)(\?[a-z0-9]+)?$/,
         use: 'file-loader'
       }
     ],
@@ -128,7 +129,10 @@ module.exports = {
     modules: [
       sourcePath,
       'node_modules'
-    ]
+    ],
+     alias: {
+      assets: assetsPath
+    }
   },
   plugins: plugins,
   devServer: {

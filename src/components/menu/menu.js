@@ -39,7 +39,7 @@ export class Menu extends React.Component {
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                 <div className="nav-link">
                   <Link className="nav-link-text" to="dashboard">
-                    <i className="fa fa-fw fa-dashboard fa-menu"/>Dashboard
+                    <i className="fa fa-fw fa-tachometer-alt fa-menu"/>Dashboard
                   </Link>
                 </div>
               </li>
@@ -48,7 +48,7 @@ export class Menu extends React.Component {
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Wallet">
                 <div className="nav-link">
                   <Link className="nav-link-text" to="wallet">
-                    <i className="fa fa-fw fa-dashboard fa-menu"/>My Wallet
+                    <i className="fab fa-fw fa-ethereum fa-menu"/>My Wallet
                   </Link>
                 </div>
               </li>
@@ -56,7 +56,7 @@ export class Menu extends React.Component {
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
                 <div className="nav-link">
                   <Link className="nav-link-text" to="charts">
-                    <i className="fa fa-fw fa-area-chart fa-menu"/>Charts
+                    <i className="fa fa-fw fa-chart-area fa-menu"/>Charts
                   </Link>
                 </div>
               </li>
@@ -80,7 +80,7 @@ export class Menu extends React.Component {
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Adminarea">
                 <div className="nav-link">
                   <Link className="nav-link-text" to="users">
-                    <i className="fa fa-fw fa-wrench fa-menu"/>Users list
+                    <i className="fa fa-fw fa-users fa-menu"/>Users list
                   </Link>
                 </div>
               </li>
@@ -89,7 +89,7 @@ export class Menu extends React.Component {
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Adminarea">
                 <div className="nav-link">
                   <Link className="nav-link-text" to="admins">
-                    <i className="fa fa-fw fa-wrench fa-menu"/>Admin list
+                    <i className="fa fa-fw fa-user-secret fa-menu"/>Admin list
                   </Link>
                 </div>
               </li>
@@ -121,7 +121,7 @@ export class Menu extends React.Component {
                   <a className="dropdown-item" href="#">
                      <span className="text-success">
                             <strong>
-                                <i className="fa fa-long-arrow-up fa-fw fa-menu"/>Status Update
+                                <i className="fa fa-arrow-up fa-fw fa-menu"/>Status Update
                             </strong>
                      </span>
                     <span className="small float-right text-muted">11:21 AM</span>
@@ -132,7 +132,7 @@ export class Menu extends React.Component {
                   <a className="dropdown-item" href="#">
                     <span className="text-danger">
                            <strong>
-                              <i className="fa fa-long-arrow-down fa-fw fa-menu"/>Status Update</strong>
+                              <i className="fa fa-arrow-down fa-fw fa-menu"/>Status Update</strong>
                     </span>
                     <span className="small float-right text-muted">11:21 AM</span>
                     <div className="dropdown-message small">Please recharge your acount for further cooperation
@@ -145,7 +145,7 @@ export class Menu extends React.Component {
               </li>
               <li className="nav-item">
                 <Link to="" onClick={this.handleLogout} className="nav-link">
-                  <i className="fa fa-fw fa-sign-out fa-menu"/>Sign out</Link>
+                  <i className="fa fa-fw fa-sign-out-alt fa-menu"/>Sign out</Link>
                 {/*data-toggle="modal" data-target="#exampleModal"*/}
               </li>
             </ul>
