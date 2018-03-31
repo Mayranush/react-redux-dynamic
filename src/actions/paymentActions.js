@@ -48,7 +48,13 @@ export function getDataResponseTransactions(data) {
     console.log(data,"data ==============")
     let list = data.data;
     let count = data.count;
-    return dispatch(getDataResponseTransactionsFunc({list, count}));
+    let logMessage = '';
+    if (data.length === 0) {
+      logMessage = "There is no data to show";
+    } else {
+      logMessage = "";
+    }
+    return dispatch(getDataResponseTransactionsFunc({list, count, logMessage}));
   };
 }
 
