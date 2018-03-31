@@ -143,8 +143,13 @@ const addTransaction = (transaction) => {
   addHeaders(true);
   return api.post("/auth/transaction",transaction);
 };
+const getTransactions = (page, size) => {
+  addHeaders(true);
+  return api.get("/auth/transaction?page=" + page + "&size=" + size);
+};
 
 export default {
+  getTransactions,
   addTransaction,
   signIn,
   signUp,

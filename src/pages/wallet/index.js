@@ -41,60 +41,42 @@ export class Wallet extends React.Component {
         }
         if (hash) {
           console.log(hash);
-          self.getReceipt(hash);
+          self.handleShowpopup("Your transaction has been submitted!");
+          self.textInput.value = "";
+          self.addTransaction(hash);
         }
       });
   }
 
-  getReceipt(hash) {
-    self = this;
-    let test = setInterval(() => {
-      console.log("sss")
-      web3.eth.getTransactionReceipt(hash, function (error, receipt) {
-        if (receipt) {
-          self.addTransaction(hash, receipt);
-          clearInterval(test);
-        }
-      });
-    }, 5000);
-  }
-//   "hashE": "0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c6c445836d8b",
-//   "nonce": 2,
-//   "blockHash": "0xef95f2f1ed3ca60b048b4bf67cde2195961e0bba6f70bcbea9a2c4e133e34b46",
-//   "blockNumber": 3,
-//   "transactionIndex": 0,
-//   "fromE": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
-//   "toE": "0x6295ee1b4f6dd65047762f924ecd367c17eabf8f",
-//   "valueE": "123450000000000000",
-//   "gas": 314159,
-//   "gasPrice": "2000000000000",
-//   "input": "0x57cb2fc4",
-//   "txReceiptStatus":"Success"
-// }
+  // getReceipt(hash) {
+  //   self = this;
+  //   let test = setInterval(() => {
+  //     web3.eth.getTransactionReceipt(hash, function (error, receipt) {
+  //       if (receipt) {
+  //         self.addTransaction(hash, receipt);
+  //         clearInterval(test);
+  //       }
+  //     });
+  //   }, 5000);
+  // }
 
-  addTransaction(hash, receipt) {
-    console.log(this,"before");
-
+  addTransaction(hash) {
+    let self = this;
     web3.eth.getTransaction(hash, function (error, transaction) {
-      console.log(web3,"sssssssssssssssssss");
       let transactionReceipt = {};
-      transactionReceipt.blockHash = transaction.blockHash;
-      transactionReceipt.blockNumber = transaction.blockNumber;
       transactionReceipt.fromE = transaction.from;
       transactionReceipt.gas = transaction.gas;
       transactionReceipt.nonce = transaction.nonce;
-      transactionReceipt.transactionIndex = transaction.transactionIndex;
-      transactionReceipt.valueE = transaction.v;
+      transactionReceipt.valueE = parseInt(transaction.v,16);
       transactionReceipt.input = transaction.input;
       transactionReceipt.toE = transaction.to;
       transactionReceipt.hashE = hash;
-      transactionReceipt.gasUsed = receipt.gasUsed;
-      transactionReceipt.txReceiptStatus = receipt.status;
-      console.log(transaction, "transaction");
-      console.log(receipt, "receipt");
-      console.log(transactionReceipt, "trrrrr");
+      self.props.addNewTransaction(transactionReceipt);
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5300bc5ef57a35d3bc5ec43b023a935d6c757085
   }
 
   showPopup(message) {
@@ -115,16 +97,17 @@ export class Wallet extends React.Component {
 
 
   componentDidMount() {
+    this.props.getTransactionsList(0,5);
   }
 
   render() {
+    console.log(this.props,"props==============")
     return (
       <div className="main-content">
         <div className="header-section">My wallet</div>
         <div>
           <Web3Provider>
             <div>
-
               <div className="wallet">
                 <div className="bot-info">
                   <p className="bot-status active">You have <br/> 0 Ether <br/> in your wallet </p>
@@ -150,7 +133,7 @@ export class Wallet extends React.Component {
 }
 
 export default connect(
-  state => ({data: state.projectDataReducer.data}),
+  state => ({data: state.wallet}),
   {
     ...projectDataActions,
     ...paymentActions,
