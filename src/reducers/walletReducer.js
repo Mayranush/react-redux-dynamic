@@ -6,18 +6,21 @@ const defaultState = {
   count: 0,
   logMessage: '',
   pendingTransaction: [],
-  pendingMessage: ''
+  pendingMessage: '',
+  monthlyFee: false,
+  balance: 0
 };
 
 export default handleActions({
-
-  // [ActionTypes.getDataRequestPayment]: (state) => ({...state}),
-  //[ActionTypes.getDataResponsePayment]: (state, {payload}) => ({...state, usersList: payload}),
   [ActionTypes.getDataResponseTransactions]: (state, {payload}) => {
     return ({...state, transactions: payload.list, count: payload.count, logMessage: payload.logMessage});
   },
 
   [ActionTypes.getDataResponsePending]: (state, {payload}) => {
     return ({...state, pendingTransaction: payload.pendingList, pendingMessage: payload.pendingMessage});
+  },
+
+  [ActionTypes.getDataResponseBalance]: (state, {payload}) => {
+    return ({...state, balance: payload.balance, monthlyFee: payload.monthlyFee});
   }
 }, defaultState);

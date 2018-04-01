@@ -58,6 +58,9 @@ const ActionTypes = {
   getDataResponseTransactions: "GET_DATA_RESPONSE_TRANSACTIONS",
   getDataRequestPending: "GET_DATA_REQUEST_PENDING",
   getDataResponsePending: "GET_DATA_RESPONSE_PENDING",
+  getDataRequestBalance: "GET_DATA_REQUEST_BALANCE",
+  getDataResponseBalance: "GET_DATA_RESPONSE_BALANCE",
+
 
   getDataRequestActivateAccount: "GET_DATA_REQUEST_ACTIVATE_ACCOUNT",
   getDataResponseActivateAccount: "GET_DATA_RESPONSE_ACTIVATE_ACCOUNT",

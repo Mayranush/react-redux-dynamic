@@ -58,7 +58,7 @@
   height: 40%;
 }
 
-.bot-info p {
+.bot-info p, .bot-info span {
   width: 100%;
 }
 
@@ -97,10 +97,12 @@
 .wallet .btn {
   align-items: center;
 }
+
 .wallet {
 
   float: left;
 }
+
 .table-body {
   margin: 15px;
 

@@ -14,7 +14,6 @@ export class Wallet extends React.Component {
     super(props);
     this.handlePay = this.pay.bind(this);
     this.handleShowpopup = this.showPopup.bind(this);
-    this.handleTransactionSubmited = this.transactionSubmited.bind(this);
     this.currentPage = {
       value: 1
     };
@@ -45,34 +44,15 @@ export class Wallet extends React.Component {
         gasPrice: gasHex
       },
       function (error, hash) {
-        console.log(hash);
         if (error) {
           self.handleShowpopup(error)
         }
         if (hash) {
-          console.log(hash);
-          self.handleShowpopup("Your transaction has been submitted! It will appear in your pending transaction soon.");
+          self.handleShowpopup("Your transaction has been submitted! It may take a while for completion.");
           self.textInput.value = "";
           self.addTransaction(hash);
-
         }
       });
-  }
-
-  getReceipt(hash) {
-    self = this;
-    let test = setInterval(() => {
-      web3.eth.getTransactionReceipt(hash, function (error, receipt) {
-        if (receipt) {
-          clearInterval(test);
-          self.getPendingTransactions();
-        }
-      });
-    }, 5000);
-  }
-
-  getPendingTransactions() {
-    this.props.getPendingTransactionsList();
   }
 
   addTransaction(hash) {
@@ -91,15 +71,31 @@ export class Wallet extends React.Component {
     });
   }
 
-  showPopup(message) {
-    this.props.changePopup(message, true, false, "");
+  getReceipt(hash) {
+    self = this;
+    let test = setInterval(() => {
+      web3.eth.getTransactionReceipt(hash, function (error, receipt) {
+        if (receipt) {
+          clearInterval(test);
+          self.getPendingTransactions();
+        }
+      });
+    }, 120000);
+  }
+
+  getPendingTransactions() {
+//TODO error is occuring
+    this.props.getPendingTransactionsList();
+    self = this;
+    setTimeout(() => {
+      self.props.getTransactionsList(0, self.itemsInEachPage);
+      self.props.getBalance();
+    }, 10000);
   }
 
 
-  transactionSubmited(hash) {
-    this.showPopup("You have submitted this transaction!");
-    this.textInput.value = "";
-    isTransationInProgress = true;
+  showPopup(message) {
+    this.props.changePopup(message, true, false, "");
   }
 
 
@@ -109,12 +105,13 @@ export class Wallet extends React.Component {
 
 
   componentDidMount() {
+
     this.props.getPendingTransactionsList();
     this.props.getTransactionsList(0, this.itemsInEachPage);
+    this.props.getBalance();
   }
 
   render() {
-    console.log(this.props.data.pendingTransaction, "pending one");
     return (
       <div className="main-content">
         <div className="header-section">My wallet</div>
@@ -123,21 +120,33 @@ export class Wallet extends React.Component {
             <div>
               <div className="wallet">
                 <div className="bot-info">
-                  <p className="bot-status active">You have <br/> 0 <i className="fab fa-ethereum 7x green"></i>
+                  <p className="bot-status active">You have <br/> {this.props.data.balance} <i
+                    className="fab fa-ethereum 7x green"></i>
                     <br/> in your wallet </p>
                 </div>
 
                 <div><input type="number" ref={(input) => {
                   this.textInput = input;
                 }} className="form-control bot-info"
-                            placeholder="Input Ether count to charge your account"/></div>
+                            placeholder="Input Ether count to fill your account"/></div>
                 <br/>
                 <div className="bot-btn">
 
                   <img src={require('../../images/metamask.png')} onClick={(e) => this.handlePay(e) }
                        className="metamask-btn"/>
-
-
+                </div>
+              </div>
+              <div className="wallet">
+                <div className="bot-info">
+                  <span className="bot-status active">Monthly Subscription
+                    <br/>
+                    <br/>
+                    <br/>
+<hr/>
+                    {this.props.data.monthlyFee
+                      ? <span className="green">Your account is active. View subscription <span onClick={(e) => this.handlePay(e)}>history.</span> </span>
+                      : <button className="btn btn-success">Activate</button>}
+                  </span>
                 </div>
               </div>
             </div>
@@ -174,7 +183,7 @@ export class Wallet extends React.Component {
             <p className="log-message">{this.props.data.logMessage}</p>
           </div>
           <br/>
-         <h4>Transaction history</h4>
+          <h4>Transaction history</h4>
           <div className="table-body">
 
             <table className="table">
@@ -205,7 +214,7 @@ export class Wallet extends React.Component {
                   <td title={item.toE}>{item.toE}</td>
                   <td>{item.valueE}</td>
                   <td>{item.gas}</td>
-                  {/*<td>{item.gasUsed}</td>*/}
+                  <td>{item.gasUsed}</td>
                   <td>{item.nonce}</td>
                   <td>{item.transactionIndex}</td>
                   <td>{item.input}</td>

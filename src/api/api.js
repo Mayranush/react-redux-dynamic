@@ -151,8 +151,13 @@ const getPendingTransactions = () => {
   addHeaders(true);
   return api.post("/auth/transaction-pending");
 };
+const getBalance = () => {
+  addHeaders(true);
+  return api.get("/auth/balance");
+};
 
 export default {
+  getBalance,
   getTransactions,
   getPendingTransactions,
   addTransaction,

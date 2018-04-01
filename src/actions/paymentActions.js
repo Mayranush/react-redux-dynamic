@@ -18,7 +18,7 @@ const responseResponsePayment = createAction(ActionTypes.getDataResponsePayment)
 
 export function getDataResponsePayment(data) {
   return (dispatch) => {
-    //   return dispatch(responseResponseBotPost({botStatus, botStart}));
+      return dispatch(getPendingTransactionsList());
   };
 }
 
@@ -48,7 +48,8 @@ export function getDataResponseTransactions(data) {
     let list = data.data;
     let count = data.count;
     let logMessage = '';
-    if (data.length === 0) {
+    console.log(list.length,"list");
+    if (list.length === 0) {
       logMessage = "There is no data to show";
     } else {
       logMessage = "";
@@ -81,21 +82,19 @@ const getDataResponsePending = createAction(ActionTypes.getDataResponsePending);
 export function getDataResponseTrPending(data) {
   return (dispatch) => {
     let pendingList = data.data;
-    console.log(pendingList,"pendLIIIISt");
     let pendingMessage = '';
+    console.log(pendingList.length,"plist");
     if (pendingList.length === 0) {
       pendingMessage = "There is no pending transaction";
     } else {
       pendingMessage = "";
     }
-    console.log(data, "pending");
     return dispatch(getDataResponsePending({pendingList, pendingMessage}));
   };
 }
 
 export function getPendingTransactionsList() {
   return (dispatch) => {
-    console.log("mtav")
     dispatch(getDataRequestTrPending());
     return api.getPendingTransactions()
       .then(data => dispatch(getDataResponseTrPending(data.data)))
@@ -103,3 +102,33 @@ export function getPendingTransactionsList() {
   };
 }
 
+
+/////////////////////////////////////////////         get balance   ////////////////////////////////////////////////
+
+const getDataRequestBalance = createAction(ActionTypes.getDataRequestBalance);
+
+export function getDataRequestTrBalance() {
+  return (dispatch) => {
+    return dispatch(getDataRequestBalance());
+  };
+}
+
+const getDataResponseBalance = createAction(ActionTypes.getDataResponseBalance);
+
+export function getDataResponseTrBalance(data) {
+  return (dispatch) => {
+    console.log(data,"aystegh");
+    let balance = data.val;
+    let monthlyFee = data.monthlyFee;
+    return dispatch(getDataResponseBalance({balance,monthlyFee}));
+  };
+}
+
+export function getBalance() {
+  return (dispatch) => {
+    dispatch(getDataRequestTrBalance());
+    return api.getBalance()
+      .then(data => dispatch(getDataResponseTrBalance(data.data)))
+      .catch(error => dispatch(errorHandler(error)));
+  };
+}
