@@ -55,17 +55,20 @@
 .bot-info {
   //margin: 25px;
   width: 100%;
-  height:40%;
+  height: 40%;
 }
-.bot-info p{
+
+.bot-info p {
   width: 100%;
 }
+
 .bot-btn {
   position: relative;
   text-align: center;
   width: 100%;
 }
-.bot-btn-sub{
+
+.bot-btn-sub {
 }
 
 .bot {
@@ -98,19 +101,49 @@
 
 .table-body {
   margin: 15px;
+
 }
-.thead-inverse{
+
+.thead-inverse {
   background-color: #4d4d4d;
   color: white;
   font-size: larger;
 }
 
-thead:last-child{
+thead:last-child {
   margin-bottom: 15px;
 }
+
 .fa_custom {
   color: #027041
 }
-.disable-enable{
+
+.disable-enable {
   cursor: pointer;
+}
+
+.table th, .table td {
+  width: 20px;
+  white-space: initial;
+  word-wrap: break-word;
+}
+
+.table {
+  table-layout: fixed;
+  width: 100%;
+  //word-wrap: break-word;
+  white-space: nowrap;
+}
+
+.pagination-block {
+  position: relative;
+}
+
+.metamask-btn{
+  width: 100%;
+  cursor: pointer;
+}
+.ether-icon{
+  color: green;
+
 }

@@ -45,7 +45,7 @@ const getDataResponseTransactionsFunc = createAction(ActionTypes.getDataResponse
 
 export function getDataResponseTransactions(data) {
   return (dispatch) => {
-    console.log(data,"data ==============")
+    console.log(data, "data ==============")
     let list = data.data;
     let count = data.count;
     let logMessage = '';
@@ -67,4 +67,40 @@ export function getTransactionsList(page, size) {
   };
 }
 
+/////////////////////////////////////////////         get pending transactions    ////////////////////////////////////////////////
+
+const getDataRequestPending = createAction(ActionTypes.getDataRequestPending);
+
+export function getDataRequestTrPending() {
+  return (dispatch) => {
+    return dispatch(getDataRequestPending());
+  };
+}
+
+const getDataResponsePending = createAction(ActionTypes.getDataResponsePending);
+
+export function getDataResponseTrPending(data) {
+  return (dispatch) => {
+    let pendingList = data.data;
+    console.log(pendingList,"pendLIIIISt");
+    let pendingMessage = '';
+    if (data.length === 0) {
+      pendingMessage = "There is no pending transaction";
+    } else {
+      logMessage = "";
+    }
+    console.log(data, "pending");
+    return dispatch(getDataResponsePending({pendingList, pendingMessage}));
+  };
+}
+
+export function getPendingTransactionsList() {
+  return (dispatch) => {
+    console.log("mtav")
+    dispatch(getDataRequestTrPending());
+    return api.getPendingTransactions()
+      .then(data => dispatch(getDataResponseTrPending(data.data)))
+      .catch(error => dispatch(errorHandler(error)));
+  };
+}
 

@@ -147,9 +147,14 @@ const getTransactions = (page, size) => {
   addHeaders(true);
   return api.get("/auth/transaction?page=" + page + "&size=" + size);
 };
+const getPendingTransactions = () => {
+  addHeaders(true);
+  return api.post("/auth/transaction-pending");
+};
 
 export default {
   getTransactions,
+  getPendingTransactions,
   addTransaction,
   signIn,
   signUp,
