@@ -4,7 +4,7 @@ import {paymentActions, popupActions, projectDataActions} from "../../actions/in
 import "./wallet.scss";
 import PropTypes from "prop-types";
 import {Web3Provider} from "react-web3";
-
+import {Metamask} from "../../images/metamask.png";
 
 let isTransationInProgress = true;
 
@@ -67,16 +67,13 @@ export class Wallet extends React.Component {
       transactionReceipt.fromE = transaction.from;
       transactionReceipt.gas = transaction.gas;
       transactionReceipt.nonce = transaction.nonce;
-      transactionReceipt.valueE = parseInt(transaction.v,16);
+      transactionReceipt.valueE = parseInt(transaction.v, 16);
       transactionReceipt.input = transaction.input;
       transactionReceipt.toE = transaction.to;
       transactionReceipt.hashE = hash;
       self.props.addNewTransaction(transactionReceipt);
     });
-<<<<<<< HEAD
 
-=======
->>>>>>> 5300bc5ef57a35d3bc5ec43b023a935d6c757085
   }
 
   showPopup(message) {
@@ -97,11 +94,11 @@ export class Wallet extends React.Component {
 
 
   componentDidMount() {
-    this.props.getTransactionsList(0,5);
+    this.props.getTransactionsList(0, 5);
   }
 
   render() {
-    console.log(this.props,"props==============")
+    console.log(this.props, "props==============")
     return (
       <div className="main-content">
         <div className="header-section">My wallet</div>
@@ -119,9 +116,9 @@ export class Wallet extends React.Component {
                             placeholder="Input Ether count to charge your account"/></div>
                 <br/>
                 <div className="bot-btn">
-                  <button className="btn btn-success dashboard  bot-btn-sub" onClick={(e) => this.handlePay(e) }>
+                  <img src={Metamask} onClick={(e) => this.handlePay(e) }>
                     Recharge wallet
-                  </button>
+                  </img>
                 </div>
               </div>
             </div>
