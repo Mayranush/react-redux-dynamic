@@ -96,9 +96,11 @@
 
 .wallet .btn {
   align-items: center;
-
 }
+.wallet {
 
+  float: left;
+}
 .table-body {
   margin: 15px;
 
@@ -123,9 +125,12 @@ thead:last-child {
 }
 
 .table th, .table td {
-  width: 20px;
-  white-space: initial;
-  word-wrap: break-word;
+  //width: 20px;
+  //white-space: initial;
+  //word-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .table {
@@ -139,11 +144,23 @@ thead:last-child {
   position: relative;
 }
 
-.metamask-btn{
+.metamask-btn {
   width: 100%;
   cursor: pointer;
 }
-.ether-icon{
-  color: green;
 
+.green {
+  color: green;
+  font-weight: bold;
+}
+
+.red {
+  color: red;
+  font-weight: bold;
+}
+
+h4 {
+  clear: both;
+  float: left;
+  margin: 15px;
 }

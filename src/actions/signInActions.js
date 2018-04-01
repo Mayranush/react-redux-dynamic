@@ -80,7 +80,7 @@ export function getDataResponseSignIn(data) {
           window.sessionStorage.setItem("role", '');
           dispatch(responseResponseSignIn({message, token, role}));
           store.dispatch(push('/login'));
-        }, 3590000);
+        }, 1800000);
       if (data.role === "USER") {
         store.dispatch(push('/dashboard'));
       } else {

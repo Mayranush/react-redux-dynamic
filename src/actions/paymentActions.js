@@ -45,7 +45,6 @@ const getDataResponseTransactionsFunc = createAction(ActionTypes.getDataResponse
 
 export function getDataResponseTransactions(data) {
   return (dispatch) => {
-    console.log(data, "data ==============")
     let list = data.data;
     let count = data.count;
     let logMessage = '';
@@ -84,10 +83,10 @@ export function getDataResponseTrPending(data) {
     let pendingList = data.data;
     console.log(pendingList,"pendLIIIISt");
     let pendingMessage = '';
-    if (data.length === 0) {
+    if (pendingList.length === 0) {
       pendingMessage = "There is no pending transaction";
     } else {
-      logMessage = "";
+      pendingMessage = "";
     }
     console.log(data, "pending");
     return dispatch(getDataResponsePending({pendingList, pendingMessage}));

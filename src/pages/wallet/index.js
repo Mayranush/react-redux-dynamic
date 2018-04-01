@@ -51,7 +51,7 @@ export class Wallet extends React.Component {
         }
         if (hash) {
           console.log(hash);
-          self.handleShowpopup("Your transaction has been submitted!");
+          self.handleShowpopup("Your transaction has been submitted! It will appear in your pending transaction soon.");
           self.textInput.value = "";
           self.addTransaction(hash);
 
@@ -114,7 +114,7 @@ export class Wallet extends React.Component {
   }
 
   render() {
-    console.log(this.props.data.pendingTransaction,"pending one");
+    console.log(this.props.data.pendingTransaction, "pending one");
     return (
       <div className="main-content">
         <div className="header-section">My wallet</div>
@@ -123,7 +123,7 @@ export class Wallet extends React.Component {
             <div>
               <div className="wallet">
                 <div className="bot-info">
-                  <p className="bot-status active">You have <br/> 0 <i className="fab fa-ethereum 7x ether-icon"></i>
+                  <p className="bot-status active">You have <br/> 0 <i className="fab fa-ethereum 7x green"></i>
                     <br/> in your wallet </p>
                 </div>
 
@@ -142,6 +142,7 @@ export class Wallet extends React.Component {
               </div>
             </div>
           </Web3Provider>
+          <h4>Pending Transactions </h4>
           <div className="table-body">
             <table className="table">
               <thead className="thead-inverse">
@@ -158,10 +159,10 @@ export class Wallet extends React.Component {
               <tbody>
               {this.props.data.pendingTransaction.length != 0 && this.props.data.pendingTransaction.map((item) => {
                 return ( <tr key={item.id}>
-                  <th scope="row">{item.hashE}</th>
-                  <td>{item.fromE}</td>
-                  <td>{item.toE}</td>
-                  <td>{item.valueE}</td>
+                  <th scope="row" title={item.hashE}>{item.hashE}</th>
+                  <td title={item.fromE}>{item.fromE}</td>
+                  <td title={item.toE}>{item.toE}</td>
+                  <td>{item.valueE} $</td>
                   <td>{item.gas}</td>
                   <td>{item.nonce}</td>
                   <td>{item.input}</td>
@@ -172,8 +173,12 @@ export class Wallet extends React.Component {
             </table>
             <p className="log-message">{this.props.data.logMessage}</p>
           </div>
+          <br/>
+         <h4>Transaction history</h4>
           <div className="table-body">
+
             <table className="table">
+
               <thead className="thead-inverse">
               <tr>
                 <th>Transaction Hash</th>
@@ -183,6 +188,7 @@ export class Wallet extends React.Component {
                 <th>To</th>
                 <th>Value</th>
                 <th>Gas</th>
+                <th>Gas Used</th>
                 <th>Nonce</th>
                 <th>Transaction Index</th>
                 <th>Input</th>
@@ -192,17 +198,19 @@ export class Wallet extends React.Component {
               <tbody>
               {this.props.data.transactions.length != 0 && this.props.data.transactions.map((item) => {
                 return ( <tr key={item.id}>
-                  <th scope="row">{item.hashE}</th>
-                  <td>{item.blockNumber}</td>
-                  <td>{item.blockHash}</td>
-                  <td>{item.fromE}</td>
-                  <td>{item.toE}</td>
+                  <th scope="row" title={item.hashE}>{item.hashE}</th>
+                  <td title={item.blockNumber}>{item.blockNumber}</td>
+                  <td title={item.blockHash}>{item.blockHash}</td>
+                  <td title={item.fromE}>{item.fromE}</td>
+                  <td title={item.toE}>{item.toE}</td>
                   <td>{item.valueE}</td>
                   <td>{item.gas}</td>
+                  {/*<td>{item.gasUsed}</td>*/}
                   <td>{item.nonce}</td>
                   <td>{item.transactionIndex}</td>
                   <td>{item.input}</td>
-                  <td>{item.statusE}</td>
+                  {item.statusE === 1 ? <td className="green">success</td> : (item.statusE === 1 ?
+                    <td className="red">failed</td> : <td>pending</td>)}
                 </tr>)
               })
               }
