@@ -16,16 +16,17 @@ export class Dashboard extends React.Component {
     e.stopPropagation();
     e.preventDefault();
     this.props.botPost();
-  }
 
+  }
 
 
   deactivateBot(e) {
     e.stopPropagation();
     e.preventDefault();
     this.props.botPut();
-    this.props.changeBotStatus('STOPPED');
+
     this.props.changeBotStart('');
+    this.props.changeBotStatus('STOPPED');
   }
 
   static propTypes = {
@@ -33,8 +34,8 @@ export class Dashboard extends React.Component {
   };
 
   componentDidMount() {
-    this.props.botGet();
-
+   this.props.botGet();
+    this.props.changeBotStart('');
   }
 
   render() {
@@ -45,9 +46,9 @@ export class Dashboard extends React.Component {
           <div className="bot">
             <div className="bot-info">
               <p className={this.props.data.botStart == 'STARTED.' ? "bot-status active" : "bot-status"}><span
-                className="dot dotGreen"/>You started Tipping bot</p>
+                className=""/>You started Tipping bot</p>
               <p
-                className={this.props.data.botStart == 'STARTED.' || this.props.data.botStart == 'The bot is running.' ? "bot-status" : "bot-status active"}>
+                className={(this.props.data.botStart == 'STARTED.' || this.props.data.botStart == 'The bot is running.') ? "bot-status" : "bot-status active"}>
                 <span className="yellow">
                   {this.props.data.botStart.indexOf('criteria') > -1 ?
                     <Link to="settings" onClick={() => this.props.changeTabInSettings('twitterCriteria')}>
@@ -55,11 +56,13 @@ export class Dashboard extends React.Component {
                     </Link> : this.props.data.botStart}
                 </span>
               </p>
-              <p className={this.props.data.botStatus == 'RUNNING' ? "bot-status" : "bot-status active"}><span
+              <p
+                className={(this.props.data.botStatus == 'STOPPED' || this.props.data.botStatus == 'IDLE') ? "bot-status active" : "bot-status"}><span
                 className="dot dotRed"/>Your Tipping bot is not running </p>
               <p
-                className={this.props.data.botStatus == 'RUNNING' && this.props.data.botStart != 'STARTED.' ? "bot-status active" : "bot-status"}>
+                className={this.props.data.botStatus == 'RUNNING' ? "bot-status active" : "bot-status"}>
                 <span className="dot dotGreen"/>Your Tipping bot is running </p>
+
             </div>
             <br/>
             <div className="bot-btn">

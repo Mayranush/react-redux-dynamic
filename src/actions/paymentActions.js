@@ -18,7 +18,7 @@ const responseResponsePayment = createAction(ActionTypes.getDataResponsePayment)
 
 export function getDataResponsePayment(data) {
   return (dispatch) => {
-      return dispatch(getPendingTransactionsList());
+    return dispatch(getPendingTransactionsList());
   };
 }
 
@@ -48,7 +48,6 @@ export function getDataResponseTransactions(data) {
     let list = data.data;
     let count = data.count;
     let logMessage = '';
-    console.log(list.length,"list");
     if (list.length === 0) {
       logMessage = "There is no data to show";
     } else {
@@ -83,7 +82,6 @@ export function getDataResponseTrPending(data) {
   return (dispatch) => {
     let pendingList = data.data;
     let pendingMessage = '';
-    console.log(pendingList.length,"plist");
     if (pendingList.length === 0) {
       pendingMessage = "There is no pending transaction";
     } else {
@@ -117,10 +115,9 @@ const getDataResponseBalance = createAction(ActionTypes.getDataResponseBalance);
 
 export function getDataResponseTrBalance(data) {
   return (dispatch) => {
-    console.log(data,"aystegh");
     let balance = data.val;
     let monthlyFee = data.monthlyFee;
-    return dispatch(getDataResponseBalance({balance,monthlyFee}));
+    return dispatch(getDataResponseBalance({balance, monthlyFee}));
   };
 }
 
@@ -129,6 +126,74 @@ export function getBalance() {
     dispatch(getDataRequestTrBalance());
     return api.getBalance()
       .then(data => dispatch(getDataResponseTrBalance(data.data)))
+      .catch(error => dispatch(errorHandler(error)));
+  };
+}
+/////////////////////////////////////////////         get monthlee fee history    ////////////////////////////////////////////////
+
+const getDataRequestMonthlyFeeFunc = createAction(ActionTypes.getDataRequestMonthlyFee);
+
+export function getDataRequestMonthlyFee() {
+  return (dispatch) => {
+    return dispatch(getDataRequestMonthlyFeeFunc());
+  };
+}
+
+const getDataResponseMonthlyFeeFunc = createAction(ActionTypes.getDataResponseMonthlyFee);
+
+export function getDataResponseMonthlyFee(data) {
+  return (dispatch) => {
+
+    let subsriptionHistory = data.data;
+    let subsriptionHistoryCount = data.count;
+    let subsriptionHistoryMessage = '';
+    if (subsriptionHistory.length === 0) {
+      subsriptionHistoryMessage = "There is no data to show";
+    } else {
+      subsriptionHistoryMessage = "";
+    }
+    return dispatch(getDataResponseMonthlyFeeFunc({
+      subsriptionHistory,
+      subsriptionHistoryCount,
+      subsriptionHistoryMessage
+    }));
+  };
+}
+
+export function getMonthlyFee(page, size) {
+  return (dispatch) => {
+    console.log("afsfddsgddg")
+    dispatch(getDataRequestMonthlyFee());
+    return api.getSubsriptionHistory(page, size)
+      .then(data => dispatch(getDataResponseMonthlyFee(data.data)))
+      .catch(error => dispatch(errorHandler(error)));
+  };
+}
+/////////////////////////////////////////////        activate subscription ////////////////////////////////////////////////
+
+const getDataRequestPayMonthlyFeeFunc = createAction(ActionTypes.getDataRequestPayMonthlyFee);
+
+export function getDataRequestPayMonthlyFee() {
+  return (dispatch) => {
+    return dispatch(getDataRequestPayMonthlyFeeFunc());
+  };
+}
+
+const getDataResponsePayMonthlyFeeFunc = createAction(ActionTypes.getDataResponsePayMonthlyFee);
+
+export function getDataResponsePayMonthlyFee(data) {
+  return (dispatch) => {
+    let monthlyFee = true;
+    return dispatch(getDataResponsePayMonthlyFeeFunc({monthlyFee}));
+  };
+}
+
+
+export function payMonthlyFee() {
+  return (dispatch) => {
+    dispatch(getDataRequestMonthlyFee());
+    return api.activateSubscription()
+      .then(data => dispatch(getDataResponsePayMonthlyFee(data)))
       .catch(error => dispatch(errorHandler(error)));
   };
 }

@@ -56,6 +56,10 @@ const ActionTypes = {
 
   getDataRequestTransactions: "GET_DATA_REQUEST_TRANSACTIONS",
   getDataResponseTransactions: "GET_DATA_RESPONSE_TRANSACTIONS",
+  getDataRequestMonthlyFee: "GET_DATA_REQUEST_MONTHLY_FEE",
+  getDataResponseMonthlyFee: "GET_DATA_RESPONSE_MONTHLY_FEE",
+  getDataRequestPayMonthlyFee: "GET_DATA_REQUEST_PAY_MONTHLY_FEE",
+  getDataResponsePayMonthlyFee: "GET_DATA_RESPONSE_PAY_MONTHLY_FEE",
   getDataRequestPending: "GET_DATA_REQUEST_PENDING",
   getDataResponsePending: "GET_DATA_RESPONSE_PENDING",
   getDataRequestBalance: "GET_DATA_REQUEST_BALANCE",

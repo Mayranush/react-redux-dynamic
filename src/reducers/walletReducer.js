@@ -1,6 +1,7 @@
 import {ActionTypes} from "../constants/index";
 import {handleActions} from "redux-actions";
 
+
 const defaultState = {
   transactions: [],
   count: 0,
@@ -8,7 +9,10 @@ const defaultState = {
   pendingTransaction: [],
   pendingMessage: '',
   monthlyFee: false,
-  balance: 0
+  balance: 0,
+  subsriptionHistory: [],
+  subsriptionHistoryCount: 0,
+  subsriptionHistoryMessage: ''
 };
 
 export default handleActions({
@@ -22,5 +26,16 @@ export default handleActions({
 
   [ActionTypes.getDataResponseBalance]: (state, {payload}) => {
     return ({...state, balance: payload.balance, monthlyFee: payload.monthlyFee});
+  },
+  [ActionTypes.getDataResponsePayMonthlyFee]: (state, {payload}) => {
+    return ({...state,  monthlyFee: payload.monthlyFee});
+  },
+  [ActionTypes.getDataResponseMonthlyFee]: (state, {payload}) => {
+    return ({
+      ...state,
+      subsriptionHistory: payload.subsriptionHistory,
+      subsriptionHistoryCount: payload.subsriptionHistoryCount,
+      subsriptionHistoryMessage: payload.subsriptionHistoryMessage
+    });
   }
 }, defaultState);

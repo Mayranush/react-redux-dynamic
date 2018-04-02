@@ -155,8 +155,17 @@ const getBalance = () => {
   addHeaders(true);
   return api.get("/auth/balance");
 };
-
+const getSubsriptionHistory = (page, size) => {
+  addHeaders(true);
+  return api.get("/auth/monthly-fee?page=" + page + "&size=" + size);
+};
+const activateSubscription = () => {
+  addHeaders(true);
+  return api.post("/auth/monthly-fee");
+};
 export default {
+  activateSubscription,
+  getSubsriptionHistory,
   getBalance,
   getTransactions,
   getPendingTransactions,

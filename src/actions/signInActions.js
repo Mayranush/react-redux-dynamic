@@ -5,7 +5,6 @@ import {tools} from "../resources";
 import api from "../api/api";
 import {push} from "react-router-redux";
 import {changeSuccessMessage} from "./successActions";
-import {errorHandler} from "./generalActions";
 
 const emailChangeResponse = createAction(ActionTypes.emailChange);
 const passwordChangeResponse = createAction(ActionTypes.passwordChange);
@@ -34,7 +33,7 @@ export function passwordChange(password) {
     } else {
       message = '';
     }
-   return dispatch(passwordChangeResponse({password, message}));
+    return dispatch(passwordChangeResponse({password, message}));
   };
 }
 
@@ -64,23 +63,15 @@ export function getDataResponseSignIn(data) {
     let message = '';
     let token = '';
     let role = '';
-    if(data.message === 'Your account is not an active.'){
+    if (data.message === 'Your account is not an active.') {
       message = 'Your account is not active.';
       dispatch(changeSuccessMessage(message));
       store.dispatch(push('/message'));
-    }else {
+    } else {
       token = data.token;
       role = data.role;
       window.sessionStorage.setItem("token", data.token);
       window.sessionStorage.setItem("role", data.role);
-      setTimeout(
-        () => {
-          token = '';
-          window.sessionStorage.setItem("token", '');
-          window.sessionStorage.setItem("role", '');
-          dispatch(responseResponseSignIn({message, token, role}));
-          store.dispatch(push('/login'));
-        }, 1800000);
       if (data.role === "USER") {
         store.dispatch(push('/dashboard'));
       } else {

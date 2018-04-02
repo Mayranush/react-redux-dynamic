@@ -67,7 +67,7 @@ export class Pagination extends React.Component {
             this.floatToRight = false;
 		    return this.makingArrOfPagesForView(pageArr);
 		}
-	}
+	};
 
     makingArrOfPagesForView = (arr) => {
         let arrToReturn = [];
@@ -83,7 +83,7 @@ export class Pagination extends React.Component {
             item = {}
         }
         this.setState({pages: arrToReturn});
-    }
+    };
 
     checkingForState = () => {
         if (this.props.maxPageCount <= 3) {
@@ -103,28 +103,28 @@ export class Pagination extends React.Component {
                 }
             }
         }
-    }
+    };
 
     nextPage = () => {
         this.currentPage++;
         return this.checkingForState();
-    }
+    };
     previousPage = () => {
         this.currentPage--;
         return this.checkingForState();
-    }
+    };
     firstPage = () => {
         this.currentPage = 1;
         return this.checkingForState();
-    }
+    };
     lastPage = () => {
         this.currentPage = this.props.maxPageCount;
         return this.checkingForState();
-    }
+    };
     choosedPage = (val) => {
     	this.currentPage = val;
         return this.checkingForState();
-    }
+    };
                
     choosedPageFromTable = (item) => {
         if (item.value == '>') {
@@ -150,6 +150,7 @@ export class Pagination extends React.Component {
     };
 
   render() {
+    console.log(this.props,"pagination");
     return (
 	<div className={this.floatToRight ? "pagination-block pagination-to-right" : "pagination-block"}>
 	{

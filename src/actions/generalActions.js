@@ -13,6 +13,9 @@ export function errorHandler(error) {
 			let passwordErrorText = '';
 			let text = "";
 		if (error.response.data.message === 'Token is incorrect !') {
+      window.sessionStorage.setItem("token", '');
+      window.sessionStorage.setItem("role", '');
+      store.dispatch(push('/login'));
 			return(dispatch(cleanData()));
 		} else if (error.response.data.status == 400) {
 			text = "Error has occurred. Please try again!";

@@ -8,7 +8,7 @@ export class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.logout.bind(this);
-    this.role = window.sessionStorage.getItem("role");  
+    this.role = window.sessionStorage.getItem("role");
   }
 
   static propTypes = {
@@ -49,6 +49,15 @@ export class Menu extends React.Component {
                 <div className="nav-link">
                   <Link className="nav-link-text" to="wallet">
                     <i className="fab fa-fw fa-ethereum fa-menu"/>My Wallet
+                  </Link>
+                </div>
+              </li>
+              }
+              {this.role === 'USER' &&
+              <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Subscription">
+                <div className="nav-link">
+                  <Link className="nav-link-text" to="subscription">
+                    <i className="far  fa-fw fa-calendar-check fa-menu"/>Subscription
                   </Link>
                 </div>
               </li>

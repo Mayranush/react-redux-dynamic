@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 import {Web3Provider} from "react-web3";
 import {Metamask} from "../../images/metamask.png";
 
-let isTransationInProgress = true;
 
 export class Wallet extends React.Component {
   constructor(props) {
@@ -30,7 +29,7 @@ export class Wallet extends React.Component {
     e.preventDefault();
     var ethVal = web3.toWei(this.textInput.value, 'ether');
     var ethHex = ethVal.toString(16);
-
+    console.log(ethVal, "etherium  ");
     var gasVal = web3.toWei(25, 'gwei');
     var gasHex = gasVal.toString(16);
 
@@ -62,7 +61,7 @@ export class Wallet extends React.Component {
       transactionReceipt.fromE = transaction.from;
       transactionReceipt.gas = transaction.gas;
       transactionReceipt.nonce = transaction.nonce;
-      transactionReceipt.valueE = parseInt(transaction.v, 16);
+      transactionReceipt.valueE = transaction.value.c[0] / 10000;// parseInt(transaction.v, 16);
       transactionReceipt.input = transaction.input;
       transactionReceipt.toE = transaction.to;
       transactionReceipt.hashE = hash;
@@ -80,17 +79,16 @@ export class Wallet extends React.Component {
           self.getPendingTransactions();
         }
       });
-    }, 120000);
+    }, 90000);
   }
 
   getPendingTransactions() {
-//TODO error is occuring
     this.props.getPendingTransactionsList();
     self = this;
     setTimeout(() => {
       self.props.getTransactionsList(0, self.itemsInEachPage);
       self.props.getBalance();
-    }, 10000);
+    }, 3000);
   }
 
 
@@ -105,13 +103,13 @@ export class Wallet extends React.Component {
 
 
   componentDidMount() {
-
     this.props.getPendingTransactionsList();
     this.props.getTransactionsList(0, this.itemsInEachPage);
     this.props.getBalance();
   }
 
   render() {
+    console.log(this.props,"jjjjjjj");
     return (
       <div className="main-content">
         <div className="header-section">My wallet</div>
@@ -119,38 +117,25 @@ export class Wallet extends React.Component {
           <Web3Provider>
             <div>
               <div className="wallet">
-                <div className="bot-info">
-                  <p className="bot-status active">You have <br/> {this.props.data.balance} <i
+                <div className="wallet-info">
+                  <p className="wallet-balance">You have <br/> {this.props.data.balance} <i
                     className="fab fa-ethereum 7x green"></i>
                     <br/> in your wallet </p>
                 </div>
 
                 <div><input type="number" ref={(input) => {
                   this.textInput = input;
-                }} className="form-control bot-info"
+                }} className="form-control wallet-info"
                             placeholder="Input Ether count to fill your account"/></div>
                 <br/>
-                <div className="bot-btn">
-
+                <div className="wallet-btn">
                   <img src={require('../../images/metamask.png')} onClick={(e) => this.handlePay(e) }
                        className="metamask-btn"/>
                 </div>
               </div>
-              <div className="wallet">
-                <div className="bot-info">
-                  <span className="bot-status active">Monthly Subscription
-                    <br/>
-                    <br/>
-                    <br/>
-<hr/>
-                    {this.props.data.monthlyFee
-                      ? <span className="green">Your account is active. View subscription <span onClick={(e) => this.handlePay(e)}>history.</span> </span>
-                      : <button className="btn btn-success">Activate</button>}
-                  </span>
-                </div>
-              </div>
             </div>
           </Web3Provider>
+
           <h4>Pending Transactions </h4>
           <div className="table-body">
             <table className="table">
@@ -171,7 +156,7 @@ export class Wallet extends React.Component {
                   <th scope="row" title={item.hashE}>{item.hashE}</th>
                   <td title={item.fromE}>{item.fromE}</td>
                   <td title={item.toE}>{item.toE}</td>
-                  <td>{item.valueE} $</td>
+                  <td>{item.valueE} <i className="fab fa-ethereum green"/></td>
                   <td>{item.gas}</td>
                   <td>{item.nonce}</td>
                   <td>{item.input}</td>
@@ -180,7 +165,7 @@ export class Wallet extends React.Component {
               }
               </tbody>
             </table>
-            <p className="log-message">{this.props.data.logMessage}</p>
+            <p className="log-message">{this.props.data.pendingMessage}</p>
           </div>
           <br/>
           <h4>Transaction history</h4>
@@ -190,7 +175,7 @@ export class Wallet extends React.Component {
 
               <thead className="thead-inverse">
               <tr>
-                <th>Transaction Hash</th>
+                <th>TxHash</th>
                 <th>Block</th>
                 <th>Block Hash</th>
                 <th>From</th>
@@ -199,7 +184,7 @@ export class Wallet extends React.Component {
                 <th>Gas</th>
                 <th>Gas Used</th>
                 <th>Nonce</th>
-                <th>Transaction Index</th>
+                <th>TxIndex</th>
                 <th>Input</th>
                 <th>Status</th>
               </tr>
@@ -212,7 +197,7 @@ export class Wallet extends React.Component {
                   <td title={item.blockHash}>{item.blockHash}</td>
                   <td title={item.fromE}>{item.fromE}</td>
                   <td title={item.toE}>{item.toE}</td>
-                  <td>{item.valueE}</td>
+                  <td>{item.valueE} <i className="fab fa-ethereum green"/></td>
                   <td>{item.gas}</td>
                   <td>{item.gasUsed}</td>
                   <td>{item.nonce}</td>

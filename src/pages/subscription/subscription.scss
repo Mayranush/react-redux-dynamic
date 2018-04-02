@@ -1,4 +1,4 @@
-.wallet-balance, .wallet-subscription {
+.subscription-status {
   text-align: center;
   float: left;
   display: block;
@@ -10,42 +10,36 @@
   cursor: pointer
 }
 
-.wallet-info {
+.subscription-info {
   width: 100%;
   height: 40%;
 }
 
-.wallet-info p, .wallet-info span {
+.subscription-info p, .subscription-info span {
   width: 100%;
 }
 
-.wallet-btn {
-  position: relative;
-  text-align: center;
-  width: 100%;
-}
-
-.wallet {
+.subscription {
   align-content: center;
   border-radius: 25px;
   border: 2px solid #73AD21;
   padding: 20px;
-  width: 400px;
-  height: 250px;
+  width: 250px;
+  height: 150px;
   margin: 15px;
   max-width: 50%;
   float: left;
 }
 
-.wallet .btn {
+.subscription .btn {
   align-items: center;
 }
 
-.table-body {
+.sb.table-body {
   margin: 15px;
 }
 
-.thead-inverse {
+.sb.thead-inverse {
   background-color: #4d4d4d;
   color: white;
   font-size: larger;
@@ -63,7 +57,7 @@ thead:last-child {
   cursor: pointer;
 }
 
-.table th, .table td {
+.sb.table th, .sb.table td {
   //width: 20px;
   //white-space: initial;
   //word-wrap: break-word;
@@ -72,20 +66,17 @@ thead:last-child {
   text-overflow: ellipsis;
 }
 
-.table {
+.sb.table {
+  clear: both;
+  float: left;
   table-layout: fixed;
-  width: 100%;
+  width: 40%;
   //word-wrap: break-word;
   white-space: nowrap;
 }
 
 .pagination-block {
   position: relative;
-}
-
-.metamask-btn {
-  width: 100%;
-  cursor: pointer;
 }
 
 .green {
@@ -102,4 +93,9 @@ h4 {
   clear: both;
   float: left;
   margin: 15px;
+}
+
+.sb-log-message {
+  clear: both;
+  float: left;
 }

@@ -89,6 +89,15 @@ const routes = {
       }
     },
     {
+      path: 'subscription',
+      onEnter: requireAuth,
+      getComponent(location, cb) {
+        System.import('pages/subscription')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      }
+    },
+    {
       path: 'charts',
       onEnter: requireAuth,
       getComponent(location, cb) {
