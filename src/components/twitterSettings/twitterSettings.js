@@ -69,7 +69,7 @@ export class TwitterSettings extends React.Component {
         </form>
         <div className="rect">Need any help? <Link className="contact-us" to="">Contact us here</Link></div>
         <div className="update-info">
-          <button className=" btn btn-warning settings" onClick={() => this.props.updateSettings()}>Update Twitter Api
+          <button className=" btn btn-warning settings" onClick={() => this.props.updateSettings()} disabled={this.props.twitter.botStatus == 'RUNNING' ? true : false}>Update Twitter Api
             Settings
           </button>
         </div>

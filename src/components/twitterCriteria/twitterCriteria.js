@@ -97,22 +97,22 @@ export class TwitterCriteria extends React.Component {
                 {/*<div className="checkbox">*/}
                 {/*<label><input type="checkbox" ref="tipsLike" defaultChecked={this.props.twitter.tipsLike} /> Like</label>*/}
                 {/*</div>*/}
-                <div className="checkbox tw-crit ">
-                  <label><input type="checkbox" ref="tipsTweet"
-                                disabled={ this.props.twitter.botStatus == 'RUNNING' ? true : false }
-                                defaultChecked={this.props.twitter.tipsTweet}/><span>  </span>
-                    Tweet
-                    <div className="description">(tips to tweets)</div>
-                  </label>
-                </div>
-                <div className="checkbox tw-crit">
-                  <label><input type="checkbox" ref="tipsReTweet"
-                                disabled={ this.props.twitter.botStatus == 'RUNNING' ? true : false }
-                                defaultChecked={this.props.twitter.tipsReTweet}/><span>  </span>
-                    ReTweet
-                    <div className="description">(tips to reTweets)</div>
-                  </label>
-                </div>
+                {/*<div className="checkbox tw-crit ">*/}
+                  {/*<label><input type="checkbox" ref="tipsTweet"*/}
+                                {/*disabled={ this.props.twitter.botStatus == 'RUNNING' ? true : false }*/}
+                                {/*defaultChecked={this.props.twitter.tipsTweet}/><span>  </span>*/}
+                    {/*Tweet*/}
+                    {/*<div className="description">(tips to tweets)</div>*/}
+                  {/*</label>*/}
+                {/*</div>*/}
+                {/*<div className="checkbox tw-crit">*/}
+                  {/*<label><input type="checkbox" ref="tipsReTweet"*/}
+                                {/*disabled={ this.props.twitter.botStatus == 'RUNNING' ? true : false }*/}
+                                {/*defaultChecked={this.props.twitter.tipsReTweet}/><span>  </span>*/}
+                    {/*ReTweet*/}
+                    {/*<div className="description">(tips to reTweets)</div>*/}
+                  {/*</label>*/}
+                {/*</div>*/}
                 <div className="checkbox tw-crit">
                   <label><input type="checkbox" ref="tipsFollowers"
                                 disabled={ this.props.twitter.botStatus == 'RUNNING' ? true : false }
@@ -128,8 +128,8 @@ export class TwitterCriteria extends React.Component {
           </div>
         </form>
         <div className="rect">Need any help? <Link className="contact-us" to="">Contact us here</Link></div>
-        <div className="update-info">
-          <button className=" btn btn-warning settings" onClick={() => this.props.updateSettings()}>Update Twitter
+        <div className="update-info"  >
+          <button className=" btn btn-warning settings"  onClick={() => this.props.updateSettings()} disabled={this.props.twitter.botStatus == 'RUNNING' ? true : false} >Update Twitter
             Criterias
           </button>
         </div>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import store from "store";
+
 let api;
 
 
@@ -17,7 +18,7 @@ let addHeaders = (token) => {
     });
   } else {
     api = axios.create({
-      baseURL: "http://104.237.3.213:8888"
+      baseURL: "http://104.237.3.213:8888"//
     });
   }
 
@@ -141,7 +142,7 @@ const enableUser = (id) => {
 };
 const addTransaction = (transaction) => {
   addHeaders(true);
-  return api.post("/auth/transaction",transaction);
+  return api.post("/auth/transaction", transaction);
 };
 const getTransactions = (page, size) => {
   addHeaders(true);
@@ -162,6 +163,14 @@ const getSubsriptionHistory = (page, size) => {
 const activateSubscription = () => {
   addHeaders(true);
   return api.post("/auth/monthly-fee");
+};
+const checkWithdrawToken = (token) => {
+  addHeaders(false);
+  return api.post("/api/token-check?token=" + token);
+};
+const confirmWithdrawTransaction = (token, address) => {
+  addHeaders(false);
+  return api.post("/api/token-success?token=" + token + "&address=" + address);
 };
 export default {
   activateSubscription,
@@ -192,6 +201,8 @@ export default {
   changePassword,
   getAdminsList,
   deleteAdmin,
-  addAdmin
+  addAdmin,
+  checkWithdrawToken,
+  confirmWithdrawTransaction
 };
 

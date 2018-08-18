@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, browserHistory } from 'react-router/es6';
+import {Router, browserHistory} from 'react-router/es6';
 import MainLayout from 'containers/layout';
 import store from 'store';
 
@@ -11,7 +11,16 @@ function loadRoute(cb) {
   return (module) => cb(null, module.default);
 }
 
-function requireAuth (nextState, replace, callback) {
+function requireAdmin(nextState, replace, callback) {
+  const token = store.getState().general.token || window.sessionStorage.getItem("token");
+  if (!token) replace('/login');
+  if (store.getState().general.role === 'ADMIN' || window.sessionStorage.getItem("role") === 'ADMIN') {
+    replace('/settings')
+  }
+  return callback()
+}
+
+function requireAuth(nextState, replace, callback) {
   const token = store.getState().general.token || window.sessionStorage.getItem("token");
   if (!token) replace('/login');
   return callback()
@@ -31,6 +40,15 @@ const routes = {
       onEnter: dontRequireAuth,
       getComponent(location, cb) {
         System.import('pages/home')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      }
+    },
+    {
+      path: '/withdraw',
+      onEnter: dontRequireAuth,
+      getComponent(location, cb) {
+        System.import('pages/withdraw')
           .then(loadRoute(cb))
           .catch(errorLoading);
       }
@@ -72,7 +90,7 @@ const routes = {
     },
     {
       path: 'dashboard',
-      onEnter: requireAuth,
+      onEnter:requireAdmin,
       getComponent(location, cb) {
         System.import('pages/dashboard')
           .then(loadRoute(cb))
@@ -81,7 +99,7 @@ const routes = {
     },
     {
       path: 'wallet',
-      onEnter: requireAuth,
+      onEnter: requireAdmin,
       getComponent(location, cb) {
         System.import('pages/wallet')
           .then(loadRoute(cb))
@@ -90,7 +108,7 @@ const routes = {
     },
     {
       path: 'subscription',
-      onEnter: requireAuth,
+      onEnter: requireAdmin,
       getComponent(location, cb) {
         System.import('pages/subscription')
           .then(loadRoute(cb))
@@ -99,7 +117,7 @@ const routes = {
     },
     {
       path: 'charts',
-      onEnter: requireAuth,
+      onEnter: requireAdmin,
       getComponent(location, cb) {
         System.import('pages/charts')
           .then(loadRoute(cb))
@@ -108,7 +126,7 @@ const routes = {
     },
     {
       path: 'tables',
-      onEnter: requireAuth,
+      onEnter: requireAdmin,
       getComponent(location, cb) {
         System.import('pages/tables')
           .then(loadRoute(cb))
@@ -173,8 +191,16 @@ const routes = {
           .then(loadRoute(cb))
           .catch(errorLoading);
       }
+    },
+    {
+      path: 'help',
+      getComponent(location, cb) {
+        System.import('pages/help')
+          .then(loadRoute(cb))
+          .catch(errorLoading);
+      }
     }
   ]
 };
 
-export default () => <Router history={browserHistory} routes={routes} />;
+export default () => <Router history={browserHistory} routes={routes}/>;

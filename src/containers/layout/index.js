@@ -20,6 +20,16 @@ class MainLayout extends React.Component {
 
   closePopup() {
     this.props.changePopup('', false, false, '');
+    let elem = document.body;
+    elem.style.overflow = "scroll";
+  }
+
+  componentDidUpdate() {
+    if(this.props.popup.show) {
+      let elem = document.body;
+      window.scrollTo(0, 0);
+      elem.style.overflow = "hidden";
+    }
   }
 
   render() {
@@ -28,7 +38,7 @@ class MainLayout extends React.Component {
         {this.props.popup.show &&
           <Popup popup={this.props.popup}
             closePopup={this.handleClosePopup}
-            changePopup={this.props.changePopup} 
+            changePopup={this.props.changePopup}
             confirmChangeInPopup={this.props.confirmChangeInPopup}
             passwordChangeInPopup={this.props.passwordChangeInPopup}
             changeAndResetPassword={this.props.changeAndResetPassword} />}

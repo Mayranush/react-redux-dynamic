@@ -62,13 +62,13 @@ export class Menu extends React.Component {
                 </div>
               </li>
               }
-              <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                <div className="nav-link">
-                  <Link className="nav-link-text" to="charts">
-                    <i className="fa fa-fw fa-chart-area fa-menu"/>Charts
-                  </Link>
-                </div>
-              </li>
+              {/*<li className="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">*/}
+                {/*<div className="nav-link">*/}
+                  {/*<Link className="nav-link-text" to="charts">*/}
+                    {/*<i className="fa fa-fw fa-chart-area fa-menu"/>Charts*/}
+                  {/*</Link>*/}
+                {/*</div>*/}
+              {/*</li>*/}
               {this.role === 'USER' &&
               <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
                 <div className="nav-link">
@@ -103,6 +103,13 @@ export class Menu extends React.Component {
                 </div>
               </li>
               }
+              <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Help">
+                <div className="nav-link">
+                  <Link className="nav-link-text" to="help">
+                    <i className="fa fa-fw fas fa-info fa-menu"/>How it works
+                  </Link>
+                </div>
+              </li>
             </ul>
             {/*<ul className="navbar-nav sidenav-toggler">*/}
             {/*<li className="nav-item">*/}

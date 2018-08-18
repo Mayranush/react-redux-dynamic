@@ -85,15 +85,17 @@ export class Settings extends React.Component {
           <li className={this.props.data.settingsCurrentTab === 'myDetails' ? "one active tab" : "one tab"}>
             <span><p onClick={(e) => this.handleGetTwitterSettings(e, 'myDetails')}>My details</p></span>
           </li>
+          {window.sessionStorage.getItem("role") !== 'ADMIN' &&
           <li className={this.props.data.settingsCurrentTab === 'twitterSettings' ? "two active tab" : "two tab"}>
             <span> <p onClick={(e) => this.handleGetTwitterSettings(e, 'twitterSettings')}
             >Twitter API Details</p></span>
-          </li>
+          </li>}
+          {window.sessionStorage.getItem("role") !== 'ADMIN' &&
           <li className={this.props.data.settingsCurrentTab === 'twitterCriteria' ? "three active tab" : "three tab"}>
             <span> <p onClick={(e) => this.handleGetTwitterSettings(e, 'twitterCriteria')}
             >Twitter Criteria</p></span>
-          </li>
-          <hr className="hr"/>
+          </li>}
+          < hr className="hr"/>
         </ul>
         <div className="settings-tab">
           {this.props.data.settingsCurrentTab === 'myDetails' && this.props.data.dataReceived
@@ -101,13 +103,13 @@ export class Settings extends React.Component {
                         updateSettings={this.handleUpdateSettings}
                         changePopup={this.props.changePopup}
                         ref={(input) => this.settings = input}/>}
-          {this.props.data.settingsCurrentTab == 'twitterSettings' && this.props.twitter.dataReceivedApiDetails
+          {window.sessionStorage.getItem("role") !== 'ADMIN' && this.props.data.settingsCurrentTab == 'twitterSettings' && this.props.twitter.dataReceivedApiDetails
           && <TwitterSettings twitter={this.props.twitter}
                               updateSettings={this.handleUpdateTwSettings}
                               cleanData={this.props.cleanData}
                               ref={(input) => this.twSettings = input}/>}
 
-          {this.props.data.settingsCurrentTab == 'twitterCriteria' && this.props.twitter.dataReceivedTipCriteria
+          {window.sessionStorage.getItem("role") !== 'ADMIN' && this.props.data.settingsCurrentTab == 'twitterCriteria' && this.props.twitter.dataReceivedTipCriteria
           && <TwitterCriteria twitter={this.props.twitter}
                               updateSettings={this.handleUpdateTwCriteria}
                               cleanData={this.props.cleanData}

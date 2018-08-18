@@ -15,8 +15,8 @@ const defaultState = {
   coinType: '',
   hashtags: '',
   // tipsLike: false,
-  tipsTweet: false,
-  tipsReTweet: false,
+  // tipsTweet: false,
+  // tipsReTweet: false,
   tipsFollowers: false,
   botStatus: '',
   botStart: ''

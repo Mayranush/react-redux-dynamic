@@ -85,6 +85,7 @@ const ActionTypes = {
   getDataRequestAddAdmin: "GET_DATA_REQUEST_ADD_ADMIN",
   getDataResponseAddAdmin: "GET_DATA_RESPONSE_ADD_ADMIN",
 
+
   emailChange: "EMAIL_CHANGE",
   passwordChange: "PASSWORD_CHANGE",
   doesRememberPassword: "DOES_REMEMBER_PASSWORD",
@@ -97,7 +98,14 @@ const ActionTypes = {
   passwordChangeInPopup: "PASSWORD_CHANGE_IN_POPUP",
   confirmChange: "CONFIRM_CHANGE",
   confirmChangeInPopup: "CONFIRM_CHANGE_IN_POPUP",
-  changeSuccessMessage: "CHANGE_SUCCESS_MESSAGE"
+  changeSuccessMessage: "CHANGE_SUCCESS_MESSAGE",
+
+  withdrawTokenChange: "WITHDRAW_TOKEN_CHANGE",
+  changeAddress: "CHANGE_ADDRESS",
+
+  getDataRequestWithdrawTokenCheck: "GET_DATA_REQUEST_WITHDRAW_TOKEN_CHECK",
+  getDataResponseWithdrawTokenCheck: "GET_DATA_RESPONSE_WITHDRAW_TOKEN_CHECK",
+  getDataResponseErrorWithdrawTokenCheck: "GET_DATA_RESPONSE_ERROR_WITHDRAW_TOKEN_CHECK",
 };
 
 export default ActionTypes;

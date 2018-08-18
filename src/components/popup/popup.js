@@ -56,8 +56,8 @@ export class Popup extends React.Component {
                     className={this.props.popup.passwordErrorText.length != 0 ? 'input-error form-control' : 'form-control'}
                     id="exampleInputPassword1" type="password" placeholder="Password"
                     onKeyUp={(e) => this.handlePasswordChange(e)}/>
-                     <p
-                      className="error-for-input-popup">{this.props.popup.passwordErrorText.length != 0 ? '*' + this.props.popup.passwordErrorText : ''}</p>
+                  <p
+                    className="error-for-input-popup">{this.props.popup.passwordErrorText.length != 0 ? '*' + this.props.popup.passwordErrorText : ''}</p>
 
                 </div>
                 <div className="col-md-6">
@@ -77,9 +77,7 @@ export class Popup extends React.Component {
             <button className="close-button" onClick={() => this.props.closePopup()}>Cancel
             </button>
           </div>
-
         </div>}
-
       </div>
     )
   }
